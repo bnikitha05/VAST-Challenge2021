@@ -1,5 +1,5 @@
 name: "VAST-Challenge2021"
-title: "My Website"
+title: "Mini Challenge 1"
 description: |
   My Website
 output_dir: "_site"
@@ -19,6 +19,4 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
 output: distill::distill_article
