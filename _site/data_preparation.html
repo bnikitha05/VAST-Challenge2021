@@ -1,0 +1,3025 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>My Website: Data Preparation</title>
+  
+  
+  
+  
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="My Website: Data Preparation"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="My Website"/>
+  
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="My Website: Data Preparation"/>
+  
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Data Preparation"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+  
+  <script type="application/javascript">
+  
+    window.headroom_prevent_pin = false;
+  
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+  
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+  
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+  
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+  
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+  
+  <style type="text/css">
+  
+  /* Theme (user-documented overrideables for nav appearance) */
+  
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .distill-site-nav a:hover {
+    color: white;
+  }
+  
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+  
+  .distill-site-header {
+  
+  }
+  
+  .distill-site-footer {
+  
+  }
+  
+  
+  /* Site Header */
+  
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+  
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+  
+  
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+  
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+  
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+  
+  .distill-site-header .logo {
+    padding: 0;
+  }
+  
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+  
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+  
+  
+  
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+  
+  
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+  
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+  
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-dropdown-active {
+    display: block;
+  }
+  
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+  
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+  
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
+  /* Site Footer */
+  
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+  
+  /* Headroom */
+  
+  d-title {
+    padding-top: 6rem;
+  }
+  
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+  
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+  
+  .headroom--unpinned {
+    top: -100px;
+  }
+  
+  .headroom--pinned {
+    top: 0;
+  }
+  
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+  
+  </style>
+  
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+  
+  <script type="application/javascript">
+  
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+  
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+  
+  function createFuseIndex() {
+  
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+  
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+  
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+  
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+  
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+  
+    createFuseIndex()
+      .then(function(fuse) {
+  
+        // make search box visible
+        searchEl.classList.remove('hidden');
+  
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  
+  });
+  
+  </script>
+  
+  <style type="text/css">
+  
+  .nav-search {
+    font-size: x-small;
+  }
+  
+  /* Algolioa Autocomplete */
+  
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+  
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+  
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+  
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  </style>
+  
+  
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+  
+  <style type="text/css">
+  
+  body {
+    background-color: white;
+  }
+  
+  .pandoc-table {
+    width: 100%;
+  }
+  
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+  
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+  
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+  
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+  
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+  
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+  
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+  
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+  
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+  
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+  
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+  
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+  
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .shaded-content {
+    background: white;
+  }
+  
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+  
+  d-appendix {
+    padding-top: 30px;
+  }
+  
+  d-article>p>img {
+    width: 100%;
+  }
+  
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+  
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+  
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+  
+  /* Tweak code blocks */
+  
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+  
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+  
+  d-article div.sourceCode {
+    background-color: white;
+  }
+  
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+  
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  d-article pre a {
+    border-bottom: none;
+  }
+  
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+  
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+  
+  @media(min-width: 768px) {
+  
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+  
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+  
+  d-article pre {
+    font-size: 14px;
+  }
+  
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for d-contents */
+  
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+  
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+  
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+  
+  .d-contents li {
+    list-style-type: none
+  }
+  
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+  
+  .d-contents ul {
+    padding-left: 1em
+  }
+  
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+  
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+  
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+  
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+  
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+  
+  
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+  
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+  
+  
+  /* Figure */
+  
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+  
+  .figure img {
+    width: 100%;
+  }
+  
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+  
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+  
+  /* Citations */
+  
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+  
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+  
+  /* Citation hover box */
+  
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+  
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+  
+  
+  /* Tweak 1000px media break to show more text */
+  
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+  
+    .grid {
+      grid-column-gap: 16px;
+    }
+  
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+  
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+  
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+  
+  
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+  
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  /* Include appendix styles here so they can be overridden */
+  
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+  
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+  
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+  
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+  
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+  
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+  
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  d-appendix > * {
+    grid-column: text;
+  }
+  
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+  
+  /* Include footnote styles here so they can be overridden */
+  
+  d-footnote-list {
+    contain: layout style;
+  }
+  
+  d-footnote-list > * {
+    grid-column: text;
+  }
+  
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+  
+  
+  
+  /* Anchor.js */
+  
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+  
+  /* Social footer */
+  
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+  
+  .disqus-comments {
+    margin-right: 30px;
+  }
+  
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  
+  #disqus_thread {
+    margin-top: 30px;
+  }
+  
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+  
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+  
+  
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+  
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+  
+  /* Styles for posts lists (not auto-injected) */
+  
+  
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+  
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+  
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+  
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+  
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+  
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+  
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+  
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+  
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+  
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+  
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+  
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+  
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .posts-list img {
+    opacity: 1;
+  }
+  
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+  
+  .posts-more {
+    clear: both;
+  }
+  
+  
+  .posts-sidebar {
+    font-size: 16px;
+  }
+  
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+  
+  .categories li>a {
+    border-bottom: none;
+  }
+  
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+  
+  .categories .active {
+    font-weight: 600;
+  }
+  
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+  
+  
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+  
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+  
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+  
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+  
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+  
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+  
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+  
+  
+  
+  </style>
+  
+  <script type="application/javascript">
+  
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+  
+  // show body when load is complete
+  function on_load_complete() {
+  
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+  
+  
+    // set body to visible
+    document.body.style.visibility = 'visible';
+  
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+  
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+  
+  function init_distill() {
+  
+    init_common();
+  
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+  
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+  
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+  
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+  
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+  
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+  
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+  
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+  
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+  
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+  
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+  
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+  
+      // capture layout
+      var layout = $(this).attr('data-layout');
+  
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+  
+  
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+  
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+  
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+  
+    // load distill framework
+    load_distill_framework();
+  
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+  
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+  
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+  
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+  
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+  
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+  
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+  
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+  
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+  
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+  
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+  
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+  
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+  
+      // clear polling timer
+      clearInterval(tid);
+  
+      // show body now that everything is ready
+      on_load_complete();
+    }
+  
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+  
+  }
+  
+  function init_downlevel() {
+  
+    init_common();
+  
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+  
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+  
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+  
+    // remove toc
+    $('.d-contents').remove();
+  
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+  
+  
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+  
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+  
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+  
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+  
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+  
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+  
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+  
+    $('body').addClass('downlevel');
+  
+    on_load_complete();
+  }
+  
+  
+  function init_common() {
+  
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+  
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+  
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+  
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+  
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+  
+      }
+    });
+  
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+  
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+  
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+  
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+  
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+  
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+  
+  </script>
+  
+  <!--/radix_placeholder_distill-->
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Data Preparation","authors":[]}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">My Website</a>
+<a href="background.html">Background</a>
+<a href="data_preparation.html">Data Preparation</a>
+<a href="building_viz.html">Building Visualization</a>
+<a href="answers.html">Response to Questions</a>
+<a href="storyboard.html">Storyboard for R-Shiny</a>
+</div>
+<div class="nav-right">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Data Preparation</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+
+</div>
+
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#data-preparation">2.0 Data Preparation</a><ul>
+<li><a href="#installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</a></li>
+<li><a href="#importing-provided-data">2) Importing Provided Data</a></li>
+<li><a href="#processing-news-articles">3) Processing News Articles</a></li>
+<li><a href="#processing-email-and-employee-data">4) Processing Email and Employee Data</a></li>
+<li><a href="#storing-clean-data-into-files">4 Storing clean data into files</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h2 id="data-preparation">2.0 Data Preparation</h2>
+<h3 id="installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</h3>
+<p>As part of the data processing, we first start with installing the required packages if they are not already installed and calling the libraries. The below chunk of code will handle all the necessary packages required without one needing to install manually. The required packages will only have to be mentioned in the ‘packages’ list. The purpose of requiring the below packages are:</p>
+<ul>
+<li><p>tidyverse - Majority of the data cleaning function such as ‘read_csv’, ‘startWith’, ‘gsub’ etc all belong in this library.</p></li>
+<li><p>DT - To display the data frame in an interactive manner to the user.</p></li>
+<li><p>mgsub - This is similar to the use of ‘gsub’ but can specify more than 1 string pattern.</p></li>
+<li><p>readxl - To read “.xlxs” or “.xls” files.</p></li>
+<li><p>splitstackshape - The function ‘concat.split.multiple’ that is present in this package is used to split a string into multiple rows.</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'tidyverse'</span>,<span class='st'>'DT'</span>,<span class='st'>'mgsub'</span>,<span class='st'>'readxl'</span>,<span class='st'>'splitstackshape'</span><span class='op'>)</span>
+<span class='kw'>for</span><span class='op'>(</span><span class='va'>p</span> <span class='kw'>in</span> <span class='va'>packages</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h3 id="importing-provided-data">2) Importing Provided Data</h3>
+<p>The data provided are a set of current and historical news reports, as well as resumes of numerous GAStech employees and email headers from two weeks of internal GAStech company email. The data in resumes folder has already been processed and is in the ‘EmployeeRecords.xlsx’ file. Therefore, we will be using that file directly.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>File/Folder Name</th>
+<th>About</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>News Articles</td>
+<td>Folder containing various newsgroups and news articles within them</td>
+</tr>
+<tr class="even">
+<td>resumes</td>
+<td>Folder consisting of resumes of employees</td>
+</tr>
+<tr class="odd">
+<td>EmployeeRecords.xlsx</td>
+<td>Details on employees</td>
+</tr>
+<tr class="even">
+<td>email headers.csv</td>
+<td>Email headers from two weeks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Importing News Articles </strong></p>
+<p>Since there are multiple files in various folders, we specify the root directory which is the “News Articles” and write a function to read all files from folder into a data frame instead of using a for loop which is slower. After reading all files, we will save all the data into a variable called ‘raw_text’.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#root folder directory</span>
+<span class='va'>news</span><span class='op'>=</span><span class='st'>"data/News Articles/"</span>
+
+<span class='co'>#define a function to read all files from folder into a data frame</span>
+<span class='va'>read_folder</span><span class='op'>=</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>infolder</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'>tibble</span><span class='op'>(</span>file<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='va'>infolder</span>,full.names<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'>map</span><span class='op'>(</span><span class='va'>file</span>,<span class='va'>read_lines</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+    <span class='fu'>transmute</span><span class='op'>(</span>id<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>,<span class='va'>text</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>unnest</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>
+<span class='op'>}</span>  
+<span class='co'>#read data</span>
+<span class='va'>raw_text</span><span class='op'>=</span><span class='fu'>tibble</span><span class='op'>(</span>folder<span class='op'>=</span>
+                  <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='va'>news</span>,
+                      full.names<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>folder_out<span class='op'>=</span><span class='fu'>map</span><span class='op'>(</span><span class='va'>folder</span>,
+                        <span class='va'>read_folder</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>unnest</span><span class='op'>(</span>cols<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>folder_out</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>transmute</span><span class='op'>(</span>newsgroup<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>folder</span><span class='op'>)</span>,<span class='va'>id</span>,<span class='va'>text</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><strong>Importing Email and Employee data </strong></p>
+<p>For the data already present in either a “.xlsx” or “.csv” file, we can use the existing functions “read_excel” and “read_csv” respectively. These functions will read the data in the files and output them as data frames. “read_excel” function can be used for not only “.xlsx” but also “.xls” files.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"data/EmployeeRecords.xlsx"</span><span class='op'>)</span>
+<span class='va'>email_data</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/email headers.csv"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="processing-news-articles">3) Processing News Articles</h3>
+<p>Below is how the raw_text datatable looks like. It is visible that the data is very dirty and there is a lot of processing that has to be done.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10 x 3
+   newsgroup      id      text                                 
+   &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;                                
+ 1 All News Today 121.txt &quot;SOURCE: All News Today&quot;             
+ 2 All News Today 121.txt &quot;&quot;                                   
+ 3 All News Today 121.txt &quot;TITLE: POK PROTESTS END IN ARRESTS &quot;
+ 4 All News Today 121.txt &quot;&quot;                                   
+ 5 All News Today 121.txt &quot; &quot;                                  
+ 6 All News Today 121.txt &quot;&quot;                                   
+ 7 All News Today 121.txt &quot;PUBLISHED: 2005/04/06&quot;              
+ 8 All News Today 121.txt &quot; &quot;                                  
+ 9 All News Today 121.txt &quot;&quot;                                   
+10 All News Today 121.txt &quot;LOCATION: ELODIS, Kronos &quot;          </code></pre>
+</div>
+<p><strong>Initial Cleaning Steps</strong></p>
+<p>Lets start by deleting the text that are empty strings and also it is noticeable that text starting with “SOURCE” is of no additional use to us as the content is already available in column ‘newsgroup’. Also, lets maintain the ‘id’ column as a number and remove the ‘.txt’ extension..</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#delete empty cells</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span>,<span class='st'>" "</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
+
+<span class='co'>#remove .txt from id</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>".txt"</span>,<span class='st'>""</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span>
+
+<span class='co'>#remove the SOURCE as it s already there as newsgroup</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>"SOURCE:"</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>,fixed<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 3
+  newsgroup     id    text                                            
+  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;                                           
+1 All News Tod~ 121   &quot;TITLE: POK PROTESTS END IN ARRESTS &quot;           
+2 All News Tod~ 121   &quot;PUBLISHED: 2005/04/06&quot;                         
+3 All News Tod~ 121   &quot;LOCATION: ELODIS, Kronos &quot;                     
+4 All News Tod~ 121   &quot;Fifteen members of the Protectors of Kronos (P~
+5 All News Tod~ 121   &quot;When the federal police began arresting the PO~
+6 All News Tod~ 135   &quot;TITLE: RALLY SCHEDULED IN SUPPORT OF INCREASED~</code></pre>
+</div>
+<p><strong>Processing Title</strong></p>
+<p>Instead of keeping all text in one column, it is better to have distinct columns for different contents. For example, there is a sub field starting with “TITLE” in the text column and it can be put into a new separate column. For this, we make use of two functions called ‘startsWith’ which checks if a string starts with the mentioned string and ‘gsub’ which replaces a string with another string.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"TITLE"</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"TITLE: "</span>,<span class='st'>""</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span><span class='op'>)</span>,<span class='st'>""</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Do note that for text processing, one has to check the resultant datatable to see if there is any further modification required. In this case, after going through the data table, it was observed that file id 33 has misplaced text and this has to be separately handled as below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#after exploring the data, it appears that the content of file 33 is not proper.</span>
+<span class='co'>#So there is a need to modify it separately</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span><span class='op'>==</span><span class='st'>"33"</span>,
+                      <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"PUBLISHED"</span><span class='op'>)</span>,
+                             <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"PUBLISHED: "</span>,<span class='st'>""</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span><span class='op'>)</span>,<span class='st'>""</span><span class='op'>)</span>,
+                      <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Not all rows have the field Title, the below code will populate all records with Title. The function ‘unique’ is used to identify the unique values present in the datatable. The ‘which’ function returns the row numbers that meet the criteria. Function ‘match’ is used to obtain value from another dataframe based on the match condition. Lastly, we trim any spaces present at the start or end of the string. This is done using the function ‘str_trim’.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>title_sub_dataframe</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Title"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>title_sub_dataframe</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>==</span><span class='st'>""</span><span class='op'>)</span>
+<span class='va'>title_sub_dataframe</span><span class='op'>=</span><span class='va'>title_sub_dataframe</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>=</span><span class='va'>title_sub_dataframe</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>title_sub_dataframe</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'>### trim space at start and end if there exists</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>=</span><span class='fu'>str_trim</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span>, side <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>raw_text</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 5,388 x 4
+   newsgroup   id    text                      Title                  
+   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;                  
+ 1 All News T~ 121   &quot;TITLE: POK PROTESTS END~ POK PROTESTS END IN AR~
+ 2 All News T~ 121   &quot;PUBLISHED: 2005/04/06&quot;   POK PROTESTS END IN AR~
+ 3 All News T~ 121   &quot;LOCATION: ELODIS, Krono~ POK PROTESTS END IN AR~
+ 4 All News T~ 121   &quot;Fifteen members of the ~ POK PROTESTS END IN AR~
+ 5 All News T~ 121   &quot;When the federal police~ POK PROTESTS END IN AR~
+ 6 All News T~ 135   &quot;TITLE: RALLY SCHEDULED ~ RALLY SCHEDULED IN SUP~
+ 7 All News T~ 135   &quot;PUBLISHED: 2012/04/09&quot;   RALLY SCHEDULED IN SUP~
+ 8 All News T~ 135   &quot;LOCATION: ABILA, Kronos~ RALLY SCHEDULED IN SUP~
+ 9 All News T~ 135   &quot;Silvia Marek, leader of~ RALLY SCHEDULED IN SUP~
+10 All News T~ 135   &quot;\&quot;I&#39;m calling for an en~ RALLY SCHEDULED IN SUP~
+# ... with 5,378 more rows</code></pre>
+</div>
+<p>Looked through the dataframe again and noticed that there are a few titles which do the fit the context. The below mentioned two titles are dates and do not fit the ‘Title’ column. Therefore, ‘ifelse’ statement is used to replace the mentioned titles to NA or else keep the title as it is.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>##looking at the data now, there appears to be some dates and they can be removed</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"4 of March of 2010"</span>, <span class='st'>"2014/03/26"</span><span class='op'>)</span>,<span class='cn'>NA</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><strong>Processing Location</strong></p>
+<p>Having processed ‘Title’, lets move on to ‘Location’. Using the similar logic as used in Title’, run the below chunk of code to create a new column called ‘Location’. Here, ‘mgsub’ function was used and not ‘gsub’ because here we have to check for more than 1 string pattern and it cannot be done with ‘gsub’ hence, ‘mgsub’ function was used for the same purpose.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"LOCATION"</span><span class='op'>)</span>,
+                           <span class='fu'>mgsub</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"LOCATION: "</span>, <span class='st'>"LOCATIONS:  "</span><span class='op'>)</span>, 
+                                 <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span>,<span class='st'>""</span><span class='op'>)</span>
+
+<span class='va'>location_sub_dataframe</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Location"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>location_sub_dataframe</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>==</span><span class='st'>""</span><span class='op'>)</span>
+<span class='va'>location_sub_dataframe</span><span class='op'>=</span><span class='va'>location_sub_dataframe</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
+
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>=</span><span class='va'>location_sub_dataframe</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>location_sub_dataframe</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 5
+  newsgroup   id    text                Title               Location  
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;     
+1 All News T~ 121   &quot;TITLE: POK PROTES~ POK PROTESTS END I~ &quot;ELODIS, ~
+2 All News T~ 121   &quot;PUBLISHED: 2005/0~ POK PROTESTS END I~ &quot;ELODIS, ~
+3 All News T~ 121   &quot;LOCATION: ELODIS,~ POK PROTESTS END I~ &quot;ELODIS, ~
+4 All News T~ 121   &quot;Fifteen members o~ POK PROTESTS END I~ &quot;ELODIS, ~
+5 All News T~ 121   &quot;When the federal ~ POK PROTESTS END I~ &quot;ELODIS, ~
+6 All News T~ 135   &quot;TITLE: RALLY SCHE~ RALLY SCHEDULED IN~ &quot;ABILA, K~</code></pre>
+</div>
+<p>The unique locations existing in the datatable are:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;ELODIS, Kronos &quot;                                                        
+ [2] &quot;ABILA, Kronos &quot;                                                         
+ [3] NA                                                                       
+ [4] &quot;Abila, Kronos &quot;                                                         
+ [5] &quot;ABILA, Kronos&quot;                                                          
+ [6] &quot;TITLE: KRONOS POLICE ARREST BLOTTER &quot;                                   
+ [7] &quot;TITLE: OF TEN YEARS &quot;                                                   
+ [8] &quot;ELODIS, Kronos&quot;                                                         
+ [9] &quot;TITLE: ARREST BLOTTER OF THE POLICE FORCE KRONOS &quot;                      
+[10] &quot;CENTRUM, Tethys &quot;                                                       
+[11] &quot;TITLE: ELODIS PUBLIC HEALTH FACT SHEET &quot;                                
+[12] &quot;TITLE: GOVERNMENT STANDS UP ANTI&quot;                                       
+[13] &quot;TITLE: GRAND OPENING GASTECH&quot;                                           
+[14] &quot;TITLE: Abila police break up sit&quot;                                       
+[15] &quot;TITLE: Multi&quot;                                                           
+[16] &quot;This is the first confirmation that today&#39;s events surrounding GAStech &quot;
+[17] &quot;Kronos will add Tethys which anti&quot;                                      
+[18] &quot;TITLE: DRYING PAPER OF THE HALTING OF THE POLICE OF KRONOS &quot;            
+[19] &quot;DAVOS, Switzerland &quot;                                                    
+[20] &quot;TITLE: The movement of the block&quot;                                       
+[21] &quot;This Article is the second of  three&quot;                                   </code></pre>
+</div>
+<p>Based at the locations available, there is further processing that has to be done. After further exploring, it is noticeable that a few files have “LOCATION: TITLE:…”. This does not make any sense and therefore, any text starting with “TITLE” under the column location can be replace with NA. Also, the syntax for a valid location is “City, Country” as seen from the unique values above, therefore, replacing all strings with no ‘,’ with NA will remove all other text present. Lastly, maintain the naming convention by keeping the city in capitals and country in a title format meaning only the first letter will be capital and others in lower case.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## need to further clean location</span>
+<span class='co'>### replace everything that starts with TITLE to NA</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span>, <span class='st'>"TITLE"</span><span class='op'>)</span>,<span class='cn'>NA</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span>
+
+<span class='co'>### replace everything without ',' with NA</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>","</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span>,fixed<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span>,<span class='cn'>NA</span><span class='op'>)</span>
+
+<span class='co'>### trim space at end</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>=</span><span class='fu'>str_trim</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span>, side <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'>### Standardize all names</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span>,<span class='fl'>1</span>,
+                                                    <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gregexpr</a></span><span class='op'>(</span>pattern<span class='op'>=</span><span class='st'>','</span>,
+                                                             <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>,
+                                  <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span>,
+                                            <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gregexpr</a></span><span class='op'>(</span>pattern <span class='op'>=</span><span class='st'>','</span>,
+                                                     <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>+</span><span class='fl'>1</span>,<span class='op'>)</span><span class='op'>)</span>,
+                           <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;ELODIS, Kronos&quot;     &quot;ABILA, Kronos&quot;      NA                  
+[4] &quot;CENTRUM, Tethys&quot;    &quot;DAVOS, Switzerland&quot;</code></pre>
+</div>
+<p>The location values now look clean and tidy.</p>
+<p><strong>Processing Published</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"PUBLISHED"</span><span class='op'>)</span> <span class='op'>|</span> 
+                              <span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>" PUBLISHED"</span><span class='op'>)</span>,
+                            <span class='fu'>mgsub</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PUBLISHED: "</span>, <span class='st'>" PUBLISHED:  "</span><span class='op'>)</span>,
+                                  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span>,
+                            <span class='st'>""</span><span class='op'>)</span>
+
+<span class='co'>#after exploring the data, it appears that the content of file 33 is not proper.</span>
+<span class='co'>#So there is a need to modify it separately</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span><span class='op'>==</span><span class='st'>"33"</span>,
+                          <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"AUTHOR"</span><span class='op'>)</span>,
+                                 <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"AUTHOR: "</span>,<span class='st'>""</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span><span class='op'>)</span>,<span class='st'>""</span><span class='op'>)</span>,
+                          <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+
+<span class='va'>published_sub_dataframe</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Published"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>published_sub_dataframe</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>==</span><span class='st'>""</span><span class='op'>)</span>
+<span class='va'>published_sub_dataframe</span><span class='op'>=</span><span class='va'>published_sub_dataframe</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='va'>published_sub_dataframe</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>published_sub_dataframe</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'>### trim space at start and end if there exists</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'>str_trim</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>, side <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10 x 6
+   newsgroup  id    text            Title           Location Published
+   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;    
+ 1 All News ~ 121   &quot;TITLE: POK PR~ POK PROTESTS E~ ELODIS,~ 2005/04/~
+ 2 All News ~ 121   &quot;PUBLISHED: 20~ POK PROTESTS E~ ELODIS,~ 2005/04/~
+ 3 All News ~ 121   &quot;LOCATION: ELO~ POK PROTESTS E~ ELODIS,~ 2005/04/~
+ 4 All News ~ 121   &quot;Fifteen membe~ POK PROTESTS E~ ELODIS,~ 2005/04/~
+ 5 All News ~ 121   &quot;When the fede~ POK PROTESTS E~ ELODIS,~ 2005/04/~
+ 6 All News ~ 135   &quot;TITLE: RALLY ~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
+ 7 All News ~ 135   &quot;PUBLISHED: 20~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
+ 8 All News ~ 135   &quot;LOCATION: ABI~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
+ 9 All News ~ 135   &quot;Silvia Marek,~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
+10 All News ~ 135   &quot;\&quot;I&#39;m calling~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~</code></pre>
+</div>
+<p>The unique published dates existing in the datatable are:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  [1] &quot;2005/04/06&quot;            &quot;2012/04/09&quot;           
+  [3] &quot;1993/02/02&quot;            &quot;Petrus Gerhard&quot;       
+  [5] &quot;1998/05/15&quot;            &quot;2004/05/29&quot;           
+  [7] &quot;2013/06/21&quot;            &quot;2001/03/22&quot;           
+  [9] &quot;1998/11/15&quot;            &quot;2009/06/20&quot;           
+ [11] &quot;2007/03/21&quot;            &quot;1999/07/08&quot;           
+ [13] &quot;1998/05/16&quot;            &quot;2009/03/12&quot;           
+ [15] &quot;2012/06/20&quot;            &quot;2014/01/19&quot;           
+ [17] &quot;2012/09/08&quot;            &quot;2011/06/21&quot;           
+ [19] &quot;By Haneson Ngohebo&quot;    &quot;2014/01/20&quot;           
+ [21] &quot;2009/02/21&quot;            &quot;2009/06/21&quot;           
+ [23] &quot;1997/10/17&quot;            &quot;2013/12/17&quot;           
+ [25] &quot;2011/11/23&quot;            &quot;2000/10/04&quot;           
+ [27] &quot;2000/08/18&quot;            &quot;2009/03/14&quot;           
+ [29] &quot;2005/09/26&quot;            &quot;2010/06/15&quot;           
+ [31] &quot;2011/05/15&quot;            &quot;2007/04/11&quot;           
+ [33] &quot;1998/11/17&quot;            &quot;2010/10/04&quot;           
+ [35] &quot;2012/03/10&quot;            &quot;2010/06/21&quot;           
+ [37] &quot;2011/07/29&quot;            &quot;1997/04/24&quot;           
+ [39] &quot;2012/08/24&quot;            &quot;2005/09/25&quot;           
+ [41] &quot;2011/07/28&quot;            &quot;1997/04/23&quot;           
+ [43] &quot;1997/10/16&quot;            &quot;2012/08/23&quot;           
+ [45] &quot;2010/10/03&quot;            &quot;2010/06/14&quot;           
+ [47] &quot;1998/11/16&quot;            &quot;2000/10/02&quot;           
+ [49] &quot;2009/02/19&quot;            &quot;2000/08/17&quot;           
+ [51] &quot;2009/03/13&quot;            &quot;20 January 2014&quot;      
+ [53] &quot;21 January 2014&quot;       &quot;2012/11/11&quot;           
+ [55] &quot;2002/05/27&quot;            &quot;2001/09/02&quot;           
+ [57] &quot;1998/05/17&quot;            &quot;2004/05/31&quot;           
+ [59] &quot;1998/03/21&quot;            &quot;2001/03/23&quot;           
+ [61] &quot;2009/03/09&quot;            &quot;2014/03/26&quot;           
+ [63] &quot;2012/06/22&quot;            &quot;1998/04/27&quot;           
+ [65] &quot;2013/06/22&quot;            &quot;2000/06/01&quot;           
+ [67] &quot;1993/02/04&quot;            &quot;2005/04/07&quot;           
+ [69] &quot;2012/04/10&quot;            &quot;1998/08/21&quot;           
+ [71] &quot;2013/02/24&quot;            &quot;1999/11/16&quot;           
+ [73] &quot;2009/02/23&quot;            &quot;1982/10/03&quot;           
+ [75] &quot;21 October 2013&quot;       &quot;2007/03/19&quot;           
+ [77] &quot;2012/06/21&quot;            &quot;2009/06/23&quot;           
+ [79] &quot;2014/01/21&quot;            &quot;1984/05/05&quot;           
+ [81] &quot;2013/11/13&quot;            &quot;2012/02/22&quot;           
+ [83] &quot;2013/02/09&quot;            &quot;19 January 2014&quot;      
+ [85] &quot;22 March 2001&quot;         &quot;20 June 2011&quot;         
+ [87] &quot;20 June 2012&quot;          &quot;05 April 2005&quot;        
+ [89] &quot;31 May 2000&quot;           &quot;20 June 2013&quot;         
+ [91] &quot;19 August 1998&quot;        &quot;12 March 2009&quot;        
+ [93] &quot;25 May 2002&quot;           &quot;7 September 2012&quot;     
+ [95] &quot;15 May 1998&quot;           &quot;9 April 2012&quot;         
+ [97] &quot;14 November 1998&quot;      &quot;7 July 1999&quot;          
+ [99] &quot;25 April 1998&quot;         &quot;31 August 2001&quot;       
+[101] &quot;2 February  1993&quot;      &quot;20 March 2007&quot;        
+[103] &quot;19 March 1998&quot;         &quot;19 June 2009&quot;         
+[105] &quot;29 May 2004&quot;           &quot;7 March 2009&quot;         
+[107] &quot;19 June 2010&quot;          &quot;2001/08/31&quot;           
+[109] &quot;1993/01/19&quot;            &quot;2013/12/16&quot;           
+[111] &quot;2013/06/20&quot;            &quot;1995/10/11&quot;           
+[113] &quot;1995/11/21&quot;            &quot;2001/03/18&quot;           
+[115] &quot;2009/02/18&quot;            &quot;1996/03/14&quot;           
+[117] &quot;1999/07/04&quot;            &quot;22 February 2013&quot;     
+[119] &quot;21 January 2014  1405&quot; &quot;20 February 2012&quot;     
+[121] &quot;22 June 2009&quot;          &quot;4 October 1982&quot;       
+[123] &quot;14 November 1999&quot;      &quot;12 November 2013&quot;     
+[125] &quot;22 February 2009&quot;      &quot;18 March 2007&quot;        
+[127] &quot;2 October 1982&quot;        &quot;7 February 2013&quot;      
+[129] &quot;3 May 1984&quot;            &quot;18 February 2009&quot;     
+[131] &quot;15 December 2013&quot;      &quot;17 March 2001&quot;        
+[133] &quot;30 August 2001&quot;        &quot;14 June 2001&quot;         
+[135] &quot;7 March 2012&quot;          &quot;18 January 1998&quot;      
+[137] &quot;13 March 1996&quot;         &quot;21 November 1995&quot;     
+[139] &quot;3 July 1999&quot;           &quot;20 June 2010&quot;         
+[141] &quot;10 October 1995&quot;       &quot;21 June 2012&quot;         
+[143] &quot;27 July 2011&quot;          &quot;20 June 2009&quot;         
+[145] &quot;9 November 1998&quot;       &quot;18 January 1993&quot;      
+[147] &quot;12 March 1993&quot;         &quot;6 April 2005&quot;         
+[149] &quot;2007/04/12&quot;            &quot;2000/10/03&quot;           
+[151] &quot;1997/04/25&quot;            &quot;2013/12/18&quot;           
+[153] &quot;2010/06/22&quot;            &quot;2011/11/24&quot;           
+[155] &quot;12 November 2012&quot;      &quot;1999/11/15&quot;           
+[157] &quot;1996/07/08&quot;            &quot;2013/02/08&quot;           
+[159] &quot;2009/06/22&quot;            &quot;2012/08/22&quot;           
+[161] &quot;1997/10/15&quot;            &quot;17 December 2013&quot;     
+[163] &quot;1984/05/04&quot;            &quot;1998/08/20&quot;           
+[165] &quot;5 February 2012&quot;       &quot;1998/01/19&quot;           
+[167] &quot;2010/06/19&quot;            &quot;2013/02/22&quot;           
+[169] &quot;1995/03/30&quot;            &quot;1993/03/13&quot;           
+[171] &quot;2003/05/17&quot;            &quot;1992/12/12&quot;           
+[173] &quot;2000/08/15&quot;            &quot;2009/03/08&quot;           
+[175] &quot;21 June 2009&quot;          &quot;2013/09/03&quot;           
+[177] &quot;1998/11/10&quot;            &quot;2001/09/01&quot;           
+[179] &quot;1994/09/24&quot;            &quot;2012/03/09&quot;           
+[181] &quot;12 August 2009&quot;        &quot;1998/11/14&quot;           
+[183] &quot;2013/10/22&quot;            &quot;1993/02/03&quot;           
+[185] &quot;2009/05/16&quot;            &quot;1993/09/20&quot;           
+[187] &quot;2002/05/25&quot;            &quot;1999/02/19&quot;           
+[189] &quot;1994/02/18&quot;            &quot;2001/06/15&quot;           
+[191] &quot;2004/05/30&quot;            &quot;2000/01/15&quot;           
+[193] &quot;2012/03/08&quot;            &quot;2012/02/21&quot;           
+[195] &quot;30 June 2013&quot;          &quot;1995/11/22&quot;           
+[197] &quot;2 October 2010&quot;        &quot;8 March 2012&quot;         
+[199] &quot;15 October 1997&quot;       &quot;24 September 2005&quot;    
+[201] &quot;2 October 2000&quot;        &quot;22 August 2012&quot;       
+[203] &quot;14 May 2011&quot;           &quot;15 November 1998&quot;     
+[205] &quot;16 August 2000&quot;        &quot;22 November 2011&quot;     
+[207] &quot;10 April 2007&quot;         &quot;23 April 1997&quot;        
+[209] &quot;19 February 2009&quot;      &quot;13June 2010&quot;          
+[211] &quot;16 December 2013&quot;      &quot;2010/03/05&quot;           
+[213] &quot;2009/02/20&quot;            &quot;2011/05/16&quot;           
+[215] &quot;2000/01/17&quot;            &quot;1994/09/25&quot;           
+[217] &quot;2009/02/22&quot;            &quot;2000/08/16&quot;           
+[219] &quot;1999/02/20&quot;            &quot;2013/09/04&quot;           
+[221] &quot;2010/12/18&quot;            &quot;2003/05/19&quot;           
+[223] &quot;1995/10/12&quot;            &quot;1993/09/21&quot;           
+[225] &quot;2009/05/17&quot;            &quot;1992/12/13&quot;           
+[227] &quot;1995/04/01&quot;            &quot;2012/06/23&quot;           
+[229] &quot;2001/06/16&quot;            &quot;1995/11/23&quot;           
+[231] &quot;1996/03/15&quot;            &quot;2005/04/08&quot;           
+[233] &quot;2011/06/22&quot;            &quot;1998/01/20&quot;           
+[235] &quot;2000/01/16&quot;            &quot;1995/03/31&quot;           
+[237] &quot;2002/05/26&quot;            &quot;1999/07/09&quot;           
+[239] &quot;2007/03/22&quot;            &quot;2001/03/24&quot;           
+[241] &quot;1998/03/20&quot;            &quot;2012/11/12&quot;           
+[243] &quot;1993/01/20&quot;            &quot;1993/03/14&quot;           
+[245] &quot;2010/12/19&quot;            &quot;1996/07/09&quot;           
+[247] &quot;30 March 1995&quot;         &quot;15 May 2009&quot;          
+[249] &quot;15 January 2000&quot;       &quot;13 November 1998&quot;     
+[251] &quot;7 July 1996&quot;           &quot;15 August 2000&quot;       
+[253] &quot;18 February 1999&quot;      &quot;17 May 2003&quot;          
+[255] &quot;11 December 1992&quot;      &quot;19 September 1993&quot;    
+[257] &quot;17 February 1994&quot;      &quot;2 September 2013&quot;     
+[259] &quot;23 September 1994&quot;     &quot;1998/04/26&quot;           
+[261] &quot;2012/04/11&quot;            &quot;2000/06/02&quot;           
+[263] &quot;2003/05/18&quot;            &quot;1993/09/19&quot;           
+[265] &quot;1982/10/04&quot;            &quot;2007/03/20&quot;           
+[267] &quot;October 21, 2013&quot;      &quot;1984/05/03&quot;           
+[269] &quot;1982/10/02&quot;            &quot;1999/11/14&quot;           
+[271] &quot;1999/07/05&quot;           </code></pre>
+</div>
+<p>The date is of many different formats and some are even in text. All of these are processed in the below chunk of code. We first convert all the data that is not in a date format to date.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>##need further cleaning</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>==</span><span class='st'>"21 January 2014  1405"</span>,<span class='st'>"21 January 2014"</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>==</span><span class='st'>"October 21, 2013"</span>,<span class='st'>"21 October 2013"</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Next, convert all dates in “21 January 2014” format to “Y/M/D”. The ‘as.Date’ function can be used to convert the text into date and then formatting it again using ‘format’ function to obtain “Y/M/D” format.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## filtering published dates in "21 January 2014" format and converting them to Y/M/D format</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='fu'>str_extract</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>, <span class='st'>"^[0-9]{1,2}\\D[a-zA-Z]+\\D[0-9]{4}"</span><span class='op'>)</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>dates_to_format</span><span class='op'>)</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='va'>dates_to_format</span><span class='op'>[</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>dates_to_format</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>sub_dates</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Published"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Published</span> <span class='op'>%in%</span> <span class='va'>dates_to_format</span><span class='op'>)</span>
+<span class='va'>sub_dates</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>sub_dates</span><span class='op'>$</span><span class='va'>Published</span>,format<span class='op'>=</span><span class='st'>"%d %B %Y"</span><span class='op'>)</span>
+<span class='va'>sub_dates</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='va'>sub_dates</span><span class='op'>$</span><span class='va'>Published</span>,<span class='st'>"%Y/%m/%d"</span><span class='op'>)</span>
+
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates</span><span class='op'>=</span><span class='va'>sub_dates</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>sub_dates</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Since there are a few texts present in the Published column, after looking into the files of those id’s, it was noticeable that the date was in the next line and therefore, for these texts, the published date should be taken from the next immediate row.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## words improper</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='fu'>str_extract</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Petrus Gerhard"</span>,<span class='st'>"By Haneson Ngohebo"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>dates_to_format</span><span class='op'>)</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='va'>dates_to_format</span><span class='op'>[</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>dates_to_format</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>sub_dates2</span><span class='op'>=</span><span class='va'>raw_text</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Published</span> <span class='op'>%in%</span> <span class='va'>dates_to_format</span><span class='op'>)</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>sub_dates2</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"PUBLISHED"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='va'>row_numbers</span><span class='op'>+</span><span class='fl'>1</span>
+<span class='va'>subset</span><span class='op'>=</span><span class='va'>sub_dates2</span><span class='op'>[</span><span class='va'>row_numbers</span>,<span class='op'>]</span>
+<span class='va'>sub_dates2</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='va'>subset</span><span class='op'>$</span><span class='va'>text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>sub_dates2</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>subset</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates2</span><span class='op'>=</span><span class='va'>sub_dates2</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>sub_dates2</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>We then update the ‘Published’ column with the modified dates using the code below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates2</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates2</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  [1] &quot;2005/04/06&quot;       &quot;2012/04/09&quot;       &quot;1993/02/02&quot;      
+  [4] &quot;1998/03/20&quot;       &quot;1998/05/15&quot;       &quot;2004/05/29&quot;      
+  [7] &quot;2013/06/21&quot;       &quot;2001/03/22&quot;       &quot;1998/11/15&quot;      
+ [10] &quot;2009/06/20&quot;       &quot;2007/03/21&quot;       &quot;1999/07/08&quot;      
+ [13] &quot;1998/05/16&quot;       &quot;2009/03/12&quot;       &quot;2012/06/20&quot;      
+ [16] &quot;2014/01/19&quot;       &quot;2012/09/08&quot;       &quot;2011/06/21&quot;      
+ [19] &quot;2014/01/20&quot;       &quot;2009/02/21&quot;       &quot;2009/06/21&quot;      
+ [22] &quot;1997/10/17&quot;       &quot;2013/12/17&quot;       &quot;2011/11/23&quot;      
+ [25] &quot;2000/10/04&quot;       &quot;2000/08/18&quot;       &quot;2009/03/14&quot;      
+ [28] &quot;2005/09/26&quot;       &quot;2010/06/15&quot;       &quot;2011/05/15&quot;      
+ [31] &quot;2007/04/11&quot;       &quot;1998/11/17&quot;       &quot;2010/10/04&quot;      
+ [34] &quot;2012/03/10&quot;       &quot;2010/06/21&quot;       &quot;2011/07/29&quot;      
+ [37] &quot;1997/04/24&quot;       &quot;2012/08/24&quot;       &quot;2005/09/25&quot;      
+ [40] &quot;2011/07/28&quot;       &quot;1997/04/23&quot;       &quot;1997/10/16&quot;      
+ [43] &quot;2012/08/23&quot;       &quot;2010/10/03&quot;       &quot;2010/06/14&quot;      
+ [46] &quot;1998/11/16&quot;       &quot;2000/10/02&quot;       &quot;2009/02/19&quot;      
+ [49] &quot;2000/08/17&quot;       &quot;2009/03/13&quot;       &quot;2014/01/21&quot;      
+ [52] &quot;2012/11/11&quot;       &quot;2002/05/27&quot;       &quot;2001/09/02&quot;      
+ [55] &quot;1998/05/17&quot;       &quot;2004/05/31&quot;       &quot;1998/03/21&quot;      
+ [58] &quot;2001/03/23&quot;       &quot;2009/03/09&quot;       &quot;2014/03/26&quot;      
+ [61] &quot;2012/06/22&quot;       &quot;1998/04/27&quot;       &quot;2013/06/22&quot;      
+ [64] &quot;2000/06/01&quot;       &quot;1993/02/04&quot;       &quot;2005/04/07&quot;      
+ [67] &quot;2012/04/10&quot;       &quot;1998/08/21&quot;       &quot;2013/02/24&quot;      
+ [70] &quot;1999/11/16&quot;       &quot;2009/02/23&quot;       &quot;1982/10/03&quot;      
+ [73] &quot;2013/10/21&quot;       &quot;2007/03/19&quot;       &quot;2012/06/21&quot;      
+ [76] &quot;2009/06/23&quot;       &quot;1984/05/05&quot;       &quot;2013/11/13&quot;      
+ [79] &quot;2012/02/22&quot;       &quot;2013/02/09&quot;       &quot;2011/06/20&quot;      
+ [82] &quot;2005/04/05&quot;       &quot;2000/05/31&quot;       &quot;2013/06/20&quot;      
+ [85] &quot;1998/08/19&quot;       &quot;2002/05/25&quot;       &quot;2012/09/07&quot;      
+ [88] &quot;1998/11/14&quot;       &quot;1999/07/07&quot;       &quot;1998/04/25&quot;      
+ [91] &quot;2001/08/31&quot;       &quot;2 February  1993&quot; &quot;2007/03/20&quot;      
+ [94] &quot;1998/03/19&quot;       &quot;2009/06/19&quot;       &quot;2009/03/07&quot;      
+ [97] &quot;2010/06/19&quot;       &quot;1993/01/19&quot;       &quot;2013/12/16&quot;      
+[100] &quot;1995/10/11&quot;       &quot;1995/11/21&quot;       &quot;2001/03/18&quot;      
+[103] &quot;2009/02/18&quot;       &quot;1996/03/14&quot;       &quot;1999/07/04&quot;      
+[106] &quot;2013/02/22&quot;       &quot;2012/02/20&quot;       &quot;2009/06/22&quot;      
+[109] &quot;1982/10/04&quot;       &quot;1999/11/14&quot;       &quot;2013/11/12&quot;      
+[112] &quot;2009/02/22&quot;       &quot;2007/03/18&quot;       &quot;1982/10/02&quot;      
+[115] &quot;2013/02/07&quot;       &quot;1984/05/03&quot;       &quot;2013/12/15&quot;      
+[118] &quot;2001/03/17&quot;       &quot;2001/08/30&quot;       &quot;2001/06/14&quot;      
+[121] &quot;2012/03/07&quot;       &quot;1998/01/18&quot;       &quot;1996/03/13&quot;      
+[124] &quot;1999/07/03&quot;       &quot;2010/06/20&quot;       &quot;1995/10/10&quot;      
+[127] &quot;2011/07/27&quot;       &quot;1998/11/09&quot;       &quot;1993/01/18&quot;      
+[130] &quot;1993/03/12&quot;       &quot;2007/04/12&quot;       &quot;2000/10/03&quot;      
+[133] &quot;1997/04/25&quot;       &quot;2013/12/18&quot;       &quot;2010/06/22&quot;      
+[136] &quot;2011/11/24&quot;       &quot;2012/11/12&quot;       &quot;1999/11/15&quot;      
+[139] &quot;1996/07/08&quot;       &quot;2013/02/08&quot;       &quot;2012/08/22&quot;      
+[142] &quot;1997/10/15&quot;       &quot;1984/05/04&quot;       &quot;1998/08/20&quot;      
+[145] &quot;2012/02/05&quot;       &quot;1998/01/19&quot;       &quot;1995/03/30&quot;      
+[148] &quot;1993/03/13&quot;       &quot;2003/05/17&quot;       &quot;1992/12/12&quot;      
+[151] &quot;1998/04/26&quot;       &quot;2000/08/15&quot;       &quot;2009/03/08&quot;      
+[154] &quot;2013/09/03&quot;       &quot;1998/11/10&quot;       &quot;2001/09/01&quot;      
+[157] &quot;1994/09/24&quot;       &quot;2012/03/09&quot;       &quot;2009/08/12&quot;      
+[160] &quot;2013/10/22&quot;       &quot;1993/02/03&quot;       &quot;2009/05/16&quot;      
+[163] &quot;1993/09/20&quot;       &quot;1999/02/19&quot;       &quot;1994/02/18&quot;      
+[166] &quot;2001/06/15&quot;       &quot;2004/05/30&quot;       &quot;2000/01/15&quot;      
+[169] &quot;2012/03/08&quot;       &quot;2012/02/21&quot;       &quot;2013/06/30&quot;      
+[172] &quot;1995/11/22&quot;       &quot;20 January 2014&quot;  &quot;21 January 2014&quot; 
+[175] &quot;2010/10/02&quot;       &quot;2005/09/24&quot;       &quot;2011/05/14&quot;      
+[178] &quot;2000/08/16&quot;       &quot;2011/11/22&quot;       &quot;2007/04/10&quot;      
+[181] &quot;2010/06/13&quot;       &quot;2010/03/05&quot;       &quot;2009/02/20&quot;      
+[184] &quot;2011/05/16&quot;       &quot;2000/01/17&quot;       &quot;1994/09/25&quot;      
+[187] &quot;1999/02/20&quot;       &quot;2013/09/04&quot;       &quot;2010/12/18&quot;      
+[190] &quot;2003/05/19&quot;       &quot;1995/10/12&quot;       &quot;1993/09/21&quot;      
+[193] &quot;2009/05/17&quot;       &quot;1992/12/13&quot;       &quot;1995/04/01&quot;      
+[196] &quot;2012/06/23&quot;       &quot;2001/06/16&quot;       &quot;1995/11/23&quot;      
+[199] &quot;1996/03/15&quot;       &quot;2005/04/08&quot;       &quot;2011/06/22&quot;      
+[202] &quot;1998/01/20&quot;       &quot;2000/01/16&quot;       &quot;1995/03/31&quot;      
+[205] &quot;2002/05/26&quot;       &quot;1999/07/09&quot;       &quot;2007/03/22&quot;      
+[208] &quot;2001/03/24&quot;       &quot;1993/01/20&quot;       &quot;1993/03/14&quot;      
+[211] &quot;2010/12/19&quot;       &quot;1996/07/09&quot;       &quot;2009/05/15&quot;      
+[214] &quot;1998/11/13&quot;       &quot;1996/07/07&quot;       &quot;1999/02/18&quot;      
+[217] &quot;1992/12/11&quot;       &quot;1993/09/19&quot;       &quot;1994/02/17&quot;      
+[220] &quot;2013/09/02&quot;       &quot;1994/09/23&quot;       &quot;2012/04/11&quot;      
+[223] &quot;2000/06/02&quot;       &quot;2003/05/18&quot;       &quot;1999/07/05&quot;      </code></pre>
+</div>
+<p>There seem to be still other formats of dates present. The below code will process them into the date formats like other dates.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dates_to_format</span><span class='op'>=</span><span class='fu'>str_extract</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>, <span class='st'>"^[0-9]{1,2}\\D[a-zA-Z]+\\D{1,2}[0-9]{4}"</span><span class='op'>)</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>dates_to_format</span><span class='op'>)</span>
+<span class='va'>dates_to_format</span><span class='op'>=</span><span class='va'>dates_to_format</span><span class='op'>[</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>dates_to_format</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>sub_dates3</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Published"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Published</span> <span class='op'>%in%</span> <span class='va'>dates_to_format</span><span class='op'>)</span>
+<span class='va'>sub_dates3</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>sub_dates3</span><span class='op'>$</span><span class='va'>Published</span>,format<span class='op'>=</span><span class='st'>"%d %B %Y"</span><span class='op'>)</span>
+<span class='va'>sub_dates3</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='va'>sub_dates3</span><span class='op'>$</span><span class='va'>Published</span>,<span class='st'>"%Y/%m/%d"</span><span class='op'>)</span>
+
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates3</span><span class='op'>=</span><span class='va'>sub_dates3</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>sub_dates3</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Now we will update the Publish column again and remove all other temporary column we create as part of processing.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates3</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates3</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"subdates"</span>,<span class='st'>"subdates2"</span>,<span class='st'>"subdates3"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>,format<span class='op'>=</span><span class='st'>"%Y/%m/%d"</span><span class='op'>)</span>
+<span class='va'>raw_text</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 5,388 x 6
+   newsgroup  id    text            Title          Location Published 
+   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;    &lt;date&gt;    
+ 1 All News ~ 121   &quot;TITLE: POK PR~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 2 All News ~ 121   &quot;PUBLISHED: 20~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 3 All News ~ 121   &quot;LOCATION: ELO~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 4 All News ~ 121   &quot;Fifteen membe~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 5 All News ~ 121   &quot;When the fede~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 6 All News ~ 135   &quot;TITLE: RALLY ~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+ 7 All News ~ 135   &quot;PUBLISHED: 20~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+ 8 All News ~ 135   &quot;LOCATION: ABI~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+ 9 All News ~ 135   &quot;Silvia Marek,~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+10 All News ~ 135   &quot;\&quot;I&#39;m calling~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+# ... with 5,378 more rows</code></pre>
+</div>
+<p><strong>Processing Content</strong></p>
+<p>Since we have extracted “TITLE”, “LOCATION” and ’PUBLISHED" from the text column and created separate columns for them ,we can exclude all the records that have the “text” column consisting of these content.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># removing text with TITLE:, LOCATION:, PUBLISHED:</span>
+<span class='va'>row_numbers1</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"TITLE"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>row_numbers2</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"PUBLISHED"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>row_numbers3</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>" PUBLISHED"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>row_numbers4</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"LOCATION"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>row_numbers5</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"AUTHOR"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers1</span>,<span class='va'>row_numbers2</span>,<span class='va'>row_numbers3</span>,<span class='va'>row_numbers4</span>,<span class='va'>row_numbers5</span><span class='op'>)</span>,<span class='op'>]</span>
+<span class='va'>raw_text</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 3,015 x 6
+   newsgroup  id    text            Title          Location Published 
+   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;    &lt;date&gt;    
+ 1 All News ~ 121   &quot;Fifteen membe~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 2 All News ~ 121   &quot;When the fede~ POK PROTESTS ~ ELODIS,~ 2005-04-06
+ 3 All News ~ 135   &quot;Silvia Marek,~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+ 4 All News ~ 135   &quot;\&quot;I&#39;m calling~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
+ 5 All News ~ 152   &quot;In a glitzy p~ LACK OF DETAI~ ABILA, ~ 1993-02-02
+ 6 All News ~ 154   &quot;1998/03/20&quot;    ELODIS, KRONO~ ELODIS,~ 1998-03-20
+ 7 All News ~ 154   &quot;NOTE: This ar~ ELODIS, KRONO~ ELODIS,~ 1998-03-20
+ 8 All News ~ 154   &quot;This article ~ ELODIS, KRONO~ ELODIS,~ 1998-03-20
+ 9 All News ~ 154   &quot;ELODIS, Krono~ ELODIS, KRONO~ ELODIS,~ 1998-03-20
+10 All News ~ 154   &quot;Two weeks pri~ ELODIS, KRONO~ ELODIS,~ 1998-03-20
+# ... with 3,005 more rows</code></pre>
+</div>
+<p>Going through the text column, it was visible that there are dates present in some records this is due to some files having Published date in the next line which was discussed under “Processing Published” category. These dates are present in “yyyy/mm/dd” format or “date month year” format. The below regular expressions were used to detect those patterns in the text column. It was identified that there were 7 dates however only 5 of them were recognized, therefore, the other 2 were added manually.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text1</span><span class='op'>=</span><span class='fu'>str_extract</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"^[0-9]{1,2}\\D[a-zA-Z]+\\D[0-9]{4}"</span>,<span class='st'>"^[0-9]{4}\\D[0-9]{1,2}\\D[0-9]{1,2}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>raw_text1</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text1</span><span class='op'>)</span>
+<span class='va'>raw_text1</span><span class='op'>=</span><span class='va'>raw_text1</span><span class='op'>[</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text1</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>raw_text1</span><span class='op'>[</span><span class='fl'>6</span><span class='op'>]</span> <span class='op'>=</span><span class='st'>"1998/05/15"</span>
+<span class='va'>raw_text1</span><span class='op'>[</span><span class='fl'>7</span><span class='op'>]</span> <span class='op'>=</span><span class='st'>"17 January 1995"</span>
+<span class='va'>row_numbers6</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span> <span class='op'>%in%</span> <span class='va'>raw_text1</span><span class='op'>)</span>
+<span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers6</span><span class='op'>)</span>,<span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Now, we have to combine all the recodes with the same id. After processing, we now will have 845 records that reflect the 845 files that we have and each record consists of the “newsgroup”, “id”, “Title”, “Location”, “Published” and “Content”.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>content</span><span class='op'>=</span><span class='va'>raw_text</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise_all</span><span class='op'>(</span><span class='fu'>funs</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/toString.html'>toString</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"text"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Content</span><span class='op'>=</span><span class='va'>content</span><span class='op'>$</span><span class='va'>text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>content</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>cleaned_text</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span>
+<span class='va'>cleaned_text</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 845 x 6
+   newsgroup  id    Title          Location Published  Content        
+   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;          
+ 1 All News ~ 121   POK PROTESTS ~ ELODIS,~ 2005-04-06 &quot;Fifteen membe~
+ 2 All News ~ 135   RALLY SCHEDUL~ ABILA, ~ 2012-04-09 &quot;Silvia Marek,~
+ 3 All News ~ 152   LACK OF DETAI~ ABILA, ~ 1993-02-02 &quot;In a glitzy p~
+ 4 All News ~ 154   ELODIS, KRONO~ ELODIS,~ 1998-03-20 &quot;NOTE: This ar~
+ 5 All News ~ 237   ELODIS, KRONO~ &lt;NA&gt;     1998-05-15 &quot;NOTE: This ar~
+ 6 All News ~ 251   ELODIS PUBLIC~ ELODIS,~ 2004-05-29 &quot;The Elodis Co~
+ 7 All News ~ 341   WHO BRINGS A ~ ABILA, ~ 2013-06-21 &quot;ABILA, Kronos~
+ 8 All News ~ 391   TAX MEASURE D~ ABILA, ~ 2001-03-22 &quot;A measure to ~
+ 9 All News ~ 420   POK REPRESENT~ ABILA, ~ 1998-11-15 &quot;Representativ~
+10 All News ~ 554   ELIAN KAREL D~ ABILA, ~ 2009-06-20 &quot;Elian Karel, ~
+# ... with 835 more rows</code></pre>
+</div>
+<h3 id="processing-email-and-employee-data">4) Processing Email and Employee Data</h3>
+<p>Considering that the data is based on email, we can make use of the networking graph for visualization and for that purpose, we will need the data to be in the “source” and “target” format. The email_data dataframe currently is very raw and needs to be processed to the required format.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>email_data</span>,<span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10 x 4
+   From            To                         Date    Subject         
+   &lt;chr&gt;           &lt;chr&gt;                      &lt;chr&gt;   &lt;chr&gt;           
+ 1 Varja.Lagos@ga~ Varja.Lagos@gastech.com.k~ 1/6/20~ Patrol schedule~
+ 2 Brand.Tempesta~ Birgitta.Frente@gastech.c~ 1/6/20~ Wellhead flow r~
+ 3 Isak.Baza@gast~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~
+ 4 Lucas.Alcazar@~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~
+ 5 Linnea.Bergen@~ Rachel.Pantanal@gastech.c~ 1/6/20~ RE: Upcoming bi~
+ 6 Loreto.Bodrogi~ Ingrid.Barranco@gastech.c~ 1/6/20~ Plants          
+ 7 Linnea.Bergen@~ Rachel.Pantanal@gastech.c~ 1/6/20~ RE: Upcoming bi~
+ 8 Lucas.Alcazar@~ Nils.Calixto@gastech.com.~ 1/6/20~ GT-SeismicProce~
+ 9 Isak.Baza@gast~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~
+10 Lucas.Alcazar@~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~</code></pre>
+</div>
+<p>The “To” column has various email id’s that are seperated by a ‘,’. We first need to split all the id’s by ‘,’ and then use the ‘concat.split.multiple’ function to split all the emails in “To” into multiple rows.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># break on , in "To"</span>
+<span class='va'>email_data_clean</span> <span class='op'>&lt;-</span> <span class='fu'>cSplit</span><span class='op'>(</span><span class='va'>email_data</span>,splitCols<span class='op'>=</span> <span class='st'>"To"</span>, sep<span class='op'>=</span><span class='st'>","</span>, direction<span class='op'>=</span><span class='st'>"long"</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 8,990
+Columns: 4
+$ From    &lt;chr&gt; &quot;Varja.Lagos@gastech.com.kronos&quot;, &quot;Varja.Lagos@gaste~
+$ To      &lt;fct&gt; Varja.Lagos@gastech.com.kronos, Hennie.Osvaldo@gaste~
+$ Date    &lt;chr&gt; &quot;1/6/2014 10:28&quot;, &quot;1/6/2014 10:28&quot;, &quot;1/6/2014 10:28&quot;~
+$ Subject &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule changes&quot;~</code></pre>
+</div>
+<p>Next, we shall remove the email id’s where the “From” and “To” are the same. This is to ensure that when be plot the networking graph, we will not have the same user who send an email to himself.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># removing same from and to</span>
+<span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>From</span> <span class='op'>==</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>To</span><span class='op'>)</span>
+<span class='va'>email_data_clean</span><span class='op'>=</span><span class='va'>email_data_clean</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 8,185
+Columns: 4
+$ From    &lt;chr&gt; &quot;Varja.Lagos@gastech.com.kronos&quot;, &quot;Varja.Lagos@gaste~
+$ To      &lt;fct&gt; Hennie.Osvaldo@gastech.com.kronos, Loreto.Bodrogi@ga~
+$ Date    &lt;chr&gt; &quot;1/6/2014 10:28&quot;, &quot;1/6/2014 10:28&quot;, &quot;1/6/2014 10:28&quot;~
+$ Subject &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule changes&quot;~</code></pre>
+</div>
+<p>Since both the date and the time are displayed in the same column, we shall separate these two and change their datatype accordingly.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># separating time and date</span>
+<span class='va'>email_data_clean</span> <span class='op'>&lt;-</span> <span class='fu'>cSplit</span><span class='op'>(</span><span class='va'>email_data_clean</span>, splitCols<span class='op'>=</span><span class='st'>"Date"</span>,sep<span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+
+<span class='co'>#changing type of date 1,2</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Date_1</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Date_1</span>,format<span class='op'>=</span><span class='st'>"%m/%d/%Y"</span><span class='op'>)</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Date_2</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Date_2</span>, format<span class='op'>=</span><span class='st'>"%H:%M"</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"%H:%M"</span><span class='op'>)</span>
+
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 8,185
+Columns: 5
+$ From    &lt;chr&gt; &quot;Varja.Lagos@gastech.com.kronos&quot;, &quot;Varja.Lagos@gaste~
+$ To      &lt;fct&gt; Hennie.Osvaldo@gastech.com.kronos, Loreto.Bodrogi@ga~
+$ Subject &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule changes&quot;~
+$ Date_1  &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, 201~
+$ Date_2  &lt;chr&gt; &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:35&quot;, &quot;10:35&quot;, &quot;10:35&quot;~</code></pre>
+</div>
+<p>The whole email id is not required. Therefore, we will remove everything after ‘#’ from both the “From” and “To” columns. For this, we use the regular expression "@.*" which specifies that everything from “@” and we use “gsub” function to repace that with and empty string.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># remove everything after @</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>From</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"@.*"</span>,<span class='st'>""</span>,<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>From</span><span class='op'>)</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>To</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"@.*"</span>,<span class='st'>""</span>,<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>To</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Rename the column names into meaningful names using the “colnames” function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># rename col names</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Source.Label"</span>, <span class='st'>"Target.Label"</span>,<span class='st'>"Subject"</span>,<span class='st'>"SentDate"</span>,<span class='st'>"SentTime"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now formatting the employee data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 54
+Columns: 18
+$ LastName                   &lt;chr&gt; &quot;Bramar&quot;, &quot;Ribera&quot;, &quot;Pantanal&quot;, &quot;~
+$ FirstName                  &lt;chr&gt; &quot;Mat&quot;, &quot;Anda&quot;, &quot;Rachel&quot;, &quot;Linda&quot;,~
+$ BirthDate                  &lt;dttm&gt; 1981-12-19, 1975-11-17, 1984-08-~
+$ BirthCountry               &lt;chr&gt; &quot;Tethys&quot;, &quot;Tethys&quot;, &quot;Tethys&quot;, &quot;Te~
+$ Gender                     &lt;chr&gt; &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Fema~
+$ CitizenshipCountry         &lt;chr&gt; &quot;Tethys&quot;, &quot;Tethys&quot;, &quot;Tethys&quot;, &quot;Te~
+$ CitizenshipBasis           &lt;chr&gt; &quot;BirthNation&quot;, &quot;BirthNation&quot;, &quot;Bi~
+$ CitizenshipStartDate       &lt;dttm&gt; 1981-12-19, 1975-11-17, 1984-08-~
+$ PassportCountry            &lt;chr&gt; &quot;Tethys&quot;, &quot;Tethys&quot;, &quot;Tethys&quot;, &quot;Te~
+$ PassportIssueDate          &lt;dttm&gt; 2007-12-12, 2009-06-15, 2013-06-~
+$ PassportExpirationDate     &lt;dttm&gt; 2017-12-11, 2019-06-14, 2023-06-~
+$ CurrentEmploymentType      &lt;chr&gt; &quot;Administration&quot;, &quot;Administration~
+$ CurrentEmploymentTitle     &lt;chr&gt; &quot;Assistant to CEO&quot;, &quot;Assistant to~
+$ CurrentEmploymentStartDate &lt;dttm&gt; 2005-07-01, 2009-10-30, 2013-10-~
+$ EmailAddress               &lt;chr&gt; &quot;Mat.Bramar@gastech.com.kronos&quot;, ~
+$ MilitaryServiceBranch      &lt;chr&gt; NA, NA, NA, NA, &quot;ArmedForcesOfKro~
+$ MilitaryDischargeType      &lt;chr&gt; NA, NA, NA, NA, &quot;HonorableDischar~
+$ MilitaryDischargeDate      &lt;dttm&gt; NA, NA, NA, NA, 1984-10-01, 2001~</code></pre>
+</div>
+<p>Remove unnecessary columns.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CitizenshipBasis"</span>,<span class='st'>"PassportCountry"</span>,<span class='st'>"BirthDate"</span>,
+                                                           <span class='st'>"CitizenshipStartDate"</span>,<span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Since there are no ID’s allotted for the employees, we can create a new column called “id” and populate this column with ID numbers starting from 1 to the number of rows present in the data frame. Since the “Source.Label” and “Target.Label” in the email_data are in firstname.lastname format, we will make use of the “FirstName” , “LastName” columns present in employee_data and use the “paste0” function to join then together with a “.” between them. Pay special attention to ‘Ruscella.Mies Haber’ as there exists two words in her last name so replace the space with a “.”.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create id column</span>
+<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>id</span><span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span>
+
+<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FirstName</span>,<span class='st'>"."</span>,<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>LastName</span><span class='op'>)</span>
+<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>==</span><span class='st'>"Ruscella.Mies Haber"</span>,
+                              <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='st'>" "</span>,<span class='st'>"."</span>,<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>)</span>,
+                              <span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now that we have two clean data frame, we must map them together using the “match” function based.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>### mapping two df's</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Source</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>$</span><span class='va'>id</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Source.Label</span>,<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Target</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>$</span><span class='va'>id</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Target.Label</span>,<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Remove the “.” from all names to enhanse the redability to the user.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## remove "." from labels to make it look better</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Source.Label</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='st'>"[.]"</span>,<span class='st'>" "</span>,<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Source.Label</span><span class='op'>)</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Target.Label</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"[.]"</span>,<span class='st'>" "</span>,<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Target.Label</span><span class='op'>)</span>
+<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"[.]"</span>,<span class='st'>" "</span>,<span class='va'>employee_data</span><span class='op'>$</span><span class='va'>FullName</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 8,185
+Columns: 7
+$ Source.Label &lt;chr&gt; &quot;Varja Lagos&quot;, &quot;Varja Lagos&quot;, &quot;Varja Lagos&quot;, &quot;B~
+$ Target.Label &lt;chr&gt; &quot;Hennie Osvaldo&quot;, &quot;Loreto Bodrogi&quot;, &quot;Inga Ferro~
+$ Subject      &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule cha~
+$ SentDate     &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06~
+$ SentTime     &lt;chr&gt; &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:35&quot;, &quot;10:35&quot;, &quot;1~
+$ Source       &lt;int&gt; 45, 45, 45, 13, 13, 13, 41, 40, 39, 39, 39, 39,~
+$ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~</code></pre>
+</div>
+<p>Categorizing email baed on work related and non work related. Go through the data to identify the subject text for non work related emails. Using that text, we can categorize the records.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>tolower</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>)</span>
+
+<span class='va'>nonWork</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'birthdays'</span>,<span class='st'>'plants'</span>,<span class='st'>'night'</span>,<span class='st'>'concert'</span>,<span class='st'>'coffee'</span>,<span class='st'>'sick'</span>,<span class='st'>'dress'</span>,<span class='st'>'post'</span>,<span class='st'>'funy'</span>,
+    <span class='st'>'lunch'</span>,<span class='st'>'babysitting'</span>,<span class='st'>'politics'</span>,<span class='st'>'cute'</span>,<span class='st'>'parking'</span>,<span class='st'>'vacation'</span>,<span class='st'>'funny'</span>,<span class='st'>'missing'</span>,
+    <span class='st'>'volunteers'</span>,<span class='st'>'nearby'</span>,<span class='st'>'club'</span>,<span class='st'>'investment'</span>,<span class='st'>'found'</span>,<span class='st'>'flowers'</span>,
+    <span class='st'>'defenders'</span>,<span class='st'>'battlestations'</span>,<span class='st'>'article'</span>,<span class='st'>'ha ha'</span>,<span class='st'>'media'</span>,<span class='st'>'retirement'</span><span class='op'>)</span>
+
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>MainSubject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='va'>nonWork</span><span class='op'>)</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>TRUE</span>,<span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>,<span class='st'>"Non-work related"</span>,<span class='st'>"Work related"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 8,185
+Columns: 8
+$ Source.Label &lt;chr&gt; &quot;Varja Lagos&quot;, &quot;Varja Lagos&quot;, &quot;Varja Lagos&quot;, &quot;B~
+$ Target.Label &lt;chr&gt; &quot;Hennie Osvaldo&quot;, &quot;Loreto Bodrogi&quot;, &quot;Inga Ferro~
+$ Subject      &lt;chr&gt; &quot;patrol schedule changes&quot;, &quot;patrol schedule cha~
+$ SentDate     &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06~
+$ SentTime     &lt;chr&gt; &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:35&quot;, &quot;10:35&quot;, &quot;1~
+$ Source       &lt;int&gt; 45, 45, 45, 13, 13, 13, 41, 40, 39, 39, 39, 39,~
+$ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~
+$ MainSubject  &lt;chr&gt; &quot;Work related&quot;, &quot;Work related&quot;, &quot;Work related&quot;,~</code></pre>
+</div>
+<h3 id="storing-clean-data-into-files">4 Storing clean data into files</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/colearendt/xlsx'>xlsx</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/xlsx/man/write.xlsx.html'>write.xlsx</a></span><span class='op'>(</span><span class='va'>cleaned_text</span>,<span class='st'>"data/cleanArticles.xlsx"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>employee_data</span>,<span class='st'>"data/cleanEmployee.csv"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>email_data_clean</span>,<span class='st'>"data/cleanEmail.csv"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><strong>Note:</strong> The dataframes we obtaied through the processing steps are now clean and these frames can furtehr be modified according to th eneed of visualization.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

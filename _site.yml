@@ -1,0 +1,24 @@
+name: "VAST-Challenge2021"
+title: "My Website"
+description: |
+  My Website
+output_dir: "_site"
+navbar:
+  left:
+    - text: "Background"
+      href: background.html
+    - text: "Data Preparation"
+      href: data_preparation.html
+    - text: "Building Visualization"
+      href: building_viz.html
+    - text: "Response to Questions"
+      href: answers.html
+    - text: "Storyboard for R-Shiny"
+      href: storyboard.html
+      
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
