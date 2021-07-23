@@ -11,9 +11,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
-## 1.0 Background & Literature Review
 
-### 1.1 Backgroung
+## 1.1 Backgroung
 
 This visual investigation is based on [VAST Challenge 2021 - The Kronos Incident Mini Challenge 1](https://vast-challenge.github.io/2021/MC1.html). The overview of the challenge is as below:
 
@@ -31,7 +30,7 @@ In January, 2014, the leaders of GAStech are celebrating their new-found fortune
 
 3) Given the data sources provided, use visual analytics to identify potential official and unofficial relationships among GASTech, POK, the APA, and Government. Include both personal relationships and shared goals and objectives. Provide evidence for these relationships.
 
-### 1.2 Literature Review of 2014 VAST Challenge
+## 1.2 Literature Review of 2014 VAST Challenge
 
 The 2021 IEEE VAST Challenge is a variation on a 2014 year’s challenge with modified data and new questions. So this literature review is based on some of the submissions from that year.
 

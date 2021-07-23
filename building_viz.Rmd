@@ -10,11 +10,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
-## 3.0 Building the Visualization
 
-### 2) Relationship between the News Articles
+## 2) Relationship between the News Articles
 
-#### Text Net Visualization
+### Text Net Visualization
 
 The textnet is used to represent relationships between words. The first node set is words found in the newspaper articles, and the second node set is the newspapers themselves. That is, one can create a network where newspapers are connected by their use of the same words.
 
@@ -88,7 +87,7 @@ We can also output an interactive visualization of the text network, where the u
 VisTextNetD3(news_text_network, .30)
 ```
 
-#### Clustering
+### Clustering
 
 **Packages Required:**
 
@@ -125,7 +124,7 @@ cleaned_text$cluster=text_communities$modularity_class[match(cleaned_text$newsgr
 group)]
 ```
 
-#### Text Plot
+### Text Plot
 
 **Packages Required:**
 
@@ -163,7 +162,7 @@ textplot_cooccurrence(x, top_n = 15, subtitle = "showing Cluster 1")
 
 ```
 
-#### Wordcloud Article Titles
+### Wordcloud Article Titles
 
 **Packages Required:**
 
@@ -228,7 +227,7 @@ comparison.cloud(m,max.words = 300,random.order=FALSE,colors=brewer.pal(max(3,nc
 	title.bg.colors="grey90")
 ```
 
-#### Timeline of Articles
+### Timeline of Articles
 
 Since the data we have cleaned for the articles also contains the published date, we can make use of the column to visualize how events have been unfolding across the years by means of a timeline.
 
@@ -442,7 +441,7 @@ print(timeline_plot)
 ```
 The above timeline plot is extremely useful and easily understandable if we have data based on dates. This plot helps us understand how events have been unfolding through the years, months or dates.
 
-### 3) Visualizing Email Network
+## 3) Visualizing Email Network
 
 **Packages Required**
 

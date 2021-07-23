@@ -2087,18 +2087,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#data-preparation">2.0 Data Preparation</a><ul>
 <li><a href="#installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</a></li>
 <li><a href="#importing-provided-data">2) Importing Provided Data</a></li>
 <li><a href="#processing-news-articles">3) Processing News Articles</a></li>
 <li><a href="#processing-email-and-employee-data">4) Processing Email and Employee Data</a></li>
-<li><a href="#storing-clean-data-into-files">4 Storing clean data into files</a></li>
-</ul></li>
+<li><a href="#storing-clean-data-into-files">5) Storing clean data into files</a></li>
 </ul>
 </nav>
 </div>
-<h2 id="data-preparation">2.0 Data Preparation</h2>
-<h3 id="installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</h3>
+<h2 id="installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</h2>
 <p>As part of the data processing, we first start with installing the required packages if they are not already installed and calling the libraries. The below chunk of code will handle all the necessary packages required without one needing to install manually. The required packages will only have to be mentioned in the ‘packages’ list. The purpose of requiring the below packages are:</p>
 <ul>
 <li><p>tidyverse - Majority of the data cleaning function such as ‘read_csv’, ‘startWith’, ‘gsub’ etc all belong in this library.</p></li>
@@ -2119,7 +2116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h3 id="importing-provided-data">2) Importing Provided Data</h3>
+<h2 id="importing-provided-data">2) Importing Provided Data</h2>
 <p>The data provided are a set of current and historical news reports, as well as resumes of numerous GAStech employees and email headers from two weeks of internal GAStech company email. The data in resumes folder has already been processed and is in the ‘EmployeeRecords.xlsx’ file. Therefore, we will be using that file directly.</p>
 <table>
 <colgroup>
@@ -2185,7 +2182,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h3 id="processing-news-articles">3) Processing News Articles</h3>
+<h2 id="processing-news-articles">3) Processing News Articles</h2>
 <p>Below is how the raw_text datatable looks like. It is visible that the data is very dirty and there is a lot of processing that has to be done.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2797,7 +2794,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 10 All News ~ 554   ELIAN KAREL D~ ABILA, ~ 2009-06-20 &quot;Elian Karel, ~
 # ... with 835 more rows</code></pre>
 </div>
-<h3 id="processing-email-and-employee-data">4) Processing Email and Employee Data</h3>
+<h2 id="processing-email-and-employee-data">4) Processing Email and Employee Data</h2>
 <p>Considering that the data is based on email, we can make use of the networking graph for visualization and for that purpose, we will need the data to be in the “source” and “target” format. The email_data dataframe currently is very raw and needs to be processed to the required format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2991,7 +2988,7 @@ $ Source       &lt;int&gt; 45, 45, 45, 13, 13, 13, 41, 40, 39, 39, 39, 39,~
 $ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~
 $ MainSubject  &lt;chr&gt; &quot;Work related&quot;, &quot;Work related&quot;, &quot;Work related&quot;,~</code></pre>
 </div>
-<h3 id="storing-clean-data-into-files">4 Storing clean data into files</h3>
+<h2 id="storing-clean-data-into-files">5) Storing clean data into files</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/colearendt/xlsx'>xlsx</a></span><span class='op'>)</span>

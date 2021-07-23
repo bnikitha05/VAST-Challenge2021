@@ -2090,16 +2090,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#building-the-visualization">3.0 Building the Visualization</a><ul>
-<li><a href="#relationship-between-the-news-articles">2) Relationship between the News Articles</a></li>
-<li><a href="#visualizing-email-network">3) Visualizing Email Network</a></li>
+<li><a href="#relationship-between-the-news-articles">2) Relationship between the News Articles</a><ul>
+<li><a href="#text-net-visualization">Text Net Visualization</a></li>
+<li><a href="#clustering">Clustering</a></li>
+<li><a href="#text-plot">Text Plot</a></li>
+<li><a href="#wordcloud-article-titles">Wordcloud Article Titles</a></li>
+<li><a href="#timeline-of-articles">Timeline of Articles</a></li>
 </ul></li>
+<li><a href="#visualizing-email-network">3) Visualizing Email Network</a></li>
 </ul>
 </nav>
 </div>
-<h2 id="building-the-visualization">3.0 Building the Visualization</h2>
-<h3 id="relationship-between-the-news-articles">2) Relationship between the News Articles</h3>
-<h4 id="text-net-visualization">Text Net Visualization</h4>
+<h2 id="relationship-between-the-news-articles">2) Relationship between the News Articles</h2>
+<h3 id="text-net-visualization">Text Net Visualization</h3>
 <p>The textnet is used to represent relationships between words. The first node set is words found in the newspaper articles, and the second node set is the newspapers themselves. That is, one can create a network where newspapers are connected by their use of the same words.</p>
 <p><strong>Packages Required:</strong></p>
 <p>The only R package presently available to implement text network techniques is the textnets package. The most current version of the textnets package is currently available on Github. To install textnets—or any other package hosted on Github— you will need the devtools package. We then install ‘textnets’ package and all the dependent packages that are required to run the ‘textnets’ package.</p>
@@ -2183,10 +2186,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>VisTextNetD3</span><span class='op'>(</span><span class='va'>news_text_network</span>, <span class='fl'>.30</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="htmlwidget-b969796e72c091716ef5" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b969796e72c091716ef5">{"x":{"links":{"source":[1,0,4,0,3,4,2,5,7,3,1,2,0,6,2,7,8,3,9,10,12,1,10,13,9,11,2,8,11,5,2,4,14,1,5,11,4,16,5,7,9,17,4,16,17,1,6,1,4,0,7,9,11,18,15,15,21,11,17,19,12,17,19,22,11,6,20,22,4,21,15,0,19,12,17,22,23,5,8,15,12,26,15,5,8,20,9,1,19,7,21,13,18],"target":[2,4,5,6,6,6,7,8,9,10,11,11,12,12,12,12,12,13,13,13,14,14,14,14,14,14,14,15,15,15,16,16,16,16,16,16,17,17,17,18,18,18,18,18,19,19,20,20,20,20,21,21,21,21,21,22,22,22,22,22,23,23,23,23,24,24,24,24,24,24,24,24,25,25,25,25,25,26,26,26,27,27,27,27,27,28,28,28,28,28,28,28,28],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["All News Today","Athena Speaks","Central Bulletin","Centrum Sentinel","Daily Pegasus","Everyday News","Homeland Illumination","International News","International Times","Kronos Star","Modern Rubicon","News Desk","News Online Today","Tethys News","The Abila Post","The Continent","The Explainer","The General Post","The Guide","The Light of Truth","The Orb","The Truth","The Tulip","The World","The Wrap","Who What News","World Journal","World Source","Worldwise"],"group":[1,3,3,2,1,5,1,6,5,2,2,3,5,2,3,5,3,4,6,4,1,6,4,4,1,4,5,5,6]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"function(d) { return Math.sqrt(d.value); }","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":false,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a5ec8e6cdf50861e6d1b" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a5ec8e6cdf50861e6d1b">{"x":{"links":{"source":[1,0,4,0,3,4,2,5,7,3,1,2,0,6,2,7,8,3,9,10,12,1,10,13,9,11,2,8,11,5,2,4,14,1,5,11,4,16,5,7,9,17,4,16,17,1,6,1,4,0,7,9,11,18,15,15,21,11,17,19,12,17,19,22,11,6,20,22,4,21,15,0,19,12,17,22,23,5,8,15,12,26,15,5,8,20,9,1,19,7,21,13,18],"target":[2,4,5,6,6,6,7,8,9,10,11,11,12,12,12,12,12,13,13,13,14,14,14,14,14,14,14,15,15,15,16,16,16,16,16,16,17,17,17,18,18,18,18,18,19,19,20,20,20,20,21,21,21,21,21,22,22,22,22,22,23,23,23,23,24,24,24,24,24,24,24,24,25,25,25,25,25,26,26,26,27,27,27,27,27,28,28,28,28,28,28,28,28],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["All News Today","Athena Speaks","Central Bulletin","Centrum Sentinel","Daily Pegasus","Everyday News","Homeland Illumination","International News","International Times","Kronos Star","Modern Rubicon","News Desk","News Online Today","Tethys News","The Abila Post","The Continent","The Explainer","The General Post","The Guide","The Light of Truth","The Orb","The Truth","The Tulip","The World","The Wrap","Who What News","World Journal","World Source","Worldwise"],"group":[1,3,3,2,1,5,1,6,5,2,2,3,5,2,3,5,3,4,6,4,1,6,4,4,1,4,5,5,6]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"function(d) { return Math.sqrt(d.value); }","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":false,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
-<h4 id="clustering">Clustering</h4>
+<h3 id="clustering">Clustering</h3>
 <p><strong>Packages Required:</strong></p>
 <ul>
 <li>ggwordcloud - This package is used to display the wordcloud</li>
@@ -2228,7 +2231,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h4 id="text-plot">Text Plot</h4>
+<h3 id="text-plot">Text Plot</h3>
 <p><strong>Packages Required:</strong></p>
 <ul>
 <li><p>tidytext - This package is used to convert text into a format that is visualizable with the use of ‘unnest_tokens’ function.</p></li>
@@ -2264,7 +2267,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>
-<h4 id="wordcloud-article-titles">Wordcloud Article Titles</h4>
+<h3 id="wordcloud-article-titles">Wordcloud Article Titles</h3>
 <p><strong>Packages Required:</strong></p>
 <ul>
 <li><p>tidytext - This package is used to convert text into a format that is visualizable with the use of ‘unnest_tokens’ function.</p></li>
@@ -2335,7 +2338,7 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
-<h4 id="timeline-of-articles">Timeline of Articles</h4>
+<h3 id="timeline-of-articles">Timeline of Articles</h3>
 <p>Since the data we have cleaned for the articles also contains the published date, we can make use of the column to visualize how events have been unfolding across the years by means of a timeline.</p>
 <p><strong>Packages Required:</strong></p>
 <ul>
@@ -2705,7 +2708,7 @@ Weighting          : term frequency (tf)</code></pre>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-30-1.png" width="624" /></p>
 </div>
 <p>The above timeline plot is extremely useful and easily understandable if we have data based on dates. This plot helps us understand how events have been unfolding through the years, months or dates.</p>
-<h3 id="visualizing-email-network">3) Visualizing Email Network</h3>
+<h2 id="visualizing-email-network">3) Visualizing Email Network</h2>
 <p><strong>Packages Required</strong></p>
 <p>The purpose for requiring the packages are:</p>
 <ul>

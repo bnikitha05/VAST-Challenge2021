@@ -10,9 +10,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
-## 2.0 Data Preparation
 
-### 1) Installing and Loading Necessary Packages
+## 1) Installing and Loading Necessary Packages
 
 As part of the data processing, we first start with installing the required packages if they are not already installed and calling the libraries. The below chunk of code will handle all the necessary packages required without one needing to install manually. The required packages will only have to be mentioned in the 'packages' list.
 The purpose of requiring the below packages are:
@@ -37,7 +36,7 @@ for(p in packages){
 }
 ```
 
-### 2) Importing Provided Data
+## 2) Importing Provided Data
 
 The data provided are a set of current and historical news reports, as well as resumes of numerous GAStech employees and email headers from two weeks of internal GAStech company email. The data in resumes folder has already been processed and is in the 'EmployeeRecords.xlsx' file. Therefore, we will be using that file directly.
 
@@ -82,7 +81,7 @@ employee_data <- read_excel("data/EmployeeRecords.xlsx")
 email_data <- read_csv("data/email headers.csv")
 ```
 
-### 3) Processing News Articles
+## 3) Processing News Articles
 
 Below is how the raw_text datatable looks like. It is visible that the data is very dirty and there is a lot of processing that has to be done.
 
@@ -338,7 +337,7 @@ cleaned_text=unique(raw_text)
 cleaned_text
 ```
 
-### 4) Processing Email and Employee Data
+## 4) Processing Email and Employee Data
 
 Considering that the data is based on email, we can make use of the networking graph for visualization and for that purpose, we will need the data to be in the "source" and "target" format. The email_data dataframe currently is very raw and needs to be processed to the required format.
 
@@ -451,7 +450,7 @@ email_data_clean$MainSubject[i] <-ifelse(ifelse(any(str_detect(email_data_clean$
 glimpse(email_data_clean)
 
 ```
-### 4 Storing clean data into files
+## 5) Storing clean data into files
 
 ```{r}
 library(xlsx)

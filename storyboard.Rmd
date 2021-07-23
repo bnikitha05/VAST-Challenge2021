@@ -10,4 +10,3 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
-## 5.0 Storyboard for R-Shiny
