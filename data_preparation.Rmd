@@ -1,0 +1,463 @@
+---
+title: "Data Preparation"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
+```
+
+## 2.0 Data Preparation
+
+### 1) Installing and Loading Necessary Packages
+
+As part of the data processing, we first start with installing the required packages if they are not already installed and calling the libraries. The below chunk of code will handle all the necessary packages required without one needing to install manually. The required packages will only have to be mentioned in the 'packages' list.
+The purpose of requiring the below packages are:
+
+* tidyverse - Majority of the data cleaning function such as 'read_csv', 'startWith', 'gsub' etc all belong in this library.
+
+* DT - To display the data frame in an interactive manner to the user.
+
+* mgsub - This is similar to the use of 'gsub' but can specify more than 1 string pattern.
+
+* readxl - To read ".xlxs" or ".xls" files.
+
+* splitstackshape - The function 'concat.split.multiple' that is present in this package is used to split a string into multiple rows.
+
+```{r,echo = TRUE}
+packages = c('tidyverse','DT','mgsub','readxl','splitstackshape')
+for(p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+### 2) Importing Provided Data
+
+The data provided are a set of current and historical news reports, as well as resumes of numerous GAStech employees and email headers from two weeks of internal GAStech company email. The data in resumes folder has already been processed and is in the 'EmployeeRecords.xlsx' file. Therefore, we will be using that file directly.
+
+File/Folder Name | About
+------------- | -------------
+News Articles | Folder containing various newsgroups and news articles within them
+resumes | Folder consisting of resumes of employees
+EmployeeRecords.xlsx | Details on employees
+email headers.csv | Email headers from two weeks
+
+**Importing News Articles **
+
+Since there are multiple files in various folders, we specify the root directory which is the "News Articles" and write a function to read all files from folder into a data frame instead of using a for loop which is slower. After reading all files, we will save all the data into a variable called 'raw_text'. 
+
+```{r}
+#root folder directory
+news="data/News Articles/"
+
+#define a function to read all files from folder into a data frame
+read_folder=function(infolder){
+  tibble(file=dir(infolder,full.names=TRUE))%>%
+    mutate(text=map(file,read_lines))%>%
+    transmute(id=basename(file),text) %>%
+    unnest(text)
+}  
+#read data
+raw_text=tibble(folder=
+                  dir(news,
+                      full.names=TRUE)) %>%
+  mutate(folder_out=map(folder,
+                        read_folder)) %>%
+  unnest(cols=c(folder_out)) %>%
+  transmute(newsgroup=basename(folder),id,text)
+```
+
+**Importing Email and Employee data **
+
+For the data already present in either a ".xlsx" or ".csv" file, we can use the existing functions "read_excel" and "read_csv" respectively. These functions will read the data in the files and output them as data frames. "read_excel" function can be used for  not only ".xlsx" but also ".xls" files.
+
+```{r,message=FALSE}
+employee_data <- read_excel("data/EmployeeRecords.xlsx")
+email_data <- read_csv("data/email headers.csv")
+```
+
+### 3) Processing News Articles
+
+Below is how the raw_text datatable looks like. It is visible that the data is very dirty and there is a lot of processing that has to be done.
+
+```{r}
+head(raw_text,10)
+```
+**Initial Cleaning Steps**
+
+Lets start by deleting the text that are empty strings and also it is noticeable that text starting with "SOURCE" is of no additional use to us as the content is already available in column 'newsgroup'. Also, lets maintain the 'id' column as a number and remove the '.txt' extension..
+
+```{r}
+#delete empty cells
+row_numbers=which(raw_text$text %in% c(""," "))
+raw_text=raw_text[-c(row_numbers),]
+
+#remove .txt from id
+raw_text$id=gsub(".txt","",raw_text$id)
+
+#remove the SOURCE as it s already there as newsgroup
+row_numbers=which(grepl("SOURCE:",raw_text$text,fixed=TRUE))
+raw_text=raw_text[-c(row_numbers),]
+head(raw_text)
+```
+
+**Processing Title**
+
+Instead of keeping all text in one column, it is better to have distinct columns for different contents. For example, there is a sub field starting with "TITLE" in the text column and it can be put into a new separate column. For this, we make use of two functions called 'startsWith' which checks if a string starts with the mentioned string and 'gsub' which replaces a string with another string.
+
+```{r}
+raw_text$Title <-ifelse(startsWith(raw_text$text, "TITLE"),gsub("TITLE: ","",raw_text$text),"")
+```
+
+Do note that for text processing, one has to check the resultant datatable to see if there is any further modification required. In this case, after going through the data table, it was observed that file id 33 has misplaced text and this has to be separately handled as below.
+
+```{r}
+#after exploring the data, it appears that the content of file 33 is not proper.
+#So there is a need to modify it separately
+raw_text$Title=ifelse(raw_text$id=="33",
+                      ifelse(startsWith(raw_text$text, "PUBLISHED"),
+                             gsub("PUBLISHED: ","",raw_text$text),""),
+                      raw_text$Title)
+```
+
+Not all rows have the field Title, the below code will populate all records with Title. The function 'unique' is used to identify the unique values present in the datatable. The 'which' function returns the row numbers that meet the criteria. Function 'match' is used to obtain value from another dataframe based on the match condition. Lastly, we trim any spaces present at the start or end of the string. This is done using the function 'str_trim'.
+
+```{r}
+title_sub_dataframe=unique(raw_text[c("id","Title")])
+row_numbers=which(title_sub_dataframe$Title=="")
+title_sub_dataframe=title_sub_dataframe[-c(row_numbers),]
+raw_text$Title=title_sub_dataframe$Title[match(raw_text$id,title_sub_dataframe$id)]
+
+### trim space at start and end if there exists
+raw_text$Title=str_trim(raw_text$Title, side = c("both"))
+raw_text
+```
+Looked through the dataframe again and noticed that there are a few titles which do the fit the context. The below mentioned two titles are dates and do not fit the 'Title' column. Therefore, 'ifelse' statement is used to replace the mentioned titles to NA or else keep the title as it is.
+
+```{r}
+##looking at the data now, there appears to be some dates and they can be removed
+raw_text$Title=ifelse(raw_text$Title %in% c("4 of March of 2010", "2014/03/26"),NA,raw_text$Title)
+```
+
+**Processing Location**
+
+Having processed 'Title', lets move on to 'Location'. Using the similar logic as used in Title', run the below chunk of code to create a new column called 'Location'. Here, 'mgsub' function was used and not 'gsub' because here we have to check for more than 1 string pattern and it cannot be done with 'gsub' hence, 'mgsub' function was used for the same purpose.
+
+```{r}
+raw_text$Location <-ifelse(startsWith(raw_text$text, "LOCATION"),
+                           mgsub(raw_text$text, c("LOCATION: ", "LOCATIONS:  "), 
+                                 c("", "")),"")
+
+location_sub_dataframe=unique(raw_text[c("id","Location")])
+row_numbers=which(location_sub_dataframe$Location=="")
+location_sub_dataframe=location_sub_dataframe[-c(row_numbers),]
+
+raw_text$Location=location_sub_dataframe$Location[match(raw_text$id,location_sub_dataframe$id)]
+head(raw_text)
+```
+The unique locations existing in the datatable are:
+
+```{r}
+unique(raw_text$Location)
+```
+Based at the locations available, there is further processing that has to be done. After further exploring, it is noticeable that a few files have "LOCATION: TITLE:...". This does not make any sense and therefore, any text starting with "TITLE" under the column location can be replace with NA. Also, the syntax for a valid location is "City, Country" as seen from the unique values above, therefore, replacing all strings with no ',' with NA will remove all other text present. Lastly, maintain the naming convention by keeping the city in capitals and country in a title format meaning only the first letter will be capital and others in lower case.
+
+```{r}
+## need to further clean location
+### replace everything that starts with TITLE to NA
+raw_text$Location <-ifelse(startsWith(raw_text$Location, "TITLE"),NA,raw_text$Location)
+
+### replace everything without ',' with NA
+raw_text$Location <-ifelse(grepl(",",raw_text$Location,fixed=TRUE),raw_text$Location,NA)
+
+### trim space at end
+raw_text$Location=str_trim(raw_text$Location, side = c("both"))
+
+### Standardize all names
+raw_text$Location <-ifelse(!is.na(raw_text$Location),
+                           paste0(toupper(substring(raw_text$Location,1,
+                                                    gregexpr(pattern=',',
+                                                             raw_text$Location)[[1]][1])),
+                                  substring(raw_text$Location,
+                                            gregexpr(pattern =',',
+                                                     raw_text$Location)[[1]][1]+1,)),
+                           raw_text$Location)
+unique(raw_text$Location)
+```
+The location values now look clean and tidy.
+
+**Processing Published**
+
+
+
+```{r}
+raw_text$Published <-ifelse(startsWith(raw_text$text, "PUBLISHED") | 
+                              startsWith(raw_text$text, " PUBLISHED"),
+                            mgsub(raw_text$text, c("PUBLISHED: ", " PUBLISHED:  "),
+                                  c("", "")),
+                            "")
+
+#after exploring the data, it appears that the content of file 33 is not proper.
+#So there is a need to modify it separately
+raw_text$Published=ifelse(raw_text$id=="33",
+                          ifelse(startsWith(raw_text$text, "AUTHOR"),
+                                 gsub("AUTHOR: ","",raw_text$text),""),
+                          raw_text$Published)
+
+published_sub_dataframe=unique(raw_text[c("id","Published")])
+row_numbers=which(published_sub_dataframe$Published=="")
+published_sub_dataframe=published_sub_dataframe[-c(row_numbers),]
+raw_text$Published=published_sub_dataframe$Published[match(raw_text$id,published_sub_dataframe$id)]
+
+### trim space at start and end if there exists
+raw_text$Published=str_trim(raw_text$Published, side = c("both"))
+head(raw_text,10)
+```
+The unique published dates existing in the datatable are:
+
+```{r}
+unique(raw_text$Published)
+```
+The date is of many different formats and some are even in text. All of these are processed in the below chunk of code. We first convert all the data that is not in a date format to date.
+
+```{r}
+##need further cleaning
+raw_text$Published=ifelse(raw_text$Published=="21 January 2014  1405","21 January 2014",raw_text$Published)
+raw_text$Published=ifelse(raw_text$Published=="October 21, 2013","21 October 2013",raw_text$Published)
+```
+
+Next, convert all dates in "21 January 2014" format to "Y/M/D". The 'as.Date' function can be used to convert the text into date and then formatting it again using 'format' function to obtain "Y/M/D" format.
+
+```{r}
+## filtering published dates in "21 January 2014" format and converting them to Y/M/D format
+dates_to_format=str_extract(raw_text$Published, "^[0-9]{1,2}\\D[a-zA-Z]+\\D[0-9]{4}")
+dates_to_format=unique(dates_to_format)
+dates_to_format=dates_to_format[!is.na(dates_to_format)]
+
+sub_dates=unique(raw_text[c("id","Published")]) %>% filter(Published %in% dates_to_format)
+sub_dates$Published=as.Date(sub_dates$Published,format="%d %B %Y")
+sub_dates$Published=format(sub_dates$Published,"%Y/%m/%d")
+
+raw_text$subdates=sub_dates$Published[match(raw_text$id,sub_dates$id)]
+```
+
+Since there are a few texts present in the Published column, after looking into the files of those id's, it was noticeable that the date was in the next line and therefore, for these texts, the published date should be taken from the next immediate row.
+
+```{r}
+## words improper
+dates_to_format=str_extract(raw_text$Published, c("Petrus Gerhard","By Haneson Ngohebo"))
+dates_to_format=unique(dates_to_format)
+dates_to_format=dates_to_format[!is.na(dates_to_format)]
+
+sub_dates2=raw_text %>% filter(Published %in% dates_to_format)
+row_numbers=which(startsWith(sub_dates2$text, "PUBLISHED"))
+row_numbers=row_numbers+1
+subset=sub_dates2[row_numbers,]
+sub_dates2$Published=subset$text[match(sub_dates2$id,subset$id)]
+
+raw_text$subdates2=sub_dates2$Published[match(raw_text$id,sub_dates2$id)]
+```
+
+We then update the 'Published' column with the modified dates using the code below.
+
+```{r}
+raw_text$Published=ifelse(!is.na(raw_text$subdates),raw_text$subdates,raw_text$Published)
+raw_text$Published=ifelse(!is.na(raw_text$subdates2),raw_text$subdates2,raw_text$Published)
+```
+
+```{r}
+unique(raw_text$Published)
+```
+There seem to be still other formats of dates present. The below code will process them into the date formats like other dates.
+
+```{r}
+dates_to_format=str_extract(raw_text$Published, "^[0-9]{1,2}\\D[a-zA-Z]+\\D{1,2}[0-9]{4}")
+dates_to_format=unique(dates_to_format)
+dates_to_format=dates_to_format[!is.na(dates_to_format)]
+
+sub_dates3=unique(raw_text[c("id","Published")]) %>% filter(Published %in% dates_to_format)
+sub_dates3$Published=as.Date(sub_dates3$Published,format="%d %B %Y")
+sub_dates3$Published=format(sub_dates3$Published,"%Y/%m/%d")
+
+raw_text$subdates3=sub_dates3$Published[match(raw_text$id,sub_dates3$id)]
+```
+
+Now we will update the Publish column again and remove all other temporary column we create as part of processing.
+
+```{r}
+raw_text$Published=ifelse(!is.na(raw_text$subdates3),raw_text$subdates3,raw_text$Published)
+raw_text=raw_text[,!(names(raw_text) %in% c("subdates","subdates2","subdates3"))]
+
+raw_text$Published=as.Date(raw_text$Published,format="%Y/%m/%d")
+raw_text
+```
+
+**Processing Content**
+
+Since we have extracted "TITLE", "LOCATION" and 'PUBLISHED" from the text column and created separate columns for them ,we can exclude all the records that have the "text" column consisting of these content.
+
+```{r}
+# removing text with TITLE:, LOCATION:, PUBLISHED:
+row_numbers1=which(startsWith(raw_text$text, "TITLE"))
+row_numbers2=which(startsWith(raw_text$text, "PUBLISHED"))
+row_numbers3=which(startsWith(raw_text$text, " PUBLISHED"))
+row_numbers4=which(startsWith(raw_text$text, "LOCATION"))
+row_numbers5=which(startsWith(raw_text$text, "AUTHOR"))
+raw_text=raw_text[-c(row_numbers1,row_numbers2,row_numbers3,row_numbers4,row_numbers5),]
+raw_text
+```
+
+Going through the text column, it was visible that there are dates present in some records this is due to some files having Published date in the next line which was discussed under "Processing Published" category. These dates are present in "yyyy/mm/dd" format or "date month year" format. The below regular expressions were used to detect those patterns in the text column. It was identified that there were 7 dates however only 5 of them were recognized, therefore, the other 2 were added manually.
+
+```{r}
+raw_text1=str_extract(raw_text$text,c("^[0-9]{1,2}\\D[a-zA-Z]+\\D[0-9]{4}","^[0-9]{4}\\D[0-9]{1,2}\\D[0-9]{1,2}"))
+raw_text1=unique(raw_text1)
+raw_text1=raw_text1[!is.na(raw_text1)]
+raw_text1[6] ="1998/05/15"
+raw_text1[7] ="17 January 1995"
+row_numbers6=which(raw_text$text %in% raw_text1)
+raw_text=raw_text[-c(row_numbers6),]
+```
+
+Now, we have to combine all the recodes with the same id. After processing, we now will have 845 records that reflect the 845 files that we have and each record consists of the "newsgroup", "id", "Title", "Location", "Published" and "Content".
+
+```{r}
+content=raw_text %>%
+  group_by(id) %>%
+  summarise_all(funs(toString(na.omit(.))))
+
+raw_text=raw_text[,!(names(raw_text) %in% c("text"))]
+raw_text$Content=content$text[match(raw_text$id,content$id)]
+cleaned_text=unique(raw_text)
+cleaned_text
+```
+
+### 4) Processing Email and Employee Data
+
+Considering that the data is based on email, we can make use of the networking graph for visualization and for that purpose, we will need the data to be in the "source" and "target" format. The email_data dataframe currently is very raw and needs to be processed to the required format.
+
+
+```{r,warning=FALSE}
+head(email_data,10)
+```
+The "To" column has various email id's that are seperated by a ','. We first need to split all the id's by ',' and then use the 'concat.split.multiple' function to split all the emails in "To" into multiple rows.
+
+```{r, warning=FALSE}
+# break on , in "To"
+email_data_clean <- cSplit(email_data,splitCols= "To", sep=",", direction="long")
+glimpse(email_data_clean)
+```
+
+Next, we shall remove the email id's where the "From" and "To" are the same. This is to ensure that when be plot the networking graph, we will not have the same user who send an email to himself.
+
+```{r}
+# removing same from and to
+row_numbers=which(email_data_clean$From ==email_data_clean$To)
+email_data_clean=email_data_clean[-c(row_numbers),]
+glimpse(email_data_clean)
+```
+
+Since both the date and the time are displayed in the same column, we shall separate  these two and change their datatype accordingly.
+
+```{r}
+# separating time and date
+email_data_clean <- cSplit(email_data_clean, splitCols="Date",sep= " ")
+
+#changing type of date 1,2
+email_data_clean$Date_1=as.Date(email_data_clean$Date_1,format="%m/%d/%Y")
+email_data_clean$Date_2=format(strptime(email_data_clean$Date_2, format="%H:%M"), format = "%H:%M")
+
+glimpse(email_data_clean)
+```
+
+The whole email id is not required. Therefore, we will remove everything after '#' from both the "From" and "To" columns. For this, we use the regular expression "@.*" which specifies that everything from "@" and we use "gsub" function to repace that with and empty string.
+
+```{r , warning=FALSE}
+# remove everything after @
+email_data_clean$From=gsub("@.*","",email_data_clean$From)
+email_data_clean$To=gsub("@.*","",email_data_clean$To)
+```
+
+Rename the column names into meaningful names using the "colnames" function.
+
+```{r, warning=FALSE}
+# rename col names
+colnames(email_data_clean) <- c("Source.Label", "Target.Label","Subject","SentDate","SentTime")
+
+```
+
+Now formatting the employee data.
+
+```{r}
+glimpse(employee_data)
+```
+Remove unnecessary columns.
+
+```{r}
+employee_data=employee_data[,!(names(employee_data) %in% c("CitizenshipBasis","PassportCountry","BirthDate",
+                                                           "CitizenshipStartDate","BirthCountry","PassportIssueDate","PassportExpirationDate"))]
+
+```
+
+Since there are no ID's allotted for the employees, we can create a new column called "id" and populate this column with ID numbers starting from 1 to the number of rows present in the data frame. Since the "Source.Label" and "Target.Label" in the email_data are in firstname.lastname format, we will make use of the "FirstName" , "LastName" columns present in employee_data and use the "paste0" function to join then together with a "." between them. Pay special attention to 'Ruscella.Mies Haber' as there exists two words in her last name so replace the space with a ".".
+
+```{r,warning=FALSE}
+# create id column
+employee_data$id=1:nrow(employee_data)
+
+employee_data$FullName=paste0(employee_data$FirstName,".",employee_data$LastName)
+employee_data$FullName=ifelse(employee_data$FullName=="Ruscella.Mies Haber",
+                              sub(" ",".",employee_data$FullName),
+                              employee_data$FullName)
+```
+
+Now that we have two clean data frame, we must map them together using the "match" function based.
+
+```{r,warning=FALSE}
+### mapping two df's
+email_data_clean$Source=employee_data$id[match(email_data_clean$Source.Label,employee_data$FullName)]
+email_data_clean$Target=employee_data$id[match(email_data_clean$Target.Label,employee_data$FullName)]
+
+```
+
+Remove the "." from all names to enhanse the redability to the user.
+
+```{r,warning=FALSE}
+## remove "." from labels to make it look better
+email_data_clean$Source.Label=sub("[.]"," ",email_data_clean$Source.Label)
+email_data_clean$Target.Label=gsub("[.]"," ",email_data_clean$Target.Label)
+employee_data$FullName=gsub("[.]"," ",employee_data$FullName)
+glimpse(email_data_clean)
+```
+Categorizing email baed on work related and non work related. Go through the data to identify the subject text for non work related emails. Using that text, we can categorize the records.
+
+```{r}
+email_data_clean$Subject=tolower(email_data_clean$Subject)
+
+nonWork=c('birthdays','plants','night','concert','coffee','sick','dress','post','funy',
+    'lunch','babysitting','politics','cute','parking','vacation','funny','missing',
+    'volunteers','nearby','club','investment','found','flowers',
+    'defenders','battlestations','article','ha ha','media','retirement')
+
+for (i in (1:nrow(email_data_clean))){
+email_data_clean$MainSubject[i] <-ifelse(ifelse(any(str_detect(email_data_clean$Subject[i],nonWork))==TRUE,TRUE,FALSE),"Non-work related","Work related")
+}
+glimpse(email_data_clean)
+
+```
+### 4 Storing clean data into files
+
+```{r}
+library(xlsx)
+write.xlsx(cleaned_text,"data/cleanArticles.xlsx")
+write.csv(employee_data,"data/cleanEmployee.csv")
+write.csv(email_data_clean,"data/cleanEmail.csv")
+```
+
+**Note:** The dataframes we obtaied through the processing steps are now clean and these frames can furtehr be modified according to th eneed of visualization.
