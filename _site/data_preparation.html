@@ -3102,8 +3102,8 @@ $ MilitaryDischargeDate      &lt;dttm&gt; NA, NA, NA, NA, 1984-10-01, 2001~</cod
 <p>Remove unnecessary columns.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CitizenshipBasis"</span>,<span class='st'>"PassportCountry"</span>,<span class='st'>"BirthDate"</span>,<span class='st'>"CitizenshipStartDate"</span>,
-                                                           <span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CitizenshipBasis"</span>,<span class='st'>"PassportCountry"</span>,<span class='st'>"BirthDate"</span>,
+<span class='st'>"CitizenshipStartDate"</span>,<span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
 </code></pre>
 </div>
 </div>
@@ -3160,8 +3160,8 @@ $ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~</cod
     <span class='st'>'defenders'</span>,<span class='st'>'battlestations'</span>,<span class='st'>'article'</span>,<span class='st'>'ha ha'</span>,<span class='st'>'media'</span>,<span class='st'>'retirement'</span><span class='op'>)</span>
 
 <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>MainSubject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='va'>nonWork</span><span class='op'>)</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>TRUE</span>,
-                                                <span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>,
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>MainSubject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,
+                                          <span class='va'>nonWork</span><span class='op'>)</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>TRUE</span>,<span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>,
                                          <span class='st'>"Non-work related"</span>,<span class='st'>"Work related"</span><span class='op'>)</span>
 <span class='op'>}</span>
 <span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
@@ -3182,24 +3182,6 @@ $ MainSubject  &lt;chr&gt; &quot;Work related&quot;, &quot;Work related&quot;, &
 <p>Having cleaned all the data we have, we can now store this cleaned data into files so that it can be used for visualization. When writing into files, we need to set “row.names=FALSE” we avoid writing the row numbers into the first column.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cleaned_text</span>
-</code></pre>
-</div>
-<pre><code># A tibble: 845 x 6
-   newsgroup  id    Title          Location Published  Content        
-   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;          
- 1 All News ~ 121   POK PROTESTS ~ ELODIS,~ 2005-04-06 &quot;Fifteen membe~
- 2 All News ~ 135   RALLY SCHEDUL~ ABILA, ~ 2012-04-09 &quot;Silvia Marek,~
- 3 All News ~ 152   LACK OF DETAI~ ABILA, ~ 1993-02-02 &quot;In a glitzy p~
- 4 All News ~ 154   ELODIS, KRONO~ ELODIS,~ 1998-03-20 &quot;NOTE: This ar~
- 5 All News ~ 237   ELODIS, KRONO~ &lt;NA&gt;     1998-05-15 &quot;NOTE: This ar~
- 6 All News ~ 251   ELODIS PUBLIC~ ELODIS,~ 2004-05-29 &quot;The Elodis Co~
- 7 All News ~ 341   WHO BRINGS A ~ ABILA, ~ 2013-06-21 &quot;ABILA, Kronos~
- 8 All News ~ 391   TAX MEASURE D~ ABILA, ~ 2001-03-22 &quot;A measure to ~
- 9 All News ~ 420   POK REPRESENT~ ABILA, ~ 1998-11-15 &quot;Representativ~
-10 All News ~ 554   ELIAN KAREL D~ ABILA, ~ 2009-06-20 &quot;Elian Karel, ~
-# ... with 835 more rows</code></pre>
-<div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>cleaned_text</span>,<span class='st'>"data/cleanArticles.csv"</span>,row.names<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>employee_data</span>,<span class='st'>"data/cleanEmployee.csv"</span>,row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>email_data_clean</span>,<span class='st'>"data/cleanEmail.csv"</span>,row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
@@ -3207,7 +3189,7 @@ $ MainSubject  &lt;chr&gt; &quot;Work related&quot;, &quot;Work related&quot;, &
 </div>
 </div>
 <p><strong>Note:</strong> The dataframes we obtained through the processing steps are now clean and these frames can further be modified according to the need of visualization.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

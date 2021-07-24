@@ -2086,8 +2086,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#section">4.1</a></li>
-<li><a href="#characterization-of-any-biases-identified-in-the-news-sources">4.2 Characterization of any biases identified in the news sources</a><ul>
+<li><a href="#characterization-of-news-data-sources">4.1 Characterization of News Data Sources</a><ul>
+<li><a href="#correlated-articles">4.1.1 Correlated Articles</a></li>
+<li><a href="#phrases-occuring-together">4.1.2 Phrases Occuring Together</a></li>
+</ul></li>
+<li><a href="#biases-identified-in-the-news-sources">4.2 Biases identified in the News Sources</a><ul>
 <li><a href="#setting-the-scene">4.2.1 Setting the Scene</a></li>
 <li><a href="#content-across-clusters">4.2.2 Content across Clusters</a></li>
 <li><a href="#comparing-titles">4.2.3 Comparing Titles</a></li>
@@ -2103,14 +2106,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 </nav>
 </div>
-<h2 id="section">4.1</h2>
+<h2 id="characterization-of-news-data-sources">4.1 Characterization of News Data Sources</h2>
+<h3 id="correlated-articles">4.1.1 Correlated Articles</h3>
+<p>The correlation graph shows that there are certain newsgroups highly correlated to each other with a value as much as 0.9. Two of the most correlated newsgroups are the “The World” and “Who What News”. These are the nodes that has the thickest edge connecting them and the thicker the line, the more similar words these two newsgroups have in common. The wordclouds for the two mentioned newsgroups give a more deeper understanding of the words that are similar and it appears that both of these published articles mostly containing the words “gastech”, “kronos”, “government”, “contamination” and “environment”. From this, we can understand that these news groups voiced out about the problems created by the GasTech company.</p>
+<center>
+<img src="img/correlation.JPG" style="width:90.0%" />
+</center>
+<h3 id="phrases-occuring-together">4.1.2 Phrases Occuring Together</h3>
+<p>From the bigram plot below, we can understand the usage a a few words. For example, “sten” and “sanjorge” individually is difficult to understand what it means but from the bigram notation, we can understand that it is referring to the CEO of GasTech Jr Sten Sanjorge. Another interesting phrase is ‘abila police force’ and ‘20 jan 2014’ which specifies the day of the incident.</p>
+<p>One notable observation from this plot is the connection between “kronos”, “government” and “pok”. This connection shows that both the government and pok were equally referred to across all articles and this can be extracted from the darkness of the arrow which is same for “kronos -&gt; government” and “kronos -&gt; pok”. Also, the term ‘gas’ was not only used to specify the fields and drilling of the GasTech company but also shows so traces of “tear gas” which the police could have used against the protesters.</p>
+<center>
+<img src="img/bigram.JPG" style="width:80.0%" />
+</center>
 <hr />
-<h2 id="characterization-of-any-biases-identified-in-the-news-sources">4.2 Characterization of any biases identified in the news sources</h2>
+<h2 id="biases-identified-in-the-news-sources">4.2 Biases identified in the News Sources</h2>
 <h3 id="setting-the-scene">4.2.1 Setting the Scene</h3>
 <p>The newsgroups are divided into 6 clusters based on the their use of the same words. These clusters can be identified with the different color schemes and the thicker the edge between two nodes suggests that the nodes are more similar.</p>
 <p>From the text plot, it is visible that cluster number 2 consisting of “Tethys News”, “odern Rubicon”, “Centrum Sentinel” and “Kronos Star” have more number of similar words as the edges connecting them are darker.</p>
 <center>
-<img src="img/clusters.JPG" style="width:60.0%" />
+<img src="img/clusters.JPG" style="width:70.0%" />
 </center>
 <h3 id="content-across-clusters">4.2.2 Content across Clusters</h3>
 <p>The content across all articles in cluster 1 seems to be related to the leader of POK Elian Karel, the government and the police. There also are some traces of water most likely representing the water contamination that is occurring. In the whole, this cluster talks more about the relationship between the police, government and Elian Karel with very little involvement of GasTech company.</p>
@@ -2126,12 +2140,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="comparing-titles">4.2.3 Comparing Titles</h3>
 <p>From the wordcloud below, it is visible that “News Online Today” is the newsgroup that mostly talked about the situation in Kronos.It talked mostly about POK but on the contrast, very little was spoken about the contamination and health of the villagers. Due this, it appears that the newsgroup is biased by targeting the POK group the most. On the other hand, “The Continent” seems to have reported most articles on the calamity, evacuation and discharge but no keywords resemble the GasTech nor the POK. “Everyday News” talked more on the crashes and explode that were occurring in Kronos. The remaining 3 newsgroups appear to be international groups and their keywords are vary diverse and none specifically talking about the situation in Kronos.</p>
 <center>
-<img src="img/wordcloud.JPG" style="width:90.0%" />
+<img src="img/wordcloud.JPG" style="width:70.0%" />
 </center>
 <h3 id="frequency-of-keywords-in-titles">4.2.4 Frequency of keywords in Titles</h3>
 <p>For the year 2009, the most frequent noun-verb pair in titles is “leader karel”. The other most common keywords such as “karel arrested” suggests that in 2009 POK’s leader Elian Karel has been arrested. Other events that have taken place in this year are “gastech adopting new logo”.</p>
 <center>
-<img src="img/keywords.JPG" style="width:70.0%" />
+<img src="img/keywords.JPG" style="width:80.0%" />
 </center>
 <h3 id="timeline-unfolding-of-events-across-years">4.2.5 Timeline: Unfolding of Events across Years</h3>
 <p>After obtaining all of the most frequent keywords from the titles of all articles across all years, the timeline shows that from 1982 to 1994, there have been talks about foreign investment and this could suggest that the Tethys based GasTech company is looking to invest its company in another country and towards the end of that period, they have settled on Kronos which can be derived from “Shores of Kronos” keyword in 1994.</p>

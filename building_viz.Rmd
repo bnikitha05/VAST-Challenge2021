@@ -516,7 +516,7 @@ newsgroup_cors <- words_by_newsgroup %>%
                sort = TRUE)
 
 #plotting graph
-set.seed(12)
+set.seed(123)
 newsgroup_cors %>%
   filter(correlation > 0.9) %>%
   graph_from_data_frame() %>%
@@ -562,7 +562,7 @@ sub_words2=words_by_newsgroup %>% filter(newsgroup %in% c('Who What News'))
 
 wordcloud(words = sub_words1$word 
           , freq = sub_words1$n, min.freq = 1,
-          max.words=300, random.order=FALSE, rot.per=0.35, 
+          max.words=200, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
 
 ```
@@ -571,7 +571,7 @@ Below is the wordcloud of 'Who What News':
 ```{r}
 wordcloud(words = sub_words2$word 
           , freq = sub_words2$n, min.freq = 1,
-          max.words=300, random.order=FALSE, rot.per=0.35, 
+          max.words=200, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
 ```
 
