@@ -86,26 +86,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Mini Challenge 1: Building the Visualization</title>
+  <title>Mini Challenge 1: 3.0 Building the Visualization</title>
   
   
   
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Mini Challenge 1: Building the Visualization"/>
+  <meta property="og:title" content="Mini Challenge 1: 3.0 Building the Visualization"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Mini Challenge 1"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Mini Challenge 1: Building the Visualization"/>
+  <meta property="twitter:title" content="Mini Challenge 1: 3.0 Building the Visualization"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Building the Visualization"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["3.0 Building the Visualization"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2033,6 +2033,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
   <script src="site_libs/d3-4.5.0/d3.min.js"></script>
   <script src="site_libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
+  <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+  <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+  <script src="site_libs/datatables-binding-0.15/datatables.js"></script>
+  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+  <link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2052,7 +2060,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Building the Visualization","authors":[]}
+{"title":"3.0 Building the Visualization","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2068,7 +2076,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="storyboard.html">Storyboard for R-Shiny</a>
 </div>
 <div class="nav-right">
-<a href="index.html">Home</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2078,7 +2085,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Building the Visualization</h1>
+<h1>3.0 Building the Visualization</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2090,19 +2097,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#relationship-between-the-news-articles">2) Relationship between the News Articles</a><ul>
-<li><a href="#text-net-visualization">Text Net Visualization</a></li>
-<li><a href="#clustering">Clustering</a></li>
-<li><a href="#text-plot">Text Plot</a></li>
-<li><a href="#wordcloud-article-titles">Wordcloud Article Titles</a></li>
-<li><a href="#timeline-of-articles">Timeline of Articles</a></li>
+<li><a href="#visualizing-text-data">3.2 Visualizing Text Data</a><ul>
+<li><a href="#text-net">3.2.1 Text Net</a></li>
+<li><a href="#clustering">3.2.2 Clustering</a></li>
+<li><a href="#text-plot">3.2.3 Text Plot</a></li>
+<li><a href="#comparison-cloud">3.2.4 Comparison Cloud</a></li>
+<li><a href="#timeline">3.2.5 Timeline</a></li>
 </ul></li>
-<li><a href="#visualizing-email-network">3) Visualizing Email Network</a></li>
+<li><a href="#visualizing-network-data">3.3 Visualizing Network Data</a></li>
 </ul>
 </nav>
 </div>
-<h2 id="relationship-between-the-news-articles">2) Relationship between the News Articles</h2>
-<h3 id="text-net-visualization">Text Net Visualization</h3>
+<h2 id="visualizing-text-data">3.2 Visualizing Text Data</h2>
+<h3 id="text-net">3.2.1 Text Net</h3>
 <p>The textnet is used to represent relationships between words. The first node set is words found in the newspaper articles, and the second node set is the newspapers themselves. That is, one can create a network where newspapers are connected by their use of the same words.</p>
 <p><strong>Packages Required:</strong></p>
 <p>The only R package presently available to implement text network techniques is the textnets package. The most current version of the textnets package is currently available on Github. To install textnets—or any other package hosted on Github— you will need the devtools package. We then install ‘textnets’ package and all the dependent packages that are required to run the ‘textnets’ package.</p>
@@ -2111,7 +2118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://devtools.r-lib.org/'>devtools</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://devtools.r-lib.org//reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"cbail/textnets"</span><span class='op'>)</span>
 
-<span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'textnets'</span>,<span class='st'>'dplyr'</span>,<span class='st'>'Matrix'</span>,<span class='st'>'tidytext'</span>,<span class='st'>'stringr'</span>,<span class='st'>'SnowballC'</span>,<span class='st'>'reshape2'</span>,<span class='st'>'igraph'</span>,<span class='st'>'ggraph'</span>,<span class='st'>'networkD3'</span>,<span class='st'>'readxl'</span><span class='op'>)</span>
+<span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'textnets'</span>,<span class='st'>'dplyr'</span>,<span class='st'>'Matrix'</span>,<span class='st'>'tidytext'</span>,<span class='st'>'stringr'</span>,<span class='st'>'SnowballC'</span>,<span class='st'>'reshape2'</span>,<span class='st'>'igraph'</span>,<span class='st'>'ggraph'</span>,<span class='st'>'networkD3'</span><span class='op'>)</span>
 <span class='kw'>for</span><span class='op'>(</span><span class='va'>p</span> <span class='kw'>in</span> <span class='va'>packages</span><span class='op'>)</span><span class='op'>{</span>
   <span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
@@ -2125,28 +2132,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The textnets package requires text that is contained within a dataframe, where each row represents a document. The text of each document must be contained within a single row therefore we have to group all newspaper article based on their name and club all the articles text to one row. Since we have 29 newspapers provided, we should be having 29 rows. For this dataframe, as discussed above only the newspaper name and the content are required. Therefore, we can drop the other columns.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cleaned_text</span><span class='op'>=</span><span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"data/cleanArticles.xlsx"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cleaned_text</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/cleanArticles.csv"</span><span class='op'>)</span>
+<span class='va'>cleaned_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>cleaned_text</span><span class='op'>$</span><span class='va'>Published</span>,format<span class='op'>=</span><span class='st'>"%Y-%m-%d"</span><span class='op'>)</span>
 <span class='va'>textNet_data</span><span class='op'>=</span><span class='va'>cleaned_text</span> <span class='op'>%&gt;%</span>
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>newsgroup</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>summarise_all</span><span class='op'>(</span><span class='fu'>funs</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/toString.html'>toString</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>textNet_data</span><span class='op'>=</span><span class='va'>textNet_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>textNet_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Location"</span>,<span class='st'>"Published"</span>,<span class='st'>"Title"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
-<span class='va'>textNet_data</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 29 x 3
-   newsgroup     ...1                       Content                   
-   &lt;chr&gt;         &lt;chr&gt;                      &lt;chr&gt;                     
- 1 All News Tod~ 1, 2, 3, 4, 5, 6, 7, 8, 9~ &quot;Fifteen members of the P~
- 2 Athena Speaks 19, 20, 21, 22, 23, 24, 2~ &quot;Miriam Avila, an adminis~
- 3 Central Bull~ 44, 45, 46, 47, 48, 49, 5~ &quot;The Protectors of Kronos~
- 4 Centrum Sent~ 65, 66, 67, 68, 69, 70, 7~ &quot;2232 - There are relatio~
- 5 Daily Pegasus 101, 102, 103, 104, 105, ~ &quot;A heavy rain did not sto~
- 6 Everyday News 127, 128, 129, 130, 131, ~ &quot;It is the biggest compan~
- 7 Homeland Ill~ 142, 143, 144, 145, 146, ~ &quot;1018 - A fire alarm has ~
- 8 Internationa~ 206, 207, 208, 209, 210, ~ &quot;Five young people were a~
- 9 Internationa~ 226, 227, 228, 229, 230, ~ &quot;It is the biggest compan~
-10 Kronos Star   240, 241, 242, 243, 244, ~ &quot;POK members held their a~
-# ... with 19 more rows</code></pre>
 </div>
 <p>The PrepText function prepares texts for networks using all types of words.This function requires the user to provide four inputs:</p>
 <ul>
@@ -2186,10 +2179,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>VisTextNetD3</span><span class='op'>(</span><span class='va'>news_text_network</span>, <span class='fl'>.30</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="htmlwidget-a5ec8e6cdf50861e6d1b" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a5ec8e6cdf50861e6d1b">{"x":{"links":{"source":[1,0,4,0,3,4,2,5,7,3,1,2,0,6,2,7,8,3,9,10,12,1,10,13,9,11,2,8,11,5,2,4,14,1,5,11,4,16,5,7,9,17,4,16,17,1,6,1,4,0,7,9,11,18,15,15,21,11,17,19,12,17,19,22,11,6,20,22,4,21,15,0,19,12,17,22,23,5,8,15,12,26,15,5,8,20,9,1,19,7,21,13,18],"target":[2,4,5,6,6,6,7,8,9,10,11,11,12,12,12,12,12,13,13,13,14,14,14,14,14,14,14,15,15,15,16,16,16,16,16,16,17,17,17,18,18,18,18,18,19,19,20,20,20,20,21,21,21,21,21,22,22,22,22,22,23,23,23,23,24,24,24,24,24,24,24,24,25,25,25,25,25,26,26,26,27,27,27,27,27,28,28,28,28,28,28,28,28],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["All News Today","Athena Speaks","Central Bulletin","Centrum Sentinel","Daily Pegasus","Everyday News","Homeland Illumination","International News","International Times","Kronos Star","Modern Rubicon","News Desk","News Online Today","Tethys News","The Abila Post","The Continent","The Explainer","The General Post","The Guide","The Light of Truth","The Orb","The Truth","The Tulip","The World","The Wrap","Who What News","World Journal","World Source","Worldwise"],"group":[1,3,3,2,1,5,1,6,5,2,2,3,5,2,3,5,3,4,6,4,1,6,4,4,1,4,5,5,6]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"function(d) { return Math.sqrt(d.value); }","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":false,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c3d3353b4ef67d4235e4" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c3d3353b4ef67d4235e4">{"x":{"links":{"source":[1,0,4,0,3,4,2,5,7,3,1,2,0,6,2,7,8,3,9,10,12,1,10,13,9,11,2,8,11,5,2,4,14,1,5,11,4,16,5,7,9,17,4,16,17,1,6,1,4,0,7,9,11,18,15,15,21,11,17,19,12,17,19,22,11,6,20,22,4,21,15,0,19,12,17,22,23,5,8,15,12,26,15,5,8,20,9,1,19,7,21,13,18],"target":[2,4,5,6,6,6,7,8,9,10,11,11,12,12,12,12,12,13,13,13,14,14,14,14,14,14,14,15,15,15,16,16,16,16,16,16,17,17,17,18,18,18,18,18,19,19,20,20,20,20,21,21,21,21,21,22,22,22,22,22,23,23,23,23,24,24,24,24,24,24,24,24,25,25,25,25,25,26,26,26,27,27,27,27,27,28,28,28,28,28,28,28,28],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["All News Today","Athena Speaks","Central Bulletin","Centrum Sentinel","Daily Pegasus","Everyday News","Homeland Illumination","International News","International Times","Kronos Star","Modern Rubicon","News Desk","News Online Today","Tethys News","The Abila Post","The Continent","The Explainer","The General Post","The Guide","The Light of Truth","The Orb","The Truth","The Tulip","The World","The Wrap","Who What News","World Journal","World Source","Worldwise"],"group":[1,3,3,2,1,5,1,6,5,2,2,3,1,2,3,5,3,4,6,4,1,6,4,4,1,4,5,5,6]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"function(d) { return Math.sqrt(d.value); }","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":false,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
-<h3 id="clustering">Clustering</h3>
+<h3 id="clustering">3.2.2 Clustering</h3>
 <p><strong>Packages Required:</strong></p>
 <ul>
 <li>ggwordcloud - This package is used to display the wordcloud</li>
@@ -2206,7 +2199,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>From the above visualixation, the newsgroups have been divided into clusters based on strong relationship between its components. To classifying the newsgroups based on the clusters obtained, we use the TextCommunities function, which automatically uses the edge weights and determines the number of clusters within a given network. The function outputs a dataframe with the cluster or “modularity” class to which each document has been assigned.</p>
+<p><strong>Viewing Clusters:</strong></p>
+<p>From the previous visualization of text net, the newsgroups have been divided into clusters based on strong relationship between its components. To classifying the newsgroups based on the clusters obtained, we use the TextCommunities function, which automatically uses the edge weights and determines the number of clusters within a given network. The function outputs a dataframe with the cluster or “modularity” class to which each document has been assigned.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># get text communities and plot their constituting words</span>
@@ -2223,7 +2217,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
-<p>Lets store the cluster information in a ‘cluster’ column in cleaned_text. This will make it easier to refer to clusters for future visualizations.</p>
+<p>Lets store the cluster number information in a ‘cluster’ column in cleaned_text. This will make it easier to refer to clusters for future visualizations.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cleaned_text</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>=</span><span class='va'>text_communities</span><span class='op'>$</span><span class='va'>modularity_class</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>cleaned_text</span><span class='op'>$</span><span class='va'>newsgroup</span>,<span class='va'>text_communities</span><span class='op'>$</span>
@@ -2231,7 +2225,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h3 id="text-plot">Text Plot</h3>
+<h3 id="text-plot">3.2.3 Text Plot</h3>
 <p><strong>Packages Required:</strong></p>
 <ul>
 <li><p>tidytext - This package is used to convert text into a format that is visualizable with the use of ‘unnest_tokens’ function.</p></li>
@@ -2250,8 +2244,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p><strong>Text Plot for Cluster 1</strong></p>
-<p>The word cooccurrence graph graph visualizes collections of word pair and how frequent these word pairs occur. We create a cooccurrence data frame where each row contains the word pair and how many they occur. That cooccurrence data frame will be used as the input for the textplot_cooccurrence function. After we get the correct input, now we can create the chart. We will take only the 15 most occur word pairs.</p>
+<p><strong>Text Plot for Cluster 1:</strong></p>
+<p>The word cooccurrence graph graph visualizes collections of word pair and how frequent these word pairs occur. We create a cooccurrence data frame where each row contains the word pair and how many they occur. That cooccurrence data frame will be used as the input for the textplot_cooccurrence function.</p>
+<p>After we get the correct input, now we can create the chart. We will take only the 15 most occur word pairs. Do note that we are only visualizing the content of cluster 1 articles. We can obtain other clusters by editing the filter criteria in the ‘subset()’ function.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>usenet_words</span> <span class='op'>&lt;-</span> <span class='va'>cleaned_text</span> <span class='op'>%&gt;%</span>
@@ -2259,6 +2254,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>"[a-z']$"</span><span class='op'>)</span>,
          <span class='op'>!</span><span class='va'>word</span> <span class='op'>%in%</span> <span class='va'>stop_words</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span>
 
+<span class='co'>##modify the cluster here</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>usenet_words</span>, <span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>cooccurrence</span><span class='op'>(</span><span class='va'>x</span>, group <span class='op'>=</span> <span class='st'>"id"</span>, term <span class='op'>=</span> <span class='st'>"word"</span><span class='op'>)</span>
 <span class='co'>#x</span>
@@ -2267,7 +2263,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>
-<h3 id="wordcloud-article-titles">Wordcloud Article Titles</h3>
+<h3 id="comparison-cloud">3.2.4 Comparison Cloud</h3>
 <p><strong>Packages Required:</strong></p>
 <ul>
 <li><p>tidytext - This package is used to convert text into a format that is visualizable with the use of ‘unnest_tokens’ function.</p></li>
@@ -2286,8 +2282,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p><strong>Wordcloud for Titles in Cluster 5</strong></p>
-<p>To build a wordcloud, we first need to have the proper data. Therefore, we first extract the required data fom cleande_text and filter it based on the criteria “cluster =5”. This values should be changes when we want to visualize other clusters. Afetr we extract the required data, we need to clean it by removing punctuation, digits and stopwords. All of these can be removed by using regular expression as stated in the code chunk below.</p>
+<p><strong>Preparing Data:</strong></p>
+<p>To build a wordcloud, we first need to have the proper data. Therefore, we first extract the required data from cleaned_text and filter it based on the criteria “cluster =5”. This values should be changes when we want to visualize other clusters. After we extract the required data, we need to clean it by removing punctuation, digits and stopwords. All of these can be removed by using regular expression as stated in the code chunk below.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>title_data</span><span class='op'>=</span><span class='va'>cleaned_text</span> <span class='op'>%&gt;%</span>
@@ -2325,6 +2321,7 @@ Sparsity           : 72%
 Maximal term length: 15
 Weighting          : term frequency (tf)</code></pre>
 </div>
+<p><strong>Comaprison Cloud for Titles in Cluster 5:</strong></p>
 <p>We will now convert the term document matrix to matrix format and rename the document names to the respective newsgroup. As for the comparison.cloud function, there are multiple parameters that can be set as per requirements. For our purpose, we will set the higher frequency words to be in the center and for it we shall set random.order=FALSE. The maximum number of words that can be displayed is set to 300 and the size and color of the title is set to a suitable value as show below.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2338,7 +2335,7 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
-<h3 id="timeline-of-articles">Timeline of Articles</h3>
+<h3 id="timeline">3.2.5 Timeline</h3>
 <p>Since the data we have cleaned for the articles also contains the published date, we can make use of the column to visualize how events have been unfolding across the years by means of a timeline.</p>
 <p><strong>Packages Required:</strong></p>
 <ul>
@@ -2358,7 +2355,8 @@ Weighting          : term frequency (tf)</code></pre>
 </code></pre>
 </div>
 </div>
-<p>Plotting to understand how the frequency of headlines is:</p>
+<p><strong>Visualizing Frequency:</strong></p>
+<p>Plotting to understand how the frequency of articles published is.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>news</span><span class='op'>=</span><span class='va'>cleaned_text</span>
@@ -2367,18 +2365,18 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 <pre><code># A tibble: 222 x 2
 # Groups:   Published [222]
-   Published               n
-   &lt;dttm&gt;              &lt;int&gt;
- 1 2014-01-20 00:00:00   222
- 2 2014-01-21 00:00:00    43
- 3 2014-01-19 00:00:00    18
- 4 2009-06-21 00:00:00    11
- 5 2009-03-13 00:00:00     9
- 6 2012-06-21 00:00:00     9
- 7 2013-12-16 00:00:00     9
- 8 2010-06-21 00:00:00     8
- 9 2012-06-20 00:00:00     8
-10 2005-04-06 00:00:00     7
+   Published      n
+   &lt;date&gt;     &lt;int&gt;
+ 1 2014-01-20   222
+ 2 2014-01-21    43
+ 3 2014-01-19    18
+ 4 2009-06-21    11
+ 5 2009-03-13     9
+ 6 2012-06-21     9
+ 7 2013-12-16     9
+ 8 2010-06-21     8
+ 9 2012-06-20     8
+10 2005-04-06     7
 # ... with 212 more rows</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>news</span> <span class='op'>%&gt;%</span> <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Published</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>count</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>Published</span>,<span class='va'>n</span>, group <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
@@ -2386,6 +2384,7 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
 </div>
+<p><strong>Preparing Data:</strong></p>
 <p>Before we move on to perform text analysis let’s split year from Published date.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2407,7 +2406,8 @@ Weighting          : term frequency (tf)</code></pre>
 </code></pre>
 </div>
 </div>
-<p>Filtering data only for 2009. The udpipe_annotate() function takes the language model and annoates the given text data. This is a function that is within the ‘udpipe’ package. We then convert this object to a dataframe. TOP NOUN — VERB Pairs as Keyword pairs: In English (or probably in many languages), Simple a noun and a verb can form a phrase. Like, Dog barked — with the noun Dog and Barked, we can understand the context of the sentence. Reverse-engineering the same with this titles data, let us bring out top phrases - that are just keywords/topics</p>
+<p>Filtering data only for 2009. The udpipe_annotate() function takes the language model and annoates the given text data. This is a function that is within the ‘udpipe’ package. We then convert this object to a dataframe.</p>
+<p><strong>TOP NOUN — VERB Pairs as Keyword pairs:</strong> In English (or probably in many languages), Simple a noun and a verb can form a phrase. Like, Dog barked — with the noun Dog and Barked, we can understand the context of the sentence. Reverse-engineering the same with this titles data, let us bring out top phrases - that are just keywords/topics</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>news_more</span> <span class='op'>&lt;-</span> <span class='va'>news</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2009</span><span class='op'>)</span>
@@ -2438,14 +2438,22 @@ Weighting          : term frequency (tf)</code></pre>
 <p>When we run the barplot for all available years and store the 1st keyword, we should be getting the below values.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>keywords</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"central role"</span>, <span class='st'>"mediterranean sea"</span>,<span class='st'>"foreign investment"</span>,<span class='st'>"foreign investment"</span>,<span class='st'>"shores of kronos"</span>,<span class='st'>"grand opening"</span>,<span class='st'>"gas fields"</span>,<span class='st'>"elodis possible contamination"</span>,<span class='st'>"public health"</span>,<span class='st'>"minister of health"</span>,<span class='st'>"president kapelou"</span>,<span class='st'>"taxes on oil"</span>,<span class='st'>"public health"</span>,<span class='st'>"hank fluss"</span>,<span class='st'>"public health"</span>,<span class='cn'>NA</span>,<span class='st'>"near elodis"</span>,<span class='st'>"leader karel"</span>,<span class='st'>"anniversary of protests"</span>,<span class='st'>"public threat"</span>,<span class='st'>"presidential manor"</span>,<span class='st'>"ipo makes"</span>,<span class='st'>"scene blog"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>keywords</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"central role"</span>, <span class='st'>"mediterranean sea"</span>,<span class='st'>"foreign investment"</span>,<span class='st'>"foreign investment"</span>,
+              <span class='st'>"shores of kronos"</span>,<span class='st'>"grand opening"</span>,<span class='st'>"gas fields"</span>,<span class='st'>"elodis possible contamination"</span>,
+              <span class='st'>"public health"</span>,<span class='st'>"minister of health"</span>,<span class='st'>"president kapelou"</span>,<span class='st'>"taxes on oil"</span>,
+              <span class='st'>"public health"</span>,<span class='st'>"hank fluss"</span>,<span class='st'>"public health"</span>,<span class='cn'>NA</span>,<span class='st'>"near elodis"</span>,<span class='st'>"leader karel"</span>,
+              <span class='st'>"anniversary of protests"</span>,<span class='st'>"public threat"</span>,<span class='st'>"presidential manor"</span>,<span class='st'>"ipo makes"</span>,<span class='st'>"scene blog"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>Next, we shall creat another list that consists of events that explain the keywords and then we will unlist bothe the keywords and event list and create a dataframe with years,keywords and event.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>event</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Contamination"</span>,<span class='st'>"Contamination"</span>,<span class='st'>"Contamination"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>event</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,<span class='st'>"Before Opening"</span>,
+           <span class='st'>"Contamination"</span>,<span class='st'>"Contamination"</span>,<span class='st'>"Contamination"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,
+           <span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,<span class='st'>"Health  Impact"</span>,
+           <span class='st'>"Health  Impact"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,
+           <span class='st'>"Protests"</span>,<span class='st'>"Protests"</span>,<span class='st'>"Protests"</span><span class='op'>)</span>
 
 <span class='va'>keywords</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>keywords</span>, use.names<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='va'>event</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>event</span>, use.names<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
@@ -2547,7 +2555,8 @@ Weighting          : term frequency (tf)</code></pre>
 </tbody>
 </table>
 </div>
-<p><strong>We are ready to plot our timeline now!</strong> <strong>Step 1:</strong> We first start by creating a plan chart consisting of our x and y coordinates and the labels. Then we will set the background to be plain by using the classic theme.</p>
+<p><strong>We are ready to plot our timeline now!</strong></p>
+<p><strong>Step 1:</strong> We first start by creating a plan chart consisting of our x and y coordinates and the labels. Then we will set the background to be plain by using the classic theme.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Create timeline coordinates with an x and y axis</span>
@@ -2708,8 +2717,8 @@ Weighting          : term frequency (tf)</code></pre>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-30-1.png" width="624" /></p>
 </div>
 <p>The above timeline plot is extremely useful and easily understandable if we have data based on dates. This plot helps us understand how events have been unfolding through the years, months or dates.</p>
-<h2 id="visualizing-email-network">3) Visualizing Email Network</h2>
-<p><strong>Packages Required</strong></p>
+<h2 id="visualizing-network-data">3.3 Visualizing Network Data</h2>
+<p><strong>Packages Required:</strong></p>
 <p>The purpose for requiring the packages are:</p>
 <ul>
 <li><p>lubridate - The ‘wday’ function which converts date to a weekday belongs to this package.</p></li>
@@ -2728,69 +2737,84 @@ Weighting          : term frequency (tf)</code></pre>
 </code></pre>
 </div>
 </div>
-<p>For easier understanding, lets save our clean email data as “edges” and employee data as “nodes”. For simplified analysis, we shall add another variable to "edges’ and call it Weekday that will mention the day of the week the email was sent. For this, we make use of the ‘wday’ function that is part of the ‘lubridate’ package. Set ‘label=true’ to display as ‘Monday, Tuesday, etc’ instead of ‘1,2 3,etc’ and setting ‘abbr=false’ will spell days in full form.</p>
+<p><strong>Preparing Data:</strong></p>
+<p>For easier understanding, lets save our clean email data as “edges” and employee data as “nodes”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>edges</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/cleanEmail.csv"</span><span class='op'>)</span>
 <span class='va'>nodes</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/cleanEmployee.csv"</span><span class='op'>)</span>
-<span class='va'>edges</span><span class='op'>$</span><span class='va'>Weekday</span><span class='op'>=</span> <span class='fu'>wday</span><span class='op'>(</span><span class='va'>edges</span><span class='op'>$</span><span class='va'>SentDate</span>, label<span class='op'>=</span><span class='cn'>TRUE</span>,abbr<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Next, let’s create an aggregated edges that consists of a new variable called “Weight” which holds the count on how many times source sends email to target. for the first aggregate, we shall group by sent date and for the second, we shall group by the Weekday variable that we created earlier.</p>
+<p>Next, let’s create an aggregated edges that consists of a new variable called “Weight” which holds the count on how many times source sends email to target. for the first aggregate, we shall group by ‘SentDate’. We shall create 3 categories of network graph. One represents all the emails across all employess and the other two will look into only those that are work and non-work related.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>edges_aggregated1</span><span class='op'>=</span><span class='va'>edges</span> <span class='op'>%&gt;%</span> 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#all emails</span>
+<span class='va'>edges_aggregated</span><span class='op'>=</span><span class='va'>edges</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Source</span>,<span class='va'>Target</span>,<span class='va'>SentDate</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>summarise</span><span class='op'>(</span>Weight<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Weight</span> <span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>edges_aggregated1</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Rows: 1,663
-Columns: 4
-$ Source   &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-$ Target   &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, ~
-$ SentDate &lt;chr&gt; &quot;2014-01-06&quot;, &quot;2014-01-07&quot;, &quot;2014-01-08&quot;, &quot;2014-01-~
-$ Weight   &lt;int&gt; 2, 4, 3, 6, 5, 5, 4, 2, 5, 2, 4, 3, 6, 5, 5, 4, 2, ~</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>edges_aggregated2</span><span class='op'>=</span><span class='va'>edges</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Source</span>,<span class='va'>Target</span>,<span class='va'>Weekday</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='co'>#work related emails only</span>
+<span class='va'>edges_official</span><span class='op'>=</span><span class='va'>edges</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>MainSubject</span> <span class='op'>==</span> <span class='st'>"Work related"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Source</span>,<span class='va'>Target</span>,<span class='va'>SentDate</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>summarise</span><span class='op'>(</span>Weight<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Weight</span> <span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>edges_aggregated2</span><span class='op'>)</span>
+<span class='co'>#non-work related emails only</span>
+<span class='va'>edges_unofficial</span><span class='op'>=</span><span class='va'>edges</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>MainSubject</span> <span class='op'>==</span> <span class='st'>"Non-work related"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Source</span>,<span class='va'>Target</span>,<span class='va'>SentDate</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>Weight<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Weight</span> <span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>Rows: 1,901
-Columns: 4
-$ Source  &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
-$ Target  &lt;int&gt; 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5~
-$ Weekday &lt;ord&gt; Monday, Tuesday, Wednesday, Thursday, Friday, Monday~
-$ Weight  &lt;int&gt; 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9~</code></pre>
 </div>
 <p>Now that we have the aggregated edges, we have to create a wrapper to build the graph model. This can be done using the ‘tbl_graph’ function present in the ‘tidygraph’ package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>network_graph1</span> <span class='op'>=</span> <span class='fu'>tbl_graph</span><span class='op'>(</span>nodes<span class='op'>=</span><span class='va'>nodes</span>, edges<span class='op'>=</span><span class='va'>edges_aggregated1</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>network_graph</span> <span class='op'>=</span> <span class='fu'>tbl_graph</span><span class='op'>(</span>nodes<span class='op'>=</span><span class='va'>nodes</span>, edges<span class='op'>=</span><span class='va'>edges_aggregated</span>,
                           directed<span class='op'>=</span><span class='cn'>TRUE</span>  <span class='op'>)</span>
-<span class='va'>network_graph2</span> <span class='op'>=</span> <span class='fu'>tbl_graph</span><span class='op'>(</span>nodes<span class='op'>=</span><span class='va'>nodes</span>, edges<span class='op'>=</span><span class='va'>edges_aggregated2</span>,
+<span class='va'>network_graphOfficial</span> <span class='op'>=</span> <span class='fu'>tbl_graph</span><span class='op'>(</span>nodes<span class='op'>=</span><span class='va'>nodes</span>, edges<span class='op'>=</span><span class='va'>edges_official</span>,
+                          directed<span class='op'>=</span><span class='cn'>TRUE</span>  <span class='op'>)</span>
+<span class='va'>network_graphUnofficial</span> <span class='op'>=</span> <span class='fu'>tbl_graph</span><span class='op'>(</span>nodes<span class='op'>=</span><span class='va'>nodes</span>, edges<span class='op'>=</span><span class='va'>edges_unofficial</span>,
                           directed<span class='op'>=</span><span class='cn'>TRUE</span>  <span class='op'>)</span>
 </code></pre>
 </div>
 </div>
+<p><strong>Overall Distribution of Emails:</strong></p>
 <p>The network graphs we created consists of 3 parts 1) layout: the layout you want to use 2) The aesthetics for edges 3) The aesthetics for nodes</p>
-<p>For all these, we make use of the ‘ggraph’ package. We use ‘theme_graph’ to modify the background color. The node and edge color can be changed by specifying the colour in the aes() method under the variable ‘colour’. We can also add other parameters such as the layout type and also color the nodes based on the employment category so as to understand the connectivity between various employment categories.</p>
+<p>For all these, we make use of the ‘ggraph’ package. We use ‘theme_graph’ to modify the background color. The node and edge color can be changed by specifying the color in the aes() method under the variable ‘color’. We can also add other parameters such as the layout type and also color the nodes based on the employment category so as to understand the connectivity between various employment categories. The thickness of the edges will be mapped with the Weight variable by using the ‘scale_edge_width’ function’. So the thicker the edge, the more emails passed between the two nodes.</p>
+<p>Distribution of all email across all employees for the duration of 2 weeks before the incident.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graph1</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graph</span>, 
             layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
+                 alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_edge_width</span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_node_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>CurrentEmploymentType</span><span class='op'>)</span>, 
+                  size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>facet_edges</span><span class='op'>(</span><span class='op'>~</span><span class='va'>SentDate</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="building_viz_files/figure-html5/unnamed-chunk-35-1.png" width="624" /></p>
+</div>
+<p><strong>Official and Unofficial Relationships:</strong></p>
+<p>Work Related Emails:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graphOfficial</span>, 
+            layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
+                 alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_edge_width</span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>geom_node_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>CurrentEmploymentType</span>, 
                       size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>g</span> <span class='op'>+</span> <span class='fu'>theme_graph</span><span class='op'>(</span><span class='op'>)</span>
@@ -2798,10 +2822,11 @@ $ Weight  &lt;int&gt; 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9~</cod
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-36-1.png" width="624" /></p>
 </div>
-<p>In the code chunk below, the thickness of the edges will be mapped with the Weight variable. So the thicker the edge, the more emails passed between the two nodes.</p>
+<p>Non-Work Related Emails:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graph1</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graphUnofficial</span>, 
             layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
                  alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
@@ -2813,25 +2838,132 @@ $ Weight  &lt;int&gt; 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9~</cod
 </div>
 <p><img src="building_viz_files/figure-html5/unnamed-chunk-37-1.png" width="624" /></p>
 </div>
-<p>Using facet edge to separate the network based on the the send date.</p>
+<p><strong>Unofficial Relationships related to ‘Politics’, ‘Kronos’and ’Media’:</strong></p>
+<p>Identifying the employees who had discussion about any of the the key terms such as ‘politics’, ‘Kronos’and ’media’ under the non-wok related emails. We create another dataframe called ‘unofficial_discussions’ which is the output of filtering the original ‘edges’ dataframe based on the content in the ‘Subject’ column consists of any of the mentioned key terms. The output datatable consists of all such informal emails that could provides some insight.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graph1</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>keyterms</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'politics'</span>,<span class='st'>'kronos'</span>,<span class='st'>'media'</span><span class='op'>)</span>
+<span class='va'>unofficial_discussions</span><span class='op'>=</span><span class='va'>edges</span>
+
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>unofficial_discussions</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+<span class='va'>unofficial_discussions</span><span class='op'>$</span><span class='va'>filter.condition</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>unofficial_discussions</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='va'>keyterms</span><span class='op'>)</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>TRUE</span>,<span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>,<span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>unofficial_discussions</span><span class='op'>=</span><span class='va'>unofficial_discussions</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>filter.condition</span> <span class='op'>==</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>unofficial_discussions</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-83e66dc61e980a1ab81e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-83e66dc61e980a1ab81e">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341"],["Orhan Strum","Orhan Strum","Sten Sanjorge Jr.","Sten Sanjorge Jr.","Orhan Strum","Orhan Strum","Ada Campo-Corrente","Ada Campo-Corrente","Sten Sanjorge Jr.","Sten Sanjorge Jr.","Ada Campo-Corrente","Ada Campo-Corrente","Sten Sanjorge Jr.","Sten Sanjorge Jr.","Ada Campo-Corrente","Ada Campo-Corrente","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ada Campo-Corrente","Ada Campo-Corrente","Ada Campo-Corrente","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Sten Sanjorge Jr.","Sten Sanjorge Jr.","Sten Sanjorge Jr.","Ada Campo-Corrente","Ada Campo-Corrente","Ada Campo-Corrente","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Orhan Strum","Orhan Strum","Orhan Strum","Rachel Pantanal","Rachel Pantanal","Ruscella Mies.Haber","Ruscella Mies.Haber","Ruscella Mies.Haber","Ruscella Mies.Haber","Ruscella Mies.Haber","Loreto Bodrogi","Loreto Bodrogi","Loreto Bodrogi","Loreto Bodrogi","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Isia Vann","Isia Vann","Isia Vann","Isia Vann","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Ada Campo-Corrente","Ada Campo-Corrente","Ada Campo-Corrente","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Willem Vasco-Pais","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Mat Bramar","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Claudio Hawelon","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Anda Ribera","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Inga Ferro","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco","Ingrid Barranco"],["Sten Sanjorge Jr ","Ada Campo-Corrente","Orhan Strum","Ada Campo-Corrente","Sten Sanjorge Jr ","Ada Campo-Corrente","Orhan Strum","Sten Sanjorge Jr ","Orhan Strum","Ada Campo-Corrente","Orhan Strum","Sten Sanjorge Jr ","Orhan Strum","Ada Campo-Corrente","Orhan Strum","Sten Sanjorge Jr ","Sten Sanjorge Jr ","Willem Vasco-Pais","Ada Campo-Corrente","Orhan Strum","Sten Sanjorge Jr ","Willem Vasco-Pais","Orhan Strum","Sten Sanjorge Jr ","Ada Campo-Corrente","Orhan Strum","Willem Vasco-Pais","Ada Campo-Corrente","Orhan Strum","Sten Sanjorge Jr ","Willem Vasco-Pais","Orhan Strum","Sten Sanjorge Jr ","Ada Campo-Corrente","Orhan Strum","Sten Sanjorge Jr ","Willem Vasco-Pais","Ada Campo-Corrente","Ruscella Mies Haber","Ruscella Mies Haber","Inga Ferro","Loreto Bodrogi","Isia Vann","Hennie Osvaldo","Minke Mies","Inga Ferro","Isia Vann","Hennie Osvaldo","Minke Mies","Loreto Bodrogi","Isia Vann","Hennie Osvaldo","Minke Mies","Inga Ferro","Loreto Bodrogi","Hennie Osvaldo","Minke Mies","Loreto Bodrogi","Isia Vann","Hennie Osvaldo","Minke Mies","Ada Campo-Corrente","Orhan Strum","Ingrid Barranco","Orhan Strum","Willem Vasco-Pais","Ingrid Barranco","Ada Campo-Corrente","Orhan Strum","Ingrid Barranco","Ada Campo-Corrente","Orhan Strum","Ingrid Barranco","Ada Campo-Corrente","Orhan Strum","Willem Vasco-Pais","Rachel Pantanal","Lars Azada","Felix Balas","Isande Borrasca","Axel Calzas","Gustav Cazar","Lidelse Dedos","Birgitta Frente","Vira Frente","Adra Nubarron","Marin Onda","Kare Orilla","Elsa Orilla","Brand Tempestad","Ingrid Barranco","Ada Campo-Corrente","Sten Sanjorge Jr ","Orhan Strum","Willem Vasco-Pais","Bertrand Ovan","Albina Hafon","Benito Hawelon","Claudio Hawelon","Henk Mies","Valeria Morlun","Adan Morlun","Cecilia Morluniau","Irene Nant","Dylan Scozzese","Lucas Alcazar","Isak Baza","Linnea Bergen","Nils Calixto","Sven Flecha","Hideki Cocinaro","Inga Ferro","Loreto Bodrogi","Isia Vann","Stenig Fusil","Hennie Osvaldo","Kanon Herrero","Varja Lagos","Minke Mies","Felix Resumir","Edvard Vann","Emile Arpa","Varro Awelon","Dante Coginian","Carla Forluniau","Linda Lagos","Cornelia Lais","Ruscella Mies Haber","Anda Ribera","Rachel Pantanal","Lars Azada","Felix Balas","Isande Borrasca","Axel Calzas","Gustav Cazar","Lidelse Dedos","Birgitta Frente","Vira Frente","Adra Nubarron","Marin Onda","Kare Orilla","Elsa Orilla","Brand Tempestad","Ingrid Barranco","Ada Campo-Corrente","Sten Sanjorge Jr ","Orhan Strum","Willem Vasco-Pais","Bertrand Ovan","Albina Hafon","Benito Hawelon","Henk Mies","Valeria Morlun","Adan Morlun","Cecilia Morluniau","Irene Nant","Dylan Scozzese","Lucas Alcazar","Isak Baza","Linnea Bergen","Nils Calixto","Sven Flecha","Hideki Cocinaro","Inga Ferro","Loreto Bodrogi","Isia Vann","Stenig Fusil","Hennie Osvaldo","Kanon Herrero","Varja Lagos","Minke Mies","Felix Resumir","Edvard Vann","Emile Arpa","Varro Awelon","Mat Bramar","Dante Coginian","Carla Forluniau","Linda Lagos","Cornelia Lais","Ruscella Mies Haber","Anda Ribera","Rachel Pantanal","Lars Azada","Felix Balas","Isande Borrasca","Axel Calzas","Gustav Cazar","Lidelse Dedos","Birgitta Frente","Vira Frente","Adra Nubarron","Marin Onda","Kare Orilla","Elsa Orilla","Brand Tempestad","Ingrid Barranco","Ada Campo-Corrente","Sten Sanjorge Jr ","Orhan Strum","Willem Vasco-Pais","Bertrand Ovan","Albina Hafon","Benito Hawelon","Claudio Hawelon","Henk Mies","Valeria Morlun","Adan Morlun","Cecilia Morluniau","Irene Nant","Dylan Scozzese","Lucas Alcazar","Isak Baza","Linnea Bergen","Nils Calixto","Sven Flecha","Hideki Cocinaro","Inga Ferro","Loreto Bodrogi","Isia Vann","Stenig Fusil","Hennie Osvaldo","Kanon Herrero","Varja Lagos","Minke Mies","Felix Resumir","Edvard Vann","Emile Arpa","Varro Awelon","Mat Bramar","Dante Coginian","Carla Forluniau","Linda Lagos","Cornelia Lais","Ruscella Mies Haber","Rachel Pantanal","Lars Azada","Felix Balas","Isande Borrasca","Axel Calzas","Gustav Cazar","Lidelse Dedos","Birgitta Frente","Vira Frente","Adra Nubarron","Marin Onda","Kare Orilla","Elsa Orilla","Brand Tempestad","Ingrid Barranco","Ada Campo-Corrente","Sten Sanjorge Jr ","Orhan Strum","Willem Vasco-Pais","Bertrand Ovan","Albina Hafon","Benito Hawelon","Claudio Hawelon","Henk Mies","Valeria Morlun","Adan Morlun","Cecilia Morluniau","Irene Nant","Dylan Scozzese","Lucas Alcazar","Isak Baza","Linnea Bergen","Nils Calixto","Sven Flecha","Hideki Cocinaro","Loreto Bodrogi","Isia Vann","Stenig Fusil","Hennie Osvaldo","Kanon Herrero","Varja Lagos","Minke Mies","Felix Resumir","Edvard Vann","Emile Arpa","Varro Awelon","Mat Bramar","Dante Coginian","Carla Forluniau","Linda Lagos","Cornelia Lais","Ruscella Mies Haber","Anda Ribera","Rachel Pantanal","Lars Azada","Felix Balas","Isande Borrasca","Axel Calzas","Gustav Cazar","Lidelse Dedos","Birgitta Frente","Vira Frente","Adra Nubarron","Marin Onda","Kare Orilla","Elsa Orilla","Brand Tempestad","Ada Campo-Corrente","Sten Sanjorge Jr ","Orhan Strum","Willem Vasco-Pais","Bertrand Ovan","Albina Hafon","Benito Hawelon","Claudio Hawelon","Henk Mies","Valeria Morlun","Adan Morlun","Cecilia Morluniau","Irene Nant","Dylan Scozzese","Lucas Alcazar","Isak Baza","Linnea Bergen","Nils Calixto","Sven Flecha","Hideki Cocinaro","Inga Ferro","Loreto Bodrogi","Isia Vann","Stenig Fusil","Hennie Osvaldo","Kanon Herrero","Varja Lagos","Minke Mies","Felix Resumir","Edvard Vann","Emile Arpa","Varro Awelon","Mat Bramar","Dante Coginian","Carla Forluniau","Linda Lagos","Cornelia Lais","Ruscella Mies Haber","Anda Ribera"],["impact of kronos politics on upcoming rollout","impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","re: impact of kronos politics on upcoming rollout","impact of local politics on profit margin","impact of local politics on profit margin","impact of local politics on profit margin","impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","fw: arise - inspiration for defenders of kronos","fw: arise - inspiration for defenders of kronos","fw: arise - inspiration for defenders of kronos","fw: arise - inspiration for defenders of kronos","fw: arise - inspiration for defenders of kronos","fw: arise - inspiration for defenders of kronos","fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","re: fw: arise - inspiration for defenders of kronos","impact of local politics on profit margin","impact of local politics on profit margin","impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","re: impact of local politics on profit margin","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries","re: reminder: refer all media inquiries"],["2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-08","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-09","2014-01-12","2014-01-12","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-13","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-14","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15","2014-01-15"],["08:23","08:23","09:19","09:19","09:42","09:42","09:54","09:54","10:25","10:25","11:02","11:02","11:45","11:45","11:53","11:53","09:51","09:51","09:51","09:51","11:25","11:25","11:25","11:41","11:41","11:41","11:42","11:42","11:42","13:11","13:11","13:11","13:31","13:31","13:31","13:49","13:49","13:49","13:22","13:22","16:48","16:48","16:48","16:48","16:48","19:28","19:28","19:28","19:28","19:31","19:31","19:31","19:31","20:05","20:05","20:05","20:05","21:33","21:33","21:33","21:33","13:39","13:39","13:39","15:20","15:20","15:20","15:24","15:24","15:24","16:13","16:13","16:13","17:01","17:01","17:01","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","12:43","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","16:17","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:08","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","17:21","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04","18:04"],[25,25,22,22,25,25,24,24,22,22,24,24,22,22,24,24,23,23,23,23,24,24,24,21,21,21,22,22,22,24,24,24,21,21,21,25,25,25,3,3,5,5,5,5,5,52,52,52,52,54,54,54,54,49,49,49,49,54,54,54,54,21,21,21,24,24,24,21,21,21,21,21,21,23,23,23,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23],[22,24,25,24,22,24,25,22,25,24,25,22,25,24,25,22,22,21,24,25,22,21,25,22,24,25,21,24,25,22,21,25,22,24,25,22,21,24,5,5,54,52,49,48,47,54,49,48,47,52,49,48,47,54,52,48,47,52,49,48,47,24,25,23,25,21,23,24,25,23,24,25,23,24,25,21,3,14,15,9,10,19,16,17,20,18,8,11,12,13,23,24,22,25,21,26,30,31,32,33,34,35,36,37,38,40,41,39,42,43,53,54,52,49,46,48,44,45,47,51,50,27,28,29,6,4,7,5,2,3,14,15,9,10,19,16,17,20,18,8,11,12,13,23,24,22,25,21,26,30,31,33,34,35,36,37,38,40,41,39,42,43,53,54,52,49,46,48,44,45,47,51,50,27,28,1,29,6,4,7,5,2,3,14,15,9,10,19,16,17,20,18,8,11,12,13,23,24,22,25,21,26,30,31,32,33,34,35,36,37,38,40,41,39,42,43,53,54,52,49,46,48,44,45,47,51,50,27,28,1,29,6,4,7,5,3,14,15,9,10,19,16,17,20,18,8,11,12,13,23,24,22,25,21,26,30,31,32,33,34,35,36,37,38,40,41,39,42,43,53,52,49,46,48,44,45,47,51,50,27,28,1,29,6,4,7,5,2,3,14,15,9,10,19,16,17,20,18,8,11,12,13,24,22,25,21,26,30,31,32,33,34,35,36,37,38,40,41,39,42,43,53,54,52,49,46,48,44,45,47,51,50,27,28,1,29,6,4,7,5,2],["Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related","Non-work related"],[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Source.Label<\/th>\n      <th>Target.Label<\/th>\n      <th>Subject<\/th>\n      <th>SentDate<\/th>\n      <th>SentTime<\/th>\n      <th>Source<\/th>\n      <th>Target<\/th>\n      <th>MainSubject<\/th>\n      <th>filter.condition<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<p>Next, let’s create an aggregated edges called unofficial that consists of a new variable called “Weight” which holds the count on how many times source sends email to target just like how we did for the above graphs.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>unofficial</span><span class='op'>=</span><span class='va'>unofficial_discussions</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Source</span>,<span class='va'>Target</span>,<span class='va'>SentDate</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>Weight<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Weight</span> <span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Some additional steps that we need to perform are that if we want to only display the nodes that have edges in the graph, then we need to filter the nodes dataframe to contain only the ‘ids’ that are present in the ‘unofficial’ edge object. Therefore, we obtain the unique ids that are present in the ‘unofficial’ edge object and creat a new ‘sub_node’ consisting of only those ids.</p>
+<p>An important point to node is that the id values on the node must be continuous. Therfore, we need to relabel the id column by creating a new column called ‘new_id’ and then re edit the source and target in the unofficial dataframe.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ids</span><span class='op'>=</span><span class='va'>unofficial</span><span class='op'>$</span><span class='va'>Source</span>
+<span class='va'>ids</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>ids</span>,<span class='va'>unofficial</span><span class='op'>$</span><span class='va'>Target</span><span class='op'>)</span>
+<span class='va'>ids</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>ids</span><span class='op'>)</span>
+
+<span class='co'>#Create sub node consisting of ids present in unofficial</span>
+<span class='va'>sub_nodes</span><span class='op'>=</span><span class='va'>nodes</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>id</span> <span class='op'>%in%</span> <span class='va'>ids</span><span class='op'>)</span>
+
+<span class='co'>#create new column called new_id</span>
+<span class='va'>sub_nodes</span><span class='op'>$</span><span class='va'>new_id</span><span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>sub_nodes</span><span class='op'>)</span>
+
+<span class='co'>#re edit the Source and Target ids</span>
+<span class='va'>unofficial</span><span class='op'>$</span><span class='va'>Source</span><span class='op'>=</span><span class='va'>sub_nodes</span><span class='op'>$</span><span class='va'>new_id</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>unofficial</span><span class='op'>$</span><span class='va'>Source</span>,<span class='va'>sub_nodes</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>unofficial</span><span class='op'>$</span><span class='va'>Target</span><span class='op'>=</span><span class='va'>sub_nodes</span><span class='op'>$</span><span class='va'>new_id</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>unofficial</span><span class='op'>$</span><span class='va'>Target</span>,<span class='va'>sub_nodes</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'>#remove the old id column and rename the new_id column</span>
+<span class='va'>sub_nodes</span><span class='op'>=</span><span class='va'>sub_nodes</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>sub_nodes</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>sub_nodes</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>sub_nodes</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>'new_id'</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'id'</span>
+</code></pre>
+</div>
+</div>
+<p>Now that we have the everything ready, we have to create a wrapper to build the graph model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>graphUnofficial</span> <span class='op'>=</span> <span class='fu'>tbl_graph</span><span class='op'>(</span>nodes<span class='op'>=</span><span class='va'>sub_nodes</span>, edges<span class='op'>=</span><span class='va'>unofficial</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now, we can build multiple graphs with various coloring criteria to identify who has been discussing about such sensitive information.</p>
+<ol type="1">
+<li>First, we will identify the <strong>employee names</strong> who were discussing such informal topics.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>graphUnofficial</span>, 
             layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
                  alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_edge_width</span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_node_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>CurrentEmploymentType</span><span class='op'>)</span>, 
-                  size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>facet_edges</span><span class='op'>(</span><span class='op'>~</span><span class='va'>SentDate</span><span class='op'>)</span>
+    <span class='fu'>scale_edge_width</span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_node_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>FullName</span>, 
+                      size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>theme_graph</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="building_viz_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
+<p><img src="building_viz_files/figure-html5/unnamed-chunk-42-1.png" width="624" /></p>
 </div>
-<p>using facet nodes</p>
+<ol start="2" type="1">
+<li>Next, we will identify the <strong>employment type</strong> of the above mentioned people.</li>
+</ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graph2</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>graphUnofficial</span>, 
+            layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
+                 alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_edge_width</span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_node_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>CurrentEmploymentType</span>, 
+                      size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>theme_graph</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="building_viz_files/figure-html5/unnamed-chunk-43-1.png" width="624" /></p>
+</div>
+<ol start="3" type="1">
+<li>Lastly, we can identify the <strong>citizenship</strong> of those employees.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>graphUnofficial</span>, 
+            layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
+                 alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_edge_width</span><span class='op'>(</span>range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_node_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='va'>CitizenshipCountry</span>, 
+                      size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>theme_graph</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="building_viz_files/figure-html5/unnamed-chunk-44-1.png" width="624" /></p>
+</div>
+<p><strong>Role of Citizenship in Employment Type:</strong></p>
+<p>Using facet nodes to separate the network based on the the citizenship of the employees.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggraph</span><span class='op'>(</span><span class='va'>network_graph</span>, 
             layout <span class='op'>=</span> <span class='st'>"nicely"</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
                  alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
@@ -2844,12 +2976,14 @@ $ Weight  &lt;int&gt; 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9~</cod
   <span class='fu'>theme</span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>'bottom'</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="building_viz_files/figure-html5/unnamed-chunk-39-1.png" width="624" /></p>
+<p><img src="building_viz_files/figure-html5/unnamed-chunk-45-1.png" width="624" /></p>
 </div>
-<p>centrality is used to find the relative role played by different nodes. betweenness provides information on how important the node is. The bigger the node soze, higher th ebetweenness centrality.</p>
+<p><strong>Most Important Employees:</strong></p>
+<p>Centrality is used to find the relative role played by different nodes. betweenness provides information on how important the node is. The bigger the node size, higher the betweenness centrality.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='va'>network_graph2</span> <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='va'>network_graph</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ggraph</span><span class='op'>(</span>layout <span class='op'>=</span> <span class='st'>"fr"</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'>geom_edge_link</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>width<span class='op'>=</span><span class='va'>Weight</span><span class='op'>)</span>, 
                  alpha<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
@@ -2859,9 +2993,9 @@ $ Weight  &lt;int&gt; 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9, 7, 3, 11, 7, 9~</cod
 <span class='va'>g</span> <span class='op'>+</span> <span class='fu'>theme_graph</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="building_viz_files/figure-html5/unnamed-chunk-40-1.png" width="624" /></p>
+<p><img src="building_viz_files/figure-html5/unnamed-chunk-46-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

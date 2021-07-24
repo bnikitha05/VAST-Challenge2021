@@ -1,7 +1,7 @@
 ---
 title: "Mini Challenge 1"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  Welcome to the website. I hope you have an insightful read! :D
 site: distill::distill_website
 ---
 
@@ -13,3 +13,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+Welcome to the home page of **VAST Challenge MC1**. This website is created as a part of the coursework of Visual Analytics and Applications, taught by Professor [Dr. Kam Tin Seong](https://www.smu.edu.sg/faculty/profile/9618/KAM-Tin-Seong) at Singapore Management University.
+
+
+**AUTHOR:** [Nikitha Banda](https://www.linkedin.com/in/banda-nikitha)  
+
+**AFFILIATION:** School of Computing and Information Systems, Singapore Management University
+
+**PUBLISHED:** July 24, 2021

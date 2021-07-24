@@ -86,26 +86,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Mini Challenge 1: Data Preparation</title>
+  <title>Mini Challenge 1: 2.0 Data Preparation</title>
   
   
   
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Mini Challenge 1: Data Preparation"/>
+  <meta property="og:title" content="Mini Challenge 1: 2.0 Data Preparation"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Mini Challenge 1"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Mini Challenge 1: Data Preparation"/>
+  <meta property="twitter:title" content="Mini Challenge 1: 2.0 Data Preparation"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Data Preparation"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["2.0 Data Preparation"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2049,7 +2049,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Data Preparation","authors":[]}
+{"title":"2.0 Data Preparation","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2065,7 +2065,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="storyboard.html">Storyboard for R-Shiny</a>
 </div>
 <div class="nav-right">
-<a href="index.html">Home</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2075,7 +2074,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Data Preparation</h1>
+<h1>2.0 Data Preparation</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2087,26 +2086,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</a></li>
-<li><a href="#importing-provided-data">2) Importing Provided Data</a></li>
-<li><a href="#processing-news-articles">3) Processing News Articles</a></li>
-<li><a href="#processing-email-and-employee-data">4) Processing Email and Employee Data</a></li>
-<li><a href="#storing-clean-data-into-files">5) Storing clean data into files</a></li>
+<li><a href="#installing-and-loading-necessary-packages">2.1 Installing and Loading Necessary Packages</a></li>
+<li><a href="#importing-provided-data">2.2 Importing Provided Data</a></li>
+<li><a href="#processing-news-articles">2.3 Processing News Articles</a><ul>
+<li><a href="#initial-cleaning-steps">2.3.1 Initial Cleaning Steps</a></li>
+<li><a href="#processing-title">2.3.2 Processing Title</a></li>
+<li><a href="#processing-location">2.3.3 Processing Location</a></li>
+<li><a href="#processing-published">2.3.4 Processing Published</a></li>
+<li><a href="#processing-content">2.3.5 Processing Content</a></li>
+</ul></li>
+<li><a href="#processing-email-and-employee-data">2.4 Processing Email and Employee Data</a><ul>
+<li><a href="#processing-email-data">2.4.1 Processing Email Data</a></li>
+<li><a href="#processing-employee-data">2.4.2 Processing Employee Data</a></li>
+</ul></li>
+<li><a href="#storing-clean-data-into-files">2.5 Storing Clean Data into Files</a></li>
 </ul>
 </nav>
 </div>
-<h2 id="installing-and-loading-necessary-packages">1) Installing and Loading Necessary Packages</h2>
+<h2 id="installing-and-loading-necessary-packages">2.1 Installing and Loading Necessary Packages</h2>
 <p>As part of the data processing, we first start with installing the required packages if they are not already installed and calling the libraries. The below chunk of code will handle all the necessary packages required without one needing to install manually. The required packages will only have to be mentioned in the ‘packages’ list. The purpose of requiring the below packages are:</p>
 <ul>
 <li><p>tidyverse - Majority of the data cleaning function such as ‘read_csv’, ‘startWith’, ‘gsub’ etc all belong in this library.</p></li>
 <li><p>DT - To display the data frame in an interactive manner to the user.</p></li>
 <li><p>mgsub - This is similar to the use of ‘gsub’ but can specify more than 1 string pattern.</p></li>
-<li><p>readxl - To read “.xlxs” or “.xls” files.</p></li>
-<li><p>splitstackshape - The function ‘concat.split.multiple’ that is present in this package is used to split a string into multiple rows.</p></li>
+<li><p>readxl, xlsx - To read “.xlxs” or “.xls” files and write into them</p></li>
+<li><p>splitstackshape - The function ‘cSplit’ that is present in this package is used to split a string into multiple rows.</p></li>
+<li><p>knitr - Used to display static dataframes in a proper way</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'tidyverse'</span>,<span class='st'>'DT'</span>,<span class='st'>'mgsub'</span>,<span class='st'>'readxl'</span>,<span class='st'>'splitstackshape'</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'tidyverse'</span>,<span class='st'>'DT'</span>,<span class='st'>'mgsub'</span>,<span class='st'>'readxl'</span>,<span class='st'>'xlsx'</span>,<span class='st'>'splitstackshape'</span>,<span class='st'>'knitr'</span><span class='op'>)</span>
 <span class='kw'>for</span><span class='op'>(</span><span class='va'>p</span> <span class='kw'>in</span> <span class='va'>packages</span><span class='op'>)</span><span class='op'>{</span>
   <span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
@@ -2116,7 +2125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h2 id="importing-provided-data">2) Importing Provided Data</h2>
+<h2 id="importing-provided-data">2.2 Importing Provided Data</h2>
 <p>The data provided are a set of current and historical news reports, as well as resumes of numerous GAStech employees and email headers from two weeks of internal GAStech company email. The data in resumes folder has already been processed and is in the ‘EmployeeRecords.xlsx’ file. Therefore, we will be using that file directly.</p>
 <table>
 <colgroup>
@@ -2148,6 +2157,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tr>
 </tbody>
 </table>
+<p><strong>Screen Shot od data folder is as below</strong></p>
+<center>
+<img src="img/articlesData.JPG" style="width:90.0%" />
+</center>
 <p><strong>Importing News Articles </strong></p>
 <p>Since there are multiple files in various folders, we specify the root directory which is the “News Articles” and write a function to read all files from folder into a data frame instead of using a for loop which is slower. After reading all files, we will save all the data into a variable called ‘raw_text’.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2182,28 +2195,51 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h2 id="processing-news-articles">3) Processing News Articles</h2>
+<h2 id="processing-news-articles">2.3 Processing News Articles</h2>
 <p>Below is how the raw_text datatable looks like. It is visible that the data is very dirty and there is a lot of processing that has to be done.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>10</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>kable</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 10 x 3
-   newsgroup      id      text                                 
-   &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;                                
- 1 All News Today 121.txt &quot;SOURCE: All News Today&quot;             
- 2 All News Today 121.txt &quot;&quot;                                   
- 3 All News Today 121.txt &quot;TITLE: POK PROTESTS END IN ARRESTS &quot;
- 4 All News Today 121.txt &quot;&quot;                                   
- 5 All News Today 121.txt &quot; &quot;                                  
- 6 All News Today 121.txt &quot;&quot;                                   
- 7 All News Today 121.txt &quot;PUBLISHED: 2005/04/06&quot;              
- 8 All News Today 121.txt &quot; &quot;                                  
- 9 All News Today 121.txt &quot;&quot;                                   
-10 All News Today 121.txt &quot;LOCATION: ELODIS, Kronos &quot;          </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">newsgroup</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121.txt</td>
+<td style="text-align: left;">SOURCE: All News Today</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121.txt</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121.txt</td>
+<td style="text-align: left;">TITLE: POK PROTESTS END IN ARRESTS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121.txt</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121.txt</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><strong>Initial Cleaning Steps</strong></p>
+<h3 id="initial-cleaning-steps">2.3.1 Initial Cleaning Steps</h3>
 <p>Lets start by deleting the text that are empty strings and also it is noticeable that text starting with “SOURCE” is of no additional use to us as the content is already available in column ‘newsgroup’. Also, lets maintain the ‘id’ column as a number and remove the ‘.txt’ extension..</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2217,20 +2253,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='co'>#remove the SOURCE as it s already there as newsgroup</span>
 <span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>"SOURCE:"</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>,fixed<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 6 x 3
-  newsgroup     id    text                                            
-  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;                                           
-1 All News Tod~ 121   &quot;TITLE: POK PROTESTS END IN ARRESTS &quot;           
-2 All News Tod~ 121   &quot;PUBLISHED: 2005/04/06&quot;                         
-3 All News Tod~ 121   &quot;LOCATION: ELODIS, Kronos &quot;                     
-4 All News Tod~ 121   &quot;Fifteen members of the Protectors of Kronos (P~
-5 All News Tod~ 121   &quot;When the federal police began arresting the PO~
-6 All News Tod~ 135   &quot;TITLE: RALLY SCHEDULED IN SUPPORT OF INCREASED~</code></pre>
+<pre><code># A tibble: 10 x 3
+   newsgroup     id    text                                           
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;                                          
+ 1 All News Tod~ 121   &quot;TITLE: POK PROTESTS END IN ARRESTS &quot;          
+ 2 All News Tod~ 121   &quot;PUBLISHED: 2005/04/06&quot;                        
+ 3 All News Tod~ 121   &quot;LOCATION: ELODIS, Kronos &quot;                    
+ 4 All News Tod~ 121   &quot;Fifteen members of the Protectors of Kronos (~
+ 5 All News Tod~ 121   &quot;When the federal police began arresting the P~
+ 6 All News Tod~ 135   &quot;TITLE: RALLY SCHEDULED IN SUPPORT OF INCREASE~
+ 7 All News Tod~ 135   &quot;PUBLISHED: 2012/04/09&quot;                        
+ 8 All News Tod~ 135   &quot;LOCATION: ABILA, Kronos &quot;                     
+ 9 All News Tod~ 135   &quot;Silvia Marek, leader of the Protectors of Kro~
+10 All News Tod~ 135   &quot;\&quot;I&#39;m calling for an end to the heinous corru~</code></pre>
 </div>
-<p><strong>Processing Title</strong></p>
+<h3 id="processing-title">2.3.2 Processing Title</h3>
 <p>Instead of keeping all text in one column, it is better to have distinct columns for different contents. For example, there is a sub field starting with “TITLE” in the text column and it can be put into a new separate column. For this, we make use of two functions called ‘startsWith’ which checks if a string starts with the mentioned string and ‘gsub’ which replaces a string with another string.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2238,7 +2278,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Do note that for text processing, one has to check the resultant datatable to see if there is any further modification required. In this case, after going through the data table, it was observed that file id 33 has misplaced text and this has to be separately handled as below.</p>
+<p>Do note that for text processing, one has to check the resultant datatable to see if there is any further modification required. In this case, after going through the data table, it was observed that file id 33 has misplaced text and this has to be separately handled as below. From the image below, we can see that the content in “Title”, “Published” and Author" are misplaced</p>
+<center>
+<img src="img/id33.JPG" style="width:90.0%" />
+</center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#after exploring the data, it appears that the content of file 33 is not proper.</span>
@@ -2247,10 +2290,47 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
                       <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"PUBLISHED"</span><span class='op'>)</span>,
                              <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"PUBLISHED: "</span>,<span class='st'>""</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span><span class='op'>)</span>,<span class='st'>""</span><span class='op'>)</span>,
                       <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
+<span class='fu'>kable</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 4%" />
+<col style="width: 42%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">newsgroup</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">text</th>
+<th style="text-align: left;">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">TITLE: POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">PUBLISHED: 2005/04/06</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">LOCATION: ELODIS, Kronos</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Not all rows have the field Title, the below code will populate all records with Title. The function ‘unique’ is used to identify the unique values present in the datatable. The ‘which’ function returns the row numbers that meet the criteria. Function ‘match’ is used to obtain value from another dataframe based on the match condition. Lastly, we trim any spaces present at the start or end of the string. This is done using the function ‘str_trim’.</p>
+<p>Since only those records that have “TITLE” in their text column have the column Title populated, the below code will populate all records with Title using the id as a matching criteria. The function ‘unique’ is used to identify the unique values present in the datatable. The ‘which’ function returns the row numbers that meet the criteria. Function ‘match’ is used to obtain value from another dataframe based on the match condition. Lastly, we trim any spaces present at the start or end of the string. This is done using the function ‘str_trim’.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>title_sub_dataframe</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"Title"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
@@ -2260,25 +2340,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class='co'>### trim space at start and end if there exists</span>
 <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>=</span><span class='fu'>str_trim</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Title</span>, side <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>raw_text</span>
+<span class='fu'>kable</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 5,388 x 4
-   newsgroup   id    text                      Title                  
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;                  
- 1 All News T~ 121   &quot;TITLE: POK PROTESTS END~ POK PROTESTS END IN AR~
- 2 All News T~ 121   &quot;PUBLISHED: 2005/04/06&quot;   POK PROTESTS END IN AR~
- 3 All News T~ 121   &quot;LOCATION: ELODIS, Krono~ POK PROTESTS END IN AR~
- 4 All News T~ 121   &quot;Fifteen members of the ~ POK PROTESTS END IN AR~
- 5 All News T~ 121   &quot;When the federal police~ POK PROTESTS END IN AR~
- 6 All News T~ 135   &quot;TITLE: RALLY SCHEDULED ~ RALLY SCHEDULED IN SUP~
- 7 All News T~ 135   &quot;PUBLISHED: 2012/04/09&quot;   RALLY SCHEDULED IN SUP~
- 8 All News T~ 135   &quot;LOCATION: ABILA, Kronos~ RALLY SCHEDULED IN SUP~
- 9 All News T~ 135   &quot;Silvia Marek, leader of~ RALLY SCHEDULED IN SUP~
-10 All News T~ 135   &quot;\&quot;I&#39;m calling for an en~ RALLY SCHEDULED IN SUP~
-# ... with 5,378 more rows</code></pre>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 4%" />
+<col style="width: 42%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">newsgroup</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">text</th>
+<th style="text-align: left;">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">TITLE: POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">PUBLISHED: 2005/04/06</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">LOCATION: ELODIS, Kronos</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Looked through the dataframe again and noticed that there are a few titles which do the fit the context. The below mentioned two titles are dates and do not fit the ‘Title’ column. Therefore, ‘ifelse’ statement is used to replace the mentioned titles to NA or else keep the title as it is.</p>
+<p>After looking through the dataframe again, noticed that there are a few titles which do the fit the context. One example of such titles is shown in the figure below. The mentioned two titles in the code chunck below are dates and do not fit the ‘Title’ column. Therefore, ‘ifelse’ statement can used to replace the mentioned titles to NA or else keep the title as it is. Such instance are why we have to check the data table after each step of processing the data.</p>
+<center>
+<img src="img/id200.JPG" style="width:90.0%" />
+</center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>##looking at the data now, there appears to be some dates and they can be removed</span>
@@ -2286,8 +2391,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p><strong>Processing Location</strong></p>
-<p>Having processed ‘Title’, lets move on to ‘Location’. Using the similar logic as used in Title’, run the below chunk of code to create a new column called ‘Location’. Here, ‘mgsub’ function was used and not ‘gsub’ because here we have to check for more than 1 string pattern and it cannot be done with ‘gsub’ hence, ‘mgsub’ function was used for the same purpose.</p>
+<h3 id="processing-location">2.3.3 Processing Location</h3>
+<p>Having processed ‘Title’, lets move on to ‘Location’. Applying the similar logic used in Title’, run the below chunk of code to create a new column called ‘Location’. Here, ‘mgsub’ function was used and not ‘gsub’ because here we have to check for more than 1 string pattern and it cannot be done with ‘gsub’ hence, ‘mgsub’ function was used for the same purpose.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"LOCATION"</span><span class='op'>)</span>,
@@ -2299,18 +2404,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='va'>location_sub_dataframe</span><span class='op'>=</span><span class='va'>location_sub_dataframe</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
 
 <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>=</span><span class='va'>location_sub_dataframe</span><span class='op'>$</span><span class='va'>Location</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>id</span>,<span class='va'>location_sub_dataframe</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 6 x 5
-  newsgroup   id    text                Title               Location  
-  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;     
-1 All News T~ 121   &quot;TITLE: POK PROTES~ POK PROTESTS END I~ &quot;ELODIS, ~
-2 All News T~ 121   &quot;PUBLISHED: 2005/0~ POK PROTESTS END I~ &quot;ELODIS, ~
-3 All News T~ 121   &quot;LOCATION: ELODIS,~ POK PROTESTS END I~ &quot;ELODIS, ~
-4 All News T~ 121   &quot;Fifteen members o~ POK PROTESTS END I~ &quot;ELODIS, ~
-5 All News T~ 121   &quot;When the federal ~ POK PROTESTS END I~ &quot;ELODIS, ~
-6 All News T~ 135   &quot;TITLE: RALLY SCHE~ RALLY SCHEDULED IN~ &quot;ABILA, K~</code></pre>
+<pre><code># A tibble: 10 x 5
+   newsgroup   id    text                Title              Location  
+   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;              &lt;chr&gt;     
+ 1 All News T~ 121   &quot;TITLE: POK PROTES~ POK PROTESTS END ~ &quot;ELODIS, ~
+ 2 All News T~ 121   &quot;PUBLISHED: 2005/0~ POK PROTESTS END ~ &quot;ELODIS, ~
+ 3 All News T~ 121   &quot;LOCATION: ELODIS,~ POK PROTESTS END ~ &quot;ELODIS, ~
+ 4 All News T~ 121   &quot;Fifteen members o~ POK PROTESTS END ~ &quot;ELODIS, ~
+ 5 All News T~ 121   &quot;When the federal ~ POK PROTESTS END ~ &quot;ELODIS, ~
+ 6 All News T~ 135   &quot;TITLE: RALLY SCHE~ RALLY SCHEDULED I~ &quot;ABILA, K~
+ 7 All News T~ 135   &quot;PUBLISHED: 2012/0~ RALLY SCHEDULED I~ &quot;ABILA, K~
+ 8 All News T~ 135   &quot;LOCATION: ABILA, ~ RALLY SCHEDULED I~ &quot;ABILA, K~
+ 9 All News T~ 135   &quot;Silvia Marek, lea~ RALLY SCHEDULED I~ &quot;ABILA, K~
+10 All News T~ 135   &quot;\&quot;I&#39;m calling for~ RALLY SCHEDULED I~ &quot;ABILA, K~</code></pre>
 </div>
 <p>The unique locations existing in the datatable are:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2340,7 +2449,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 [20] &quot;TITLE: The movement of the block&quot;                                       
 [21] &quot;This Article is the second of  three&quot;                                   </code></pre>
 </div>
-<p>Based at the locations available, there is further processing that has to be done. After further exploring, it is noticeable that a few files have “LOCATION: TITLE:…”. This does not make any sense and therefore, any text starting with “TITLE” under the column location can be replace with NA. Also, the syntax for a valid location is “City, Country” as seen from the unique values above, therefore, replacing all strings with no ‘,’ with NA will remove all other text present. Lastly, maintain the naming convention by keeping the city in capitals and country in a title format meaning only the first letter will be capital and others in lower case.</p>
+<p>Based at the locations available, there is further processing that has to be done. After further exploring, it is noticeable that a few files have “LOCATION: TITLE:…” like the one show inth the image below. This does not make any sense as a Location and therefore, any text starting with “TITLE” under the column location can be replace with NA. Also, the syntax for a valid location is “City, Country” as seen from the unique values above, therefore, replacing all strings with no ‘,’ with NA will remove all other text present. Lastly, maintain the naming convention by keeping the city in capitals and country in a title format meaning only the first letter will be capital and others in lower case.</p>
+<center>
+<img src="img/id791.JPG" style="width:90.0%" />
+</center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## need to further clean location</span>
@@ -2369,7 +2481,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 [4] &quot;CENTRUM, Tethys&quot;    &quot;DAVOS, Switzerland&quot;</code></pre>
 </div>
 <p>The location values now look clean and tidy.</p>
-<p><strong>Processing Published</strong></p>
+<h3 id="processing-published">2.3.4 Processing Published</h3>
+<p>Next, lets process the “Published” column. Applying the similar logic used in Title’ and ‘Location’, run the below chunk of code to create a new column called ‘Published’. Just like in ‘Title’, article number 33 has misplaced content therefore, it need to be handled separately.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/startsWith.html'>startsWith</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>, <span class='st'>"PUBLISHED"</span><span class='op'>)</span> <span class='op'>|</span> 
@@ -2392,22 +2505,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class='co'>### trim space at start and end if there exists</span>
 <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'>str_trim</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>, side <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'>kable</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 10 x 6
-   newsgroup  id    text            Title           Location Published
-   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;    
- 1 All News ~ 121   &quot;TITLE: POK PR~ POK PROTESTS E~ ELODIS,~ 2005/04/~
- 2 All News ~ 121   &quot;PUBLISHED: 20~ POK PROTESTS E~ ELODIS,~ 2005/04/~
- 3 All News ~ 121   &quot;LOCATION: ELO~ POK PROTESTS E~ ELODIS,~ 2005/04/~
- 4 All News ~ 121   &quot;Fifteen membe~ POK PROTESTS E~ ELODIS,~ 2005/04/~
- 5 All News ~ 121   &quot;When the fede~ POK PROTESTS E~ ELODIS,~ 2005/04/~
- 6 All News ~ 135   &quot;TITLE: RALLY ~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
- 7 All News ~ 135   &quot;PUBLISHED: 20~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
- 8 All News ~ 135   &quot;LOCATION: ABI~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
- 9 All News ~ 135   &quot;Silvia Marek,~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~
-10 All News ~ 135   &quot;\&quot;I&#39;m calling~ RALLY SCHEDULE~ ABILA, ~ 2012/04/~</code></pre>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 3%" />
+<col style="width: 32%" />
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">newsgroup</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">text</th>
+<th style="text-align: left;">Title</th>
+<th style="text-align: left;">Location</th>
+<th style="text-align: left;">Published</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">TITLE: POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">ELODIS, Kronos</td>
+<td style="text-align: left;">2005/04/06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">PUBLISHED: 2005/04/06</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">ELODIS, Kronos</td>
+<td style="text-align: left;">2005/04/06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">LOCATION: ELODIS, Kronos</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">ELODIS, Kronos</td>
+<td style="text-align: left;">2005/04/06</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>The unique published dates existing in the datatable are:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2561,7 +2707,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Next, convert all dates in “21 January 2014” format to “Y/M/D”. The ‘as.Date’ function can be used to convert the text into date and then formatting it again using ‘format’ function to obtain “Y/M/D” format.</p>
+<p>Next, convert all dates in “21 January 2014” format to “Y/M/D” and for this, we make use of Regular Expression. The ‘as.Date’ function can be used to convert the text into date and then formatting it again using ‘format’ function to obtain “Y/M/D” format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## filtering published dates in "21 January 2014" format and converting them to Y/M/D format</span>
@@ -2577,7 +2723,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Since there are a few texts present in the Published column, after looking into the files of those id’s, it was noticeable that the date was in the next line and therefore, for these texts, the published date should be taken from the next immediate row.</p>
+<p>Since there are a few texts present in the Published column, after looking into the files of those id’s, it was noticeable that the date was in the next line as shown in the figure below and therefore, for these texts, the published date should be taken from the next immediate row.</p>
+<center>
+<img src="img/id154.JPG" style="width:90.0%" />
+</center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## words improper</span>
@@ -2600,12 +2749,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
 <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates2</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates2</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>  [1] &quot;2005/04/06&quot;       &quot;2012/04/09&quot;       &quot;1993/02/02&quot;      
@@ -2699,32 +2843,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Now we will update the Publish column again and remove all other temporary column we create as part of processing.</p>
+<p>Now we will update the Publish column again and remove all other temporary column we create as part of processing. Also, since all the published dates are in the date format, we will chnage the datatype from character to date for the ’Published" column.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates3</span><span class='op'>)</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>subdates3</span>,<span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>)</span>
 <span class='va'>raw_text</span><span class='op'>=</span><span class='va'>raw_text</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"subdates"</span>,<span class='st'>"subdates2"</span>,<span class='st'>"subdates3"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
 
 <span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>Published</span>,format<span class='op'>=</span><span class='st'>"%Y/%m/%d"</span><span class='op'>)</span>
-<span class='va'>raw_text</span>
+<span class='fu'>kable</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw_text</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 5,388 x 6
-   newsgroup  id    text            Title          Location Published 
-   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;    &lt;date&gt;    
- 1 All News ~ 121   &quot;TITLE: POK PR~ POK PROTESTS ~ ELODIS,~ 2005-04-06
- 2 All News ~ 121   &quot;PUBLISHED: 20~ POK PROTESTS ~ ELODIS,~ 2005-04-06
- 3 All News ~ 121   &quot;LOCATION: ELO~ POK PROTESTS ~ ELODIS,~ 2005-04-06
- 4 All News ~ 121   &quot;Fifteen membe~ POK PROTESTS ~ ELODIS,~ 2005-04-06
- 5 All News ~ 121   &quot;When the fede~ POK PROTESTS ~ ELODIS,~ 2005-04-06
- 6 All News ~ 135   &quot;TITLE: RALLY ~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
- 7 All News ~ 135   &quot;PUBLISHED: 20~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
- 8 All News ~ 135   &quot;LOCATION: ABI~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
- 9 All News ~ 135   &quot;Silvia Marek,~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
-10 All News ~ 135   &quot;\&quot;I&#39;m calling~ RALLY SCHEDUL~ ABILA, ~ 2012-04-09
-# ... with 5,378 more rows</code></pre>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 3%" />
+<col style="width: 32%" />
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">newsgroup</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">text</th>
+<th style="text-align: left;">Title</th>
+<th style="text-align: left;">Location</th>
+<th style="text-align: left;">Published</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">TITLE: POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">ELODIS, Kronos</td>
+<td style="text-align: left;">2005-04-06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">PUBLISHED: 2005/04/06</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">ELODIS, Kronos</td>
+<td style="text-align: left;">2005-04-06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All News Today</td>
+<td style="text-align: left;">121</td>
+<td style="text-align: left;">LOCATION: ELODIS, Kronos</td>
+<td style="text-align: left;">POK PROTESTS END IN ARRESTS</td>
+<td style="text-align: left;">ELODIS, Kronos</td>
+<td style="text-align: left;">2005-04-06</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><strong>Processing Content</strong></p>
+<h3 id="processing-content">2.3.5 Processing Content</h3>
 <p>Since we have extracted “TITLE”, “LOCATION” and ’PUBLISHED" from the text column and created separate columns for them ,we can exclude all the records that have the “text” column consisting of these content.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2753,7 +2929,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 10 All News ~ 154   &quot;Two weeks pri~ ELODIS, KRONO~ ELODIS,~ 1998-03-20
 # ... with 3,005 more rows</code></pre>
 </div>
-<p>Going through the text column, it was visible that there are dates present in some records this is due to some files having Published date in the next line which was discussed under “Processing Published” category. These dates are present in “yyyy/mm/dd” format or “date month year” format. The below regular expressions were used to detect those patterns in the text column. It was identified that there were 7 dates however only 5 of them were recognized, therefore, the other 2 were added manually.</p>
+<p>Going through the text column, it was visible that there are dates present in some records and this is due to some files having Published date in the next line which was discussed under “Processing Published” category. These dates are present in “yyyy/mm/dd” format or “date month year” format. The below regular expressions were used to detect those patterns in the text column.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>raw_text1</span><span class='op'>=</span><span class='fu'>str_extract</span><span class='op'>(</span><span class='va'>raw_text</span><span class='op'>$</span><span class='va'>text</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"^[0-9]{1,2}\\D[a-zA-Z]+\\D[0-9]{4}"</span>,<span class='st'>"^[0-9]{4}\\D[0-9]{1,2}\\D[0-9]{1,2}"</span><span class='op'>)</span><span class='op'>)</span>
@@ -2766,7 +2942,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Now, we have to combine all the recodes with the same id. After processing, we now will have 845 records that reflect the 845 files that we have and each record consists of the “newsgroup”, “id”, “Title”, “Location”, “Published” and “Content”.</p>
+<p>Now, we have to combine all the records with the same id. After processing, we now will have 845 records that reflect the 845 files that we have and each record consists of the “newsgroup”, “id”, “Title”, “Location”, “Published” and “Content”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>content</span><span class='op'>=</span><span class='va'>raw_text</span> <span class='op'>%&gt;%</span>
@@ -2794,28 +2970,46 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 10 All News ~ 554   ELIAN KAREL D~ ABILA, ~ 2009-06-20 &quot;Elian Karel, ~
 # ... with 835 more rows</code></pre>
 </div>
-<h2 id="processing-email-and-employee-data">4) Processing Email and Employee Data</h2>
+<h2 id="processing-email-and-employee-data">2.4 Processing Email and Employee Data</h2>
+<h3 id="processing-email-data">2.4.1 Processing Email Data</h3>
 <p>Considering that the data is based on email, we can make use of the networking graph for visualization and for that purpose, we will need the data to be in the “source” and “target” format. The email_data dataframe currently is very raw and needs to be processed to the required format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>email_data</span>,<span class='fl'>10</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>kable</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>email_data</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 10 x 4
-   From            To                         Date    Subject         
-   &lt;chr&gt;           &lt;chr&gt;                      &lt;chr&gt;   &lt;chr&gt;           
- 1 Varja.Lagos@ga~ Varja.Lagos@gastech.com.k~ 1/6/20~ Patrol schedule~
- 2 Brand.Tempesta~ Birgitta.Frente@gastech.c~ 1/6/20~ Wellhead flow r~
- 3 Isak.Baza@gast~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~
- 4 Lucas.Alcazar@~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~
- 5 Linnea.Bergen@~ Rachel.Pantanal@gastech.c~ 1/6/20~ RE: Upcoming bi~
- 6 Loreto.Bodrogi~ Ingrid.Barranco@gastech.c~ 1/6/20~ Plants          
- 7 Linnea.Bergen@~ Rachel.Pantanal@gastech.c~ 1/6/20~ RE: Upcoming bi~
- 8 Lucas.Alcazar@~ Nils.Calixto@gastech.com.~ 1/6/20~ GT-SeismicProce~
- 9 Isak.Baza@gast~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~
-10 Lucas.Alcazar@~ Isak.Baza@gastech.com.kro~ 1/6/20~ RE: GT-SeismicP~</code></pre>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 64%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">From</th>
+<th style="text-align: left;">To</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: left;">Subject</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="mailto:Varja.Lagos@gastech.com.kronos" class="email">Varja.Lagos@gastech.com.kronos</a></td>
+<td style="text-align: left;"><a href="mailto:Varja.Lagos@gastech.com.kronos" class="email">Varja.Lagos@gastech.com.kronos</a>, <a href="mailto:Hennie.Osvaldo@gastech.com.kronos" class="email">Hennie.Osvaldo@gastech.com.kronos</a>, <a href="mailto:Loreto.Bodrogi@gastech.com.kronos" class="email">Loreto.Bodrogi@gastech.com.kronos</a>, <a href="mailto:Inga.Ferro@gastech.com.kronos" class="email">Inga.Ferro@gastech.com.kronos</a></td>
+<td style="text-align: left;">1/6/2014 10:28</td>
+<td style="text-align: left;">Patrol schedule changes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="mailto:Brand.Tempestad@gastech.com.kronos" class="email">Brand.Tempestad@gastech.com.kronos</a></td>
+<td style="text-align: left;"><a href="mailto:Birgitta.Frente@gastech.com.kronos" class="email">Birgitta.Frente@gastech.com.kronos</a>, <a href="mailto:Lars.Azada@gastech.com.kronos" class="email">Lars.Azada@gastech.com.kronos</a>, <a href="mailto:Felix.Balas@gastech.com.kronos" class="email">Felix.Balas@gastech.com.kronos</a></td>
+<td style="text-align: left;">1/6/2014 10:35</td>
+<td style="text-align: left;">Wellhead flow rate data</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>The “To” column has various email id’s that are seperated by a ‘,’. We first need to split all the id’s by ‘,’ and then use the ‘concat.split.multiple’ function to split all the emails in “To” into multiple rows.</p>
+<p>The “To” column has various email id’s that are seperated by a ‘,’. We first need to split all the id’s by ‘,’ and then use the ‘cSplit’ function to split all the emails in “To” into multiple rows.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># break on , in "To"</span>
@@ -2836,15 +3030,8 @@ $ Subject &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># removing same from and to</span>
 <span class='va'>row_numbers</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>From</span> <span class='op'>==</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>To</span><span class='op'>)</span>
 <span class='va'>email_data_clean</span><span class='op'>=</span><span class='va'>email_data_clean</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>row_numbers</span><span class='op'>)</span>,<span class='op'>]</span>
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>Rows: 8,185
-Columns: 4
-$ From    &lt;chr&gt; &quot;Varja.Lagos@gastech.com.kronos&quot;, &quot;Varja.Lagos@gaste~
-$ To      &lt;fct&gt; Hennie.Osvaldo@gastech.com.kronos, Loreto.Bodrogi@ga~
-$ Date    &lt;chr&gt; &quot;1/6/2014 10:28&quot;, &quot;1/6/2014 10:28&quot;, &quot;1/6/2014 10:28&quot;~
-$ Subject &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule changes&quot;~</code></pre>
 </div>
 <p>Since both the date and the time are displayed in the same column, we shall separate these two and change their datatype accordingly.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2867,7 +3054,7 @@ $ Subject &lt;chr&gt; &quot;Patrol schedule changes&quot;, &quot;Patrol schedule
 $ Date_1  &lt;date&gt; 2014-01-06, 2014-01-06, 2014-01-06, 2014-01-06, 201~
 $ Date_2  &lt;chr&gt; &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:35&quot;, &quot;10:35&quot;, &quot;10:35&quot;~</code></pre>
 </div>
-<p>The whole email id is not required. Therefore, we will remove everything after ‘#’ from both the “From” and “To” columns. For this, we use the regular expression "@.*" which specifies that everything from “@” and we use “gsub” function to repace that with and empty string.</p>
+<p>The whole email id is not required. Therefore, we will remove everything after ‘@’ from both the “From” and “To” columns. For this, we use the regular expression "@.*" which specifies that everything from “@” and we use “gsub” function to replace that with and empty string.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># remove everything after @</span>
@@ -2884,7 +3071,8 @@ $ Date_2  &lt;chr&gt; &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:28&quot;, &
 </code></pre>
 </div>
 </div>
-<p>Now formatting the employee data.</p>
+<h3 id="processing-employee-data">2.4.2 Processing Employee Data</h3>
+<p>Lets have a look at hoe the employee data is like.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span>
@@ -2914,8 +3102,8 @@ $ MilitaryDischargeDate      &lt;dttm&gt; NA, NA, NA, NA, 1984-10-01, 2001~</cod
 <p>Remove unnecessary columns.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CitizenshipBasis"</span>,<span class='st'>"PassportCountry"</span>,<span class='st'>"BirthDate"</span>,
-                                                           <span class='st'>"CitizenshipStartDate"</span>,<span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CitizenshipBasis"</span>,<span class='st'>"PassportCountry"</span>,<span class='st'>"BirthDate"</span>,<span class='st'>"CitizenshipStartDate"</span>,
+<span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
 </code></pre>
 </div>
 </div>
@@ -2961,7 +3149,7 @@ $ SentTime     &lt;chr&gt; &quot;10:28&quot;, &quot;10:28&quot;, &quot;10:28&quo
 $ Source       &lt;int&gt; 45, 45, 45, 13, 13, 13, 41, 40, 39, 39, 39, 39,~
 $ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~</code></pre>
 </div>
-<p>Categorizing email baed on work related and non work related. Go through the data to identify the subject text for non work related emails. Using that text, we can categorize the records.</p>
+<p>Categorizing email based on work related and non work related. Go through the data to identify the subject text for non work related emails. Using that text, we can categorize the records.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>tolower</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>)</span>
@@ -2988,18 +3176,36 @@ $ Source       &lt;int&gt; 45, 45, 45, 13, 13, 13, 41, 40, 39, 39, 39, 39,~
 $ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~
 $ MainSubject  &lt;chr&gt; &quot;Work related&quot;, &quot;Work related&quot;, &quot;Work related&quot;,~</code></pre>
 </div>
-<h2 id="storing-clean-data-into-files">5) Storing clean data into files</h2>
+<h2 id="storing-clean-data-into-files">2.5 Storing Clean Data into Files</h2>
+<p>Having cleaned all the data we have, we can now store this cleaned data into files so that it can be used for visualization. When writing into files, we need to set “row.names=FALSE” we avoid writing the row numbers into the first column.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/colearendt/xlsx'>xlsx</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/xlsx/man/write.xlsx.html'>write.xlsx</a></span><span class='op'>(</span><span class='va'>cleaned_text</span>,<span class='st'>"data/cleanArticles.xlsx"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>employee_data</span>,<span class='st'>"data/cleanEmployee.csv"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>email_data_clean</span>,<span class='st'>"data/cleanEmail.csv"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cleaned_text</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 845 x 6
+   newsgroup  id    Title          Location Published  Content        
+   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;          
+ 1 All News ~ 121   POK PROTESTS ~ ELODIS,~ 2005-04-06 &quot;Fifteen membe~
+ 2 All News ~ 135   RALLY SCHEDUL~ ABILA, ~ 2012-04-09 &quot;Silvia Marek,~
+ 3 All News ~ 152   LACK OF DETAI~ ABILA, ~ 1993-02-02 &quot;In a glitzy p~
+ 4 All News ~ 154   ELODIS, KRONO~ ELODIS,~ 1998-03-20 &quot;NOTE: This ar~
+ 5 All News ~ 237   ELODIS, KRONO~ &lt;NA&gt;     1998-05-15 &quot;NOTE: This ar~
+ 6 All News ~ 251   ELODIS PUBLIC~ ELODIS,~ 2004-05-29 &quot;The Elodis Co~
+ 7 All News ~ 341   WHO BRINGS A ~ ABILA, ~ 2013-06-21 &quot;ABILA, Kronos~
+ 8 All News ~ 391   TAX MEASURE D~ ABILA, ~ 2001-03-22 &quot;A measure to ~
+ 9 All News ~ 420   POK REPRESENT~ ABILA, ~ 1998-11-15 &quot;Representativ~
+10 All News ~ 554   ELIAN KAREL D~ ABILA, ~ 2009-06-20 &quot;Elian Karel, ~
+# ... with 835 more rows</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>cleaned_text</span>,<span class='st'>"data/cleanArticles.csv"</span>,row.names<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>employee_data</span>,<span class='st'>"data/cleanEmployee.csv"</span>,row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>email_data_clean</span>,<span class='st'>"data/cleanEmail.csv"</span>,row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p><strong>Note:</strong> The dataframes we obtaied through the processing steps are now clean and these frames can furtehr be modified according to th eneed of visualization.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><strong>Note:</strong> The dataframes we obtained through the processing steps are now clean and these frames can further be modified according to the need of visualization.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

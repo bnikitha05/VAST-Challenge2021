@@ -86,14 +86,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Mini Challenge 1: Background</title>
+  <title>Mini Challenge 1: 1.0 Background</title>
   
   <meta property="description" itemprop="description" content=""/>
   
   
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Mini Challenge 1: Background"/>
+  <meta property="og:title" content="Mini Challenge 1: 1.0 Background"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content=""/>
   <meta property="og:locale" content="en_US"/>
@@ -101,14 +101,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Mini Challenge 1: Background"/>
+  <meta property="twitter:title" content="Mini Challenge 1: 1.0 Background"/>
   <meta property="twitter:description" content=""/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Background"]},{"type":"character","attributes":{},"value":[""]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["1.0 Background"]},{"type":"character","attributes":{},"value":[""]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2052,7 +2052,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Background","description":"","authors":[]}
+{"title":"1.0 Background","description":"","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2068,7 +2068,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="storyboard.html">Storyboard for R-Shiny</a>
 </div>
 <div class="nav-right">
-<a href="index.html">Home</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2078,7 +2077,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Background</h1>
+<h1>1.0 Background</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2091,7 +2090,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#backgroung">1.1 Backgroung</a></li>
-<li><a href="#literature-review-of-2014-vast-challenge">1.2 Literature Review of 2014 VAST Challenge</a></li>
+<li><a href="#literature-review-of-2014-vast-challenge">1.2 Literature Review of 2014 VAST Challenge</a><ul>
+<li><a href="#timeline-visualizations">1.2.1 Timeline Visualizations</a></li>
+<li><a href="#text-visualization">1.2.2 Text Visualization</a></li>
+<li><a href="#how-much-is-too-much">1.2.3 How Much is Too Much</a></li>
+<li><a href="#network-graph">1.2.4 Network Graph</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2108,20 +2112,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ol>
 <h2 id="literature-review-of-2014-vast-challenge">1.2 Literature Review of 2014 VAST Challenge</h2>
 <p>The 2021 IEEE VAST Challenge is a variation on a 2014 year’s challenge with modified data and new questions. So this literature review is based on some of the submissions from that year.</p>
-<p><strong>1) Timeline Visualizations</strong></p>
-<p><img src="img/lit-timeline.JPG" style="width:70.0%" /></p>
+<h3 id="timeline-visualizations">1.2.1 Timeline Visualizations</h3>
+<p><img src="img/lit-timeline.JPG" style="width:80.0%" /></p>
 <p>From the images above, the timeline in <a href="http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/">figure ‘a’</a> consists of too much text and appears to be very cluttered. When any graph is built, one must work on showing what is required and what is not. Putting in the whole text for every event makes it difficult for the user to identify the important aspects and also it is not very readable. The graph also seems a little inconsistent as a few of the vertical lines are dotted and some are not. There should have been a legend to show the differences.</p>
 <p>Coming to timeline shown in <a href="http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Tianjin%20University%20-%20Cai/">figure ‘b’</a>, even thought the plot is not cluttered, the circled numbers of events not being attached to the vertical lines makes it difficult to understand at what time instance the event falls under.</p>
-<p><strong>2) Text Visualization</strong></p>
-<p><img src="img/lit-articles.JPG" style="width:70.0%" /></p>
+<h3 id="text-visualization">1.2.2 Text Visualization</h3>
+<p><img src="img/lit-articles.JPG" style="width:90.0%" /></p>
 <p>In the <a href="http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/">figure</a> above ,users are provided with text across various articles to compare. This makes it very difficult for a user to interpret the main aspects across all the articles. Instead of showcasing the whole text in the articles, the user could have been provided an option to select the articles he wants to compare and the visualization of these articles can be in the form of wordcloud which makes it more easy to look at the most important terms used.</p>
 <p>Also if there are more articles to be included to the dataset, then the number of articles shown to the user would also increase making it all the more cluttered then it already is. Therefore, giving the option to the user to select the articles he wants to view and compare with would be a more ideal solution.</p>
-<p><strong>3) How Much is Too Much</strong></p>
+<h3 id="how-much-is-too-much">1.2.3 How Much is Too Much</h3>
 <p><img src="img/lit-toomuch.JPG" style="width:90.0%" /></p>
 <p><a href="http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Tianjin%20University%20-%20Gao/">Screen shot ‘a’</a> of a visualization dashboard shown above consists of 3 different plots that contain too much of data making it difficult to view the wordings. When showcasing multiple plots in one page, it is better to use a subset of the data to visualize because by doing so, the amount of data to visualize would decrease and this makes the plots more readable. One way in which this approach can be achieved by clustering the data and then provide the use an option to select the cluster he wants to visualize.</p>
 <p>The same applies for the second <a href="http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/">figure ‘b’</a>. Here, the user is given an option to select a user from a dropdow. However, the comparisons performed with the selected user are too many and the plot appears to be very cluttered making it difficult to read the wordings. Similar to what was suggested earlier, considering clustering the data will help reduce the clutter.</p>
-<p><strong>4) Network Graph</strong></p>
-<p><img src="img/lit-graph.JPG" style="width:70.0%" /></p>
+<h3 id="network-graph">1.2.4 Network Graph</h3>
+<p><img src="img/lit-graph.JPG" style="width:90.0%" /></p>
 <p>The network <a href="http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/">graph</a> above, consists of many nodes and due to the overlap of the node names with the edges, some of the text is difficult to read. An alternat approact would e to divide the network graph into sub graphs. When the graph is divided, it makes the graphs less dense and also enhances the redability.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
