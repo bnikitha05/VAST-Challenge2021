@@ -2095,7 +2095,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#timeline-unfolding-of-events-across-years">4.2.5 Timeline: Unfolding of Events across Years</a></li>
 </ul></li>
 <li><a href="#exploring-relationships">4.3 Exploring Relationships</a><ul>
+<li><a href="#overall-distribution-of-emails">4.3.1 Overall Distribution of Emails</a></li>
+<li><a href="#deeper-look-into-sensitive-emails">4.3.2 Deeper Look into Sensitive Emails</a></li>
 <li><a href="#citizenship-biases-in-employment-type">4.3.3 Citizenship Biases in Employment Type</a></li>
+<li><a href="#most-important-employees">4.3.4 Most Important Employees</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2138,16 +2141,37 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </center>
 <hr />
 <h2 id="exploring-relationships">4.3 Exploring Relationships</h2>
+<h3 id="overall-distribution-of-emails">4.3.1 Overall Distribution of Emails</h3>
+<p>Upon dividing all emails to their respective dates, it is visible that there was more activity on the 14th and 15th of January 2014 compared to any other dates. Among all employment type groups, the activity amongst ‘Information Technology’ seems quite suspicious with very unevenly distributed with 14th Jan having the most number or email transmissions compared to any other day. The ‘Executives’ seem to have little communication with other employment groups. To extract further information,the emails were segregated into work and non-work related as shown below.</p>
 <center>
-<img src="img/emailnetwork1.JPG" style="width:90.0%" />
+<img src="img/emails.JPG" style="width:100.0%" />
+</center>
+<p><strong>Work Related Emails</strong></p>
+<ul>
+<li><p>After viewing the work related emails, we can see that there is heavy weight assigned to Information Technology and this eliminates any suspicious activity we assumed earlier.</p></li>
+<li><p>The employees within the Engineering department seem to have more communication between themselves than with other departments.</p></li>
+<li><p>There is one particular Information Technology employee who seems to have communication with the Security and Administration departments but not with the Information Technology department itself which appears to be a bit fishy.</p></li>
+</ul>
+<p><strong>Non-Work Related Emails</strong></p>
+<ul>
+<li><p>The Executive department has more number of non-work related emails than work related and this can be explained by the thickness of the edges between them.</p></li>
+<li><p>One Information Technology employee appears to be the most common receiver and sender of non owrk related emails and this can be extracted by the placement of one blue node at the center.</p></li>
+<li><p>There is heavy transmission of unofficial emails among the Administrative department and such activity has been further explored to identify any possible leads to the incident in the coming visualizations.</p></li>
+</ul>
+<h3 id="deeper-look-into-sensitive-emails">4.3.2 Deeper Look into Sensitive Emails</h3>
+<p>Among all the non-work related emails, after filter the emails with subjects belonging to either <strong>Politics, Kronos or Media</strong>, some strong insights are extracted. It is clear now that the email exchanges between the executives were mostly those with sensitive content and hence, were not shared with the other employees. Also, it is notable that there is a group of all Kronos nationals belonging to the Security department having discussions on such sensitive content and the employees are “Hennie Osvaldo”, “Inga Ferro”, “Isia Vann”, “Loreto Bodrogi” and “Minke Mies”.</p>
+<center>
+<img src="img/sensitive.JPG" style="width:90.0%" />
 </center>
 <h3 id="citizenship-biases-in-employment-type">4.3.3 Citizenship Biases in Employment Type</h3>
 <p>The employees who are Kronos citizens were only offered employment in the administration, facilities and security. All the higher profile jobs such as engineering, information technology and executive were only offered to those who are Tethys citizens.</p>
 <center>
 <img src="img/citizenship.JPG" style="width:90.0%" />
 </center>
+<h3 id="most-important-employees">4.3.4 Most Important Employees</h3>
+<p>Of all emails taht were exchanged in the duration of two weeks, there are 3 employees who are identified to have been the most common entities across all subjects. Among these three, two of them are Tethys citizens whereas the remaining employee if a citizen of Kronos.</p>
 <center>
-<img src="img/citizenship2.JPG" style="width:90.0%" />
+<img src="img/importance.JPG" style="width:70.0%" />
 </center>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

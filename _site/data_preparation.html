@@ -2157,7 +2157,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tr>
 </tbody>
 </table>
-<p><strong>Screen Shot od data folder is as below</strong></p>
+<p><strong>Screen Shot of data folder is as below</strong></p>
 <center>
 <img src="img/articlesData.JPG" style="width:90.0%" />
 </center>
@@ -2280,7 +2280,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>Do note that for text processing, one has to check the resultant datatable to see if there is any further modification required. In this case, after going through the data table, it was observed that file id 33 has misplaced text and this has to be separately handled as below. From the image below, we can see that the content in “Title”, “Published” and Author" are misplaced</p>
 <center>
-<img src="img/id33.JPG" style="width:90.0%" />
+<img src="img/id33.JPG" style="width:60.0%" />
 </center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2382,7 +2382,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>After looking through the dataframe again, noticed that there are a few titles which do the fit the context. One example of such titles is shown in the figure below. The mentioned two titles in the code chunck below are dates and do not fit the ‘Title’ column. Therefore, ‘ifelse’ statement can used to replace the mentioned titles to NA or else keep the title as it is. Such instance are why we have to check the data table after each step of processing the data.</p>
 <center>
-<img src="img/id200.JPG" style="width:90.0%" />
+<img src="img/id200.JPG" style="width:60.0%" />
 </center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2451,7 +2451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>Based at the locations available, there is further processing that has to be done. After further exploring, it is noticeable that a few files have “LOCATION: TITLE:…” like the one show inth the image below. This does not make any sense as a Location and therefore, any text starting with “TITLE” under the column location can be replace with NA. Also, the syntax for a valid location is “City, Country” as seen from the unique values above, therefore, replacing all strings with no ‘,’ with NA will remove all other text present. Lastly, maintain the naming convention by keeping the city in capitals and country in a title format meaning only the first letter will be capital and others in lower case.</p>
 <center>
-<img src="img/id791.JPG" style="width:90.0%" />
+<img src="img/id791.JPG" style="width:60.0%" />
 </center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2725,7 +2725,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>Since there are a few texts present in the Published column, after looking into the files of those id’s, it was noticeable that the date was in the next line as shown in the figure below and therefore, for these texts, the published date should be taken from the next immediate row.</p>
 <center>
-<img src="img/id154.JPG" style="width:90.0%" />
+<img src="img/id154.JPG" style="width:60.0%" />
 </center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3103,7 +3103,7 @@ $ MilitaryDischargeDate      &lt;dttm&gt; NA, NA, NA, NA, 1984-10-01, 2001~</cod
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>employee_data</span><span class='op'>=</span><span class='va'>employee_data</span><span class='op'>[</span>,<span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>employee_data</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CitizenshipBasis"</span>,<span class='st'>"PassportCountry"</span>,<span class='st'>"BirthDate"</span>,<span class='st'>"CitizenshipStartDate"</span>,
-<span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+                                                           <span class='st'>"BirthCountry"</span>,<span class='st'>"PassportIssueDate"</span>,<span class='st'>"PassportExpirationDate"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
 </code></pre>
 </div>
 </div>
@@ -3160,7 +3160,9 @@ $ Target       &lt;int&gt; 48, 52, 54, 17, 14, 15, 40, 41, 3, 14, 15, 9, 1~</cod
     <span class='st'>'defenders'</span>,<span class='st'>'battlestations'</span>,<span class='st'>'article'</span>,<span class='st'>'ha ha'</span>,<span class='st'>'media'</span>,<span class='st'>'retirement'</span><span class='op'>)</span>
 
 <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>MainSubject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='va'>nonWork</span><span class='op'>)</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>TRUE</span>,<span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>,<span class='st'>"Non-work related"</span>,<span class='st'>"Work related"</span><span class='op'>)</span>
+<span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>MainSubject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>$</span><span class='va'>Subject</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='va'>nonWork</span><span class='op'>)</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>TRUE</span>,
+                                                <span class='cn'>TRUE</span>,<span class='cn'>FALSE</span><span class='op'>)</span>,
+                                         <span class='st'>"Non-work related"</span>,<span class='st'>"Work related"</span><span class='op'>)</span>
 <span class='op'>}</span>
 <span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>email_data_clean</span><span class='op'>)</span>
 </code></pre>

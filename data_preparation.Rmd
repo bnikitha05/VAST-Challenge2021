@@ -50,7 +50,7 @@ resumes | Folder consisting of resumes of employees
 EmployeeRecords.xlsx | Details on employees
 email headers.csv | Email headers from two weeks
 
-**Screen Shot od data folder is as below**
+**Screen Shot of data folder is as below**
 
 <center>
 ![](img/articlesData.JPG){width=90%}
@@ -128,7 +128,7 @@ raw_text$Title <-ifelse(startsWith(raw_text$text, "TITLE"),gsub("TITLE: ","",raw
 Do note that for text processing, one has to check the resultant datatable to see if there is any further modification required. In this case, after going through the data table, it was observed that file id 33 has misplaced text and this has to be separately handled as below. From the image below, we can see that the content in "Title", "Published" and Author" are  misplaced
 
 <center>
-![](img/id33.JPG){width=90%}
+![](img/id33.JPG){width=60%}
 </center>
 
 ```{r}
@@ -157,7 +157,7 @@ kable(head(raw_text,3))
 After looking through the dataframe again, noticed that there are a few titles which do the fit the context. One example of such titles is shown in the figure below. The mentioned two titles in the code chunck below are dates and do not fit the 'Title' column. Therefore, 'ifelse' statement can used to replace the mentioned titles to NA or else keep the title as it is. Such instance are why we have to check the data table after each step of processing the data.
 
 <center>
-![](img/id200.JPG){width=90%}
+![](img/id200.JPG){width=60%}
 </center>
 
 ```{r}
@@ -191,7 +191,7 @@ unique(raw_text$Location)
 Based at the locations available, there is further processing that has to be done. After further exploring, it is noticeable that a few files have "LOCATION: TITLE:..." like the one show inth the image below. This does not make any sense as a Location and therefore, any text starting with "TITLE" under the column location can be replace with NA. Also, the syntax for a valid location is "City, Country" as seen from the unique values above, therefore, replacing all strings with no ',' with NA will remove all other text present. Lastly, maintain the naming convention by keeping the city in capitals and country in a title format meaning only the first letter will be capital and others in lower case.
 
 <center>
-![](img/id791.JPG){width=90%}
+![](img/id791.JPG){width=60%}
 </center>
 
 ```{r}
@@ -278,7 +278,7 @@ raw_text$subdates=sub_dates$Published[match(raw_text$id,sub_dates$id)]
 Since there are a few texts present in the Published column, after looking into the files of those id's, it was noticeable that the date was in the next line as shown in the figure below and therefore, for these texts, the published date should be taken from the next immediate row.
 
 <center>
-![](img/id154.JPG){width=90%}
+![](img/id154.JPG){width=60%}
 </center>
 
 ```{r}
@@ -436,8 +436,8 @@ glimpse(employee_data)
 Remove unnecessary columns.
 
 ```{r}
-employee_data=employee_data[,!(names(employee_data) %in% c("CitizenshipBasis","PassportCountry","BirthDate","CitizenshipStartDate",
-"BirthCountry","PassportIssueDate","PassportExpirationDate"))]
+employee_data=employee_data[,!(names(employee_data) %in% c("CitizenshipBasis","PassportCountry","BirthDate",
+"CitizenshipStartDate","BirthCountry","PassportIssueDate","PassportExpirationDate"))]
 
 ```
 
@@ -484,7 +484,9 @@ nonWork=c('birthdays','plants','night','concert','coffee','sick','dress','post',
     'defenders','battlestations','article','ha ha','media','retirement')
 
 for (i in (1:nrow(email_data_clean))){
-email_data_clean$MainSubject[i] <-ifelse(ifelse(any(str_detect(email_data_clean$Subject[i],nonWork))==TRUE,TRUE,FALSE),"Non-work related","Work related")
+email_data_clean$MainSubject[i] <-ifelse(ifelse(any(str_detect(email_data_clean$Subject[i],
+                                          nonWork))==TRUE,TRUE,FALSE),
+                                         "Non-work related","Work related")
 }
 glimpse(email_data_clean)
 
@@ -496,7 +498,6 @@ Having cleaned all the data we have, we can now store this cleaned data into fil
 
 
 ```{r}
-cleaned_text
 write.csv(cleaned_text,"data/cleanArticles.csv",row.names=FALSE)
 write.csv(employee_data,"data/cleanEmployee.csv",row.names = FALSE)
 write.csv(email_data_clean,"data/cleanEmail.csv",row.names = FALSE)

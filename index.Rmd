@@ -1,7 +1,7 @@
 ---
-title: "Mini Challenge 1"
+title: "Visual Investigation"
 description: |
-  Welcome to the website. I hope you have an insightful read! :D
+  Welcome to my website. I hope you have an insightful read! :D
 site: distill::distill_website
 ---
 

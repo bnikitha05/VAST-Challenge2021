@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
 
-## 3.2 Visualizing Text Data
+## 3.1 Visualizing Text Data
 
 ### 3.2.1 Text Net
 
@@ -117,6 +117,8 @@ ggplot(text_communities %>% filter(modularity_class %in% c(1,2,3,4,5,6)),
   geom_text_wordcloud(eccentricity = 1) +
   scale_size_area(max_size = 15) +
   theme_minimal() +  
+  ggtitle("Segmentation of Newsgroups into Clusters")+
+   theme(plot.title = element_text(hjust = 0.5))+
   facet_wrap(~modularity_class)
 
 ```
@@ -226,7 +228,6 @@ tdm
 We will now convert the term document matrix to matrix format and rename the document names to the respective newsgroup. As for the comparison.cloud function, there are multiple parameters that can be set as per requirements. For our purpose, we will set the higher frequency words to be in the center and for it we shall set random.order=FALSE. The maximum number of words that can be displayed is set to 300 and the size and color of the title is set to a suitable value as show below.
 
 ```{r}
-library("wordcloud")
 m=as.matrix(tdm)
 colnames(m)=c(title_data$newsgroup)
 comparison.cloud(m,max.words = 300,random.order=FALSE,colors=brewer.pal(max(3,ncol(m)),"Dark2") ,title.size=1,
@@ -263,8 +264,11 @@ Plotting to understand how the frequency of articles published is.
 
 ```{r}
 news=cleaned_text
-news %>% group_by(Published) %>% count() %>% arrange(desc(n))
-news %>% group_by(Published) %>% count() %>% ggplot() + geom_line(aes(Published,n, group = 1))
+news %>% group_by(Published) %>% count() %>% ggplot() + geom_line(aes(Published,n, group = 1))+
+ ggtitle("Trend of Articles Published")+
+   theme(plot.title = element_text(hjust = 0.5))+
+  ylab("Number of Articles")
+  
 ```
 **Preparing Data:**
 
@@ -405,7 +409,8 @@ timeline_plot
 
 ```{r}
 # Plot the vertical lines for our timeline's milestone events
-timeline_plot<-timeline_plot+geom_segment(data=Merkel, aes(y=Merkel$position,yend=0,xend=Merkel$years), color='black', size=0.2) 
+timeline_plot<-timeline_plot+geom_segment(data=Merkel, 
+                                          aes(y=Merkel$position,yend=0,xend=Merkel$years), color='black', size=0.2) 
 
 
 # Now let's plot the scatter points at the tips of the vertical lines and date
@@ -432,7 +437,8 @@ years <- append(years, 1981, 0)
 years <- append(years, 2015)
 years
 # Let's add the years
-timeline_plot<-timeline_plot+geom_text(data=as.data.frame(years), aes(x=years,y=-0.25,label=years, fontface="bold"),size=2.5, color='black') 
+timeline_plot<-timeline_plot+geom_text(data=as.data.frame(years), 
+                                       aes(x=years,y=-0.25,label=years, fontface="bold"),size=2.5, color='black') 
 
 ```
 
@@ -464,7 +470,193 @@ print(timeline_plot)
 ```
 The above timeline plot is extremely useful and easily understandable if we have data based on dates. This plot helps us understand how events have been unfolding through the years, months or dates.
 
-## 3.3 Visualizing Network Data
+### 3.2.6 Correlation Graph
+
+**Packages Required:**
+
+*   widyr - ‘casts’ a tidy dataset into a wide matrix, performs an operation such as a correlation on it, then re-tidies the result. 'pairwise_cor' function is from this package.
+
+```{r}
+packages = c('widyr')
+for(p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+**Preparing Data:**
+
+First, we need to tidy the text in 'Content' column under the 'cleaned_text' dataframe. For this, we will make use of the 'unnest_tokens' function. Then, we will convert the tidy text into a word-frequenct format.
+
+```{r}
+usenet_words <- cleaned_text %>%
+  unnest_tokens(word, Content) %>%
+  filter(str_detect(word, "[a-z']$"),
+         !word %in% stop_words$word)
+
+words_by_newsgroup <- usenet_words %>%
+  count(newsgroup, word, sort = TRUE) %>%
+  ungroup()
+```
+
+**Plotting Graph:**
+
+To identify which newsgroup tend to be closer to another based on words that commonly appear or tend to be most similar because they use certain terms often, we need to rotate the matrix and for each word as a column and obtain the correlation value using 'pairwise_cor'. By default, pearson method is used to obtain the correlation value.
+
+After obtaining the required data format, we can visualize the relationship between newsgroups in network graph. The thickness of the edge is directly proportional to the correlation value. We use graph_from_data_frame() function to convert the data into a graph model. After we have it in graph data model, we make use of ggraph to plot the graph. We can set the correlation filter value to be any value. In the below code chunk, it was set to greater than 0.9 to identify the most highly correlated newsgroups.
+
+```{r}
+#corelation calculation
+newsgroup_cors <- words_by_newsgroup %>%
+  pairwise_cor(newsgroup, 
+               word, 
+               n, 
+               sort = TRUE)
+
+#plotting graph
+set.seed(12)
+newsgroup_cors %>%
+  filter(correlation > 0.9) %>%
+  graph_from_data_frame() %>%
+  ggraph(layout = "fr") +
+  geom_edge_link(aes(alpha = correlation, 
+                     width = correlation)) +
+  geom_node_point(size = 3, 
+                  color = "lightblue") +
+  geom_node_text(aes(label = name),
+                 color = "red",
+                 repel = TRUE) +
+  theme_void()
+```
+### 3.2.7 Wordcloud
+
+**Packages Required:**
+
+*   RColorBrewer - Used to modify the color pallet of the word cloud
+
+*   wordcloud - Used to develop the word cloud
+
+```{r}
+packages = c('RColorBrewer','wordcloud')
+for(p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+**Plotting the WordClouds:**
+
+After obtaining the correlation between various newsgroups, we can plot wordclouds to identify the type of content the newsgroups have and see the similary in context used.
+
+Below is the wordcloud of 'The World':
+
+```{r}
+set.seed(123)
+sub_words1=words_by_newsgroup %>% filter(newsgroup %in% c('The World'))
+sub_words2=words_by_newsgroup %>% filter(newsgroup %in% c('Who What News'))
+
+
+wordcloud(words = sub_words1$word 
+          , freq = sub_words1$n, min.freq = 1,
+          max.words=300, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+
+```
+Below is the wordcloud of 'Who What News':
+
+```{r}
+wordcloud(words = sub_words2$word 
+          , freq = sub_words2$n, min.freq = 1,
+          max.words=300, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+
+### 3.2.8 Bigram
+
+**Packages Required:**
+
+*   tidytext - This package is used to convert text into a format that is visualizable with the use of 'unnest_tokens' function.
+
+*   tidyr - the separate function used to separate two words is present in this package.
+
+```{r}
+packages = c('tidytext','tidyr')
+for(p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+**Preparing Data:**
+
+In the Content column, instead of just trying to see the similarity With other newsgroups, we can also see how frequent do phrases appear together. To look for phrases that mostly appear together, we use the 'unnest_tokens()' function by mentioning the token and number of terms we want to link. As discussed earlier, 'unnest_tokens()' function is from the tidytext package and it converts clean dataframes into mentioned formats; in this case, the bigram format. We set the token parameter as 'ngrams' and the number of terms as 2. By running the below code chunk, there will be a column called 'bigram' created containing pair of words that have a higher frequency of appearing together.
+
+
+```{r}
+bigrams <- cleaned_text %>%
+  unnest_tokens(bigram, 
+                Content, 
+                token = "ngrams", 
+                n = 2)
+```
+
+Next, we will split the two words (since we set n=2, we will have phrases consisting of two words) and remove stop words.
+
+```{r}
+bigrams_separated <- bigrams %>%
+  filter(bigram != 'NA') %>%
+  separate(bigram, c("word1", "word2"), 
+           sep = " ")
+bigrams_filtered <- bigrams_separated %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word)
+```
+
+Then, we will calculate the count of each word pair across all rows and store it in the decresing order under the variable 'bigram_counts'bigram_counts.
+
+```{r}
+bigram_counts <- bigrams_filtered %>% 
+  count(word1, word2, sort = TRUE)
+```
+
+***Plotting Graph:**
+
+Finally, we will create a graph object by using the  graph_from_data_frame() function adn we can also specify the filtering criteria we want. In the code chunk below, the filter is set to plot graph of all phrases that have count more than 40.
+
+When plotting the graph, we can include the arrow head to show which word starts and which ends. this makes it more meaningful to understand. 
+
+```{r}
+bigram_graph <- bigram_counts %>%
+  filter(n > 30) %>%
+  graph_from_data_frame()
+
+set.seed(123)
+a <- grid::arrow(type = "closed", 
+                 length = unit(.15,
+                               "inches"))
+ggraph(bigram_graph, 
+       layout = "fr") +
+  geom_edge_link(aes(edge_alpha = n), 
+                 show.legend = FALSE,
+                 arrow = a, 
+                 end_cap = circle(.07,
+                                  'inches')) +
+  geom_node_point(color = "lightblue", 
+                  size = 5) +
+  geom_node_text(aes(label = name), 
+                 vjust = 1, 
+                 hjust = 1) +
+  theme_void()
+```
+
+## 3.2 Visualizing Network Data
 
 **Packages Required:**
 
@@ -534,7 +726,7 @@ network_graphUnofficial = tbl_graph(nodes=nodes, edges=edges_unofficial,
 
 ```
 
-**Overall Distribution of Emails:**
+### 3.2.1 Overall Distribution of Emails
 
 The network graphs we created consists of 3 parts
 1) layout: the layout you want to use
@@ -559,7 +751,7 @@ g <- ggraph(network_graph,
 g + facet_edges(~SentDate)
 ```
 
-**Official and Unofficial Relationships:**
+### 3.2.2 Official and Unofficial Relationships
 
 Work Related Emails:
 
@@ -589,7 +781,7 @@ g <- ggraph(network_graphUnofficial,
 g + theme_graph()
 ```
 
-**Unofficial Relationships related to 'Politics', 'Kronos'and 'Media':**
+### 3.2.3 Unofficial Relationships Related to 'Politics', 'Kronos'and 'Media'
 
 Identifying the employees who had discussion about any of the the key terms such as 'politics', 'Kronos'and 'media' under the non-wok related emails. We create another dataframe called 'unofficial_discussions' which is the output of filtering the original 'edges' dataframe based on the content in the 'Subject' column consists of any of the mentioned key terms. The output datatable consists of all such informal emails that could provides some insight.
 
@@ -598,13 +790,13 @@ keyterms=c('politics','kronos','media')
 unofficial_discussions=edges
 
 for (i in (1:nrow(unofficial_discussions))){
-unofficial_discussions$filter.condition[i] <-ifelse(ifelse(any(str_detect(unofficial_discussions$Subject[i],keyterms))==TRUE,TRUE,FALSE),TRUE,FALSE)
+unofficial_discussions$filter.condition[i] <-ifelse(ifelse(any(str_detect(unofficial_discussions$Subject[i],
+                                                                          keyterms))==TRUE,TRUE,FALSE),TRUE,FALSE)
 }
 
 unofficial_discussions=unofficial_discussions %>% 
   filter(filter.condition == TRUE)
 
-DT::datatable(unofficial_discussions)
 ```
 
 Next, let's create an aggregated edges called unofficial that consists of a new variable called "Weight" which holds the count on how many times source sends email to target just like how we did for the above graphs.
@@ -693,7 +885,7 @@ g <- ggraph(graphUnofficial,
 
 g + theme_graph()
 ```
-**Role of Citizenship in Employment Type:**
+### 3.2.4 Role of Citizenship in Employment Type
 
 Using facet nodes to separate the network based on the the citizenship of the employees.
 
@@ -712,7 +904,7 @@ g + facet_nodes(~CitizenshipCountry)+
   theme(legend.position = 'bottom')
 ```
 
-**Most Important Employees:**
+### 3.2.5 Most Important Employees
 
 Centrality is used to find the relative role played by different nodes. betweenness provides information on how important the node is. The bigger the node size, higher the betweenness centrality.
 

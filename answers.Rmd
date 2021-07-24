@@ -10,10 +10,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
-## 4.1 
+## 4.1 Characterization of News Data Sources
+
+## 4.1.1 
 
 ***
-## 4.2 Characterization of any biases identified in the news sources
+## 4.2 Biases identified in the News Sources
  
 ### 4.2.1 Setting the Scene
 
@@ -49,7 +51,7 @@ The last and final cluster mainly focuses on the tension between the police and 
 From the wordcloud below, it is visible that "News Online Today" is the newsgroup that mostly talked about the situation in Kronos.It talked mostly about POK but on the contrast, very little was spoken about the contamination and health of the villagers. Due this, it appears that the newsgroup is biased by targeting the POK group the most. On the other hand, "The Continent" seems to have reported most articles on the calamity, evacuation and discharge but no keywords resemble the GasTech nor the POK. "Everyday News" talked more on the crashes and explode that were occurring in Kronos. The remaining 3 newsgroups appear to be international groups and their keywords are vary diverse and none specifically talking about the situation in Kronos.
 
 <center>
-![](img/wordcloud.JPG){width=90%}
+![](img/wordcloud.JPG){width=80%}
 </center>
 
 ### 4.2.4 Frequency of keywords in Titles
@@ -73,10 +75,37 @@ Within two years of the opening of the company, there have been discussions abou
 ***
 ## 4.3 Exploring Relationships
 
+### 4.3.1 Overall Distribution of Emails
+
+Upon dividing all emails to their respective dates, it is visible that there was more activity on the 14th and 15th of January 2014 compared to any other dates. Among all employment type groups, the activity amongst 'Information Technology' seems quite suspicious with very unevenly distributed with 14th Jan having the most number or email transmissions compared to any other day. The 'Executives' seem to have little communication with other employment groups. To extract further information,the emails were segregated into work and non-work related as shown below.
 
 
 <center>
-![](img/emailnetwork1.JPG){width=90%}
+![](img/emails.JPG){width=100%}
+</center>
+
+**Work Related Emails**
+
+*   After viewing the work related emails, we can see that there is heavy weight assigned to Information Technology and this eliminates any suspicious activity we assumed earlier.
+
+*   The employees within the Engineering department seem to have more communication between themselves than with other departments.
+
+*   There is one particular Information Technology employee who seems to have communication with the Security and Administration departments but not with the Information Technology department itself which appears to be a bit fishy.
+
+**Non-Work Related Emails**
+
+*   The Executive department has more number of non-work related emails than work related and this can be explained by the thickness of the edges between them.
+
+*   One Information Technology employee appears to be the most common receiver and sender of non owrk related emails and this can be extracted by the placement of one blue node at the center.
+
+*   There is heavy transmission of unofficial emails among the Administrative department and such activity has been further explored to identify any possible leads to the incident in the coming visualizations.
+
+### 4.3.2 Deeper Look into Sensitive Emails
+
+Among all the non-work related emails, after filter the emails with subjects belonging to either **Politics, Kronos or Media**, some strong insights are extracted. It is clear now that the email exchanges between the executives were mostly those with sensitive content and hence, were not shared with the other employees. Also, it is notable that there is a group of all Kronos nationals belonging to the Security department having discussions on such sensitive content and the employees are "Hennie Osvaldo", "Inga Ferro", "Isia Vann", "Loreto Bodrogi" and "Minke Mies".
+
+<center>
+![](img/sensitive.JPG){width=90%}
 </center>
 
 ### 4.3.3 Citizenship Biases in Employment Type
@@ -87,8 +116,10 @@ The employees who are Kronos citizens were only offered employment in the admini
 ![](img/citizenship.JPG){width=90%}
 </center>
 
+### 4.3.4 Most Important Employees
 
+Of all emails taht were exchanged in the duration of two weeks, there are 3 employees who are identified to have been the most common entities across all subjects. Among these three, two of them are Tethys citizens whereas the remaining employee if a citizen of Kronos.
 
 <center>
-![](img/citizenship2.JPG){width=90%}
+![](img/importance.JPG){width=70%}
 </center>
