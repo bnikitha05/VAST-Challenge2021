@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ***
 ## 4.2 Characterization of any biases identified in the news sources
  
-### **4.2.1 Setting the Scene:** 
+### 4.2.1 Setting the Scene
 
 The newsgroups are divided into 6 clusters based on the their use of the same words. These clusters can be identified with the different color schemes and the thicker the edge between two nodes suggests that the nodes are more similar.
 
@@ -25,7 +25,7 @@ From the text plot, it is visible that cluster number 2 consisting of "Tethys Ne
 ![](img/clusters.JPG){width=60%}
 </center>
 
-### **4.2.2 Content across Clusters**
+### 4.2.2 Content across Clusters
 
 The content across all articles in cluster 1 seems to be related to the leader of POK Elian Karel, the government and the police. There also are some traces of water most likely representing the water contamination that is occurring. In the whole, this cluster talks more about the relationship between the police, government and Elian Karel with very little involvement of GasTech company. 
 
@@ -44,7 +44,7 @@ The last and final cluster mainly focuses on the tension between the police and 
 ![](img/textplot2.JPG){width=90%}
 </center>
 
-### **4.2.3 Comparing Titles**
+### 4.2.3 Comparing Titles
 
 From the wordcloud below, it is visible that "News Online Today" is the newsgroup that mostly talked about the situation in Kronos.It talked mostly about POK but on the contrast, very little was spoken about the contamination and health of the villagers. Due this, it appears that the newsgroup is biased by targeting the POK group the most. On the other hand, "The Continent" seems to have reported most articles on the calamity, evacuation and discharge but no keywords resemble the GasTech nor the POK. "Everyday News" talked more on the crashes and explode that were occurring in Kronos. The remaining 3 newsgroups appear to be international groups and their keywords are vary diverse and none specifically talking about the situation in Kronos.
 
@@ -52,7 +52,7 @@ From the wordcloud below, it is visible that "News Online Today" is the newsgrou
 ![](img/wordcloud.JPG){width=90%}
 </center>
 
-### **4.2.4 Frequency of keywords in Titles**
+### 4.2.4 Frequency of keywords in Titles
 
 For the year 2009, the most frequent noun-verb pair in titles is "leader karel". The other most common keywords such as "karel arrested" suggests that in 2009 POK's leader Elian Karel has been arrested. Other events that have taken place in this year are "gastech adopting new logo".
 
@@ -60,7 +60,7 @@ For the year 2009, the most frequent noun-verb pair in titles is "leader karel".
 ![](img/keywords.JPG){width=70%}
 </center>
 
-### **4.2.5 Timeline: Unfolding of Events across Years**
+### 4.2.5 Timeline: Unfolding of Events across Years
 
 After obtaining all of the most frequent keywords from the titles of all articles across all years, the timeline shows that from 1982 to 1994, there have been talks about foreign investment and this could suggest that the Tethys based GasTech company is looking to invest its company in another country and towards the end of that period, they have settled on Kronos which can be derived from "Shores of Kronos" keyword in 1994.
 
@@ -79,7 +79,7 @@ Within two years of the opening of the company, there have been discussions abou
 ![](img/emailnetwork1.JPG){width=90%}
 </center>
 
-### **4.3.3 Citizenship Biases in Employment Type**
+### 4.3.3 Citizenship Biases in Employment Type
 
 The employees who are Kronos citizens were only offered employment in the administration, facilities and security. All the higher profile jobs such as engineering, information technology and executive were only offered to those who are Tethys citizens. 
 

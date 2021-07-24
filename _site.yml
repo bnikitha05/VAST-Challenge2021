@@ -17,6 +17,6 @@ navbar:
       href: storyboard.html
       
   right:
-    - text: "Home"
-      href: index.html
+   # - text: "Home"
+   #   href: index.html
 output: distill::distill_article

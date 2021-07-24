@@ -1,5 +1,5 @@
 ---
-title: "Background"
+title: "1.0 Background"
 description: ""
 output:
   distill::distill_article:
@@ -34,23 +34,23 @@ In January, 2014, the leaders of GAStech are celebrating their new-found fortune
 
 The 2021 IEEE VAST Challenge is a variation on a 2014 year’s challenge with modified data and new questions. So this literature review is based on some of the submissions from that year.
 
-**1)    Timeline Visualizations**
+### 1.2.1 Timeline Visualizations
 
-![](img/lit-timeline.JPG){width=70%}
+![](img/lit-timeline.JPG){width=80%}
 
 From the images above, the timeline in [figure 'a'](http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/) consists of too much text and appears to be very cluttered. When any graph is built, one must work on showing what is required and what is not. Putting in the whole text for every event makes it difficult for the user to identify the important aspects and also it is not very readable. The graph also seems a little inconsistent as a few of the vertical lines are dotted and some are not. There should have been a legend to show the differences.
 
 Coming to timeline shown in [figure 'b'](http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Tianjin%20University%20-%20Cai/), even thought the plot is not cluttered, the circled numbers of events not being attached to the vertical lines makes it difficult to understand at what time instance the event falls under.
 
-**2)    Text Visualization**
+### 1.2.2 Text Visualization
 
-![](img/lit-articles.JPG){width=70%}
+![](img/lit-articles.JPG){width=90%}
 
 In the [figure](http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/) above ,users are provided with text across various articles to compare. This makes it very difficult for a user to interpret the main aspects across all the articles. Instead of showcasing the whole text in the articles, the user could have been provided an option to select the articles he wants to compare and the visualization of these articles can be in the form of wordcloud which makes it more easy to look at the most important terms used.
 
 Also if there are more articles to be included to the dataset, then the number of articles shown to the user would also increase making it all the more cluttered then it already is. Therefore, giving the option to the user to select the articles he wants to view and compare with would be a more ideal solution.
 
-**3)    How Much is Too Much**
+### 1.2.3 How Much is Too Much
 
 ![](img/lit-toomuch.JPG){width=90%}
 
@@ -59,8 +59,8 @@ Also if there are more articles to be included to the dataset, then the number o
 The same applies for the second [figure 'b'](http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/). Here, the user is given an option to select a user from a dropdow. However, the comparisons performed with the selected user are too many and the plot appears to be very cluttered making it difficult to read the wordings. Similar to what was suggested earlier, considering clustering the data will help reduce the clutter.
 
 
-**4)   Network Graph**
+### 1.2.4 Network Graph
 
-![](img/lit-graph.JPG){width=70%}
+![](img/lit-graph.JPG){width=90%}
 
 The network [graph](http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC1%20-%20Disappearance%20at%20GASTech/entries/Peking%20University/) above, consists of many nodes and due to the overlap of the node names with the edges, some of the text is difficult to read. An alternat approact would e to divide the network graph into sub graphs. When the graph is divided, it makes the graphs less dense and also enhances the redability.

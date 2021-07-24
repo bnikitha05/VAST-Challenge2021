@@ -1,5 +1,5 @@
 ---
-title: "Building the Visualization"
+title: "3.0 Building the Visualization"
 output:
   distill::distill_article:
     toc: true
@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
 
-## 2) Relationship between the News Articles
+## 3.2 Visualizing Text Data
 
-### Text Net Visualization
+### 3.2.1 Text Net
 
 The textnet is used to represent relationships between words. The first node set is words found in the newspaper articles, and the second node set is the newspapers themselves. That is, one can create a network where newspapers are connected by their use of the same words.
 
@@ -25,7 +25,7 @@ The only R package presently available to implement text network techniques is t
 library(devtools)
 install_github("cbail/textnets")
 
-packages = c('textnets','dplyr','Matrix','tidytext','stringr','SnowballC','reshape2','igraph','ggraph','networkD3','readxl')
+packages = c('textnets','dplyr','Matrix','tidytext','stringr','SnowballC','reshape2','igraph','ggraph','networkD3')
 for(p in packages){
   if(!require(p, character.only = T)){
   install.packages(p)
@@ -39,12 +39,12 @@ for(p in packages){
 The textnets package requires text that is contained within a dataframe, where each row represents a document. The text of each document must be contained within a single row therefore we have to group all newspaper article based on their name and club all the articles text to one row. Since we have 29 newspapers provided, we should be having 29 rows. For this dataframe, as discussed above only the newspaper name and the content are required. Therefore, we can drop the other columns.
 
 ```{r}
-cleaned_text=read_excel("data/cleanArticles.xlsx")
+cleaned_text=read.csv("data/cleanArticles.csv")
+cleaned_text$Published=as.Date(cleaned_text$Published,format="%Y-%m-%d")
 textNet_data=cleaned_text %>%
   group_by(newsgroup) %>%
   summarise_all(funs(toString(na.omit(.))))
 textNet_data=textNet_data[,!(names(textNet_data) %in% c("id","Location","Published","Title"))]
-textNet_data
 ```
 
 The PrepText function prepares texts for networks using all types of words.This function requires the user to provide four inputs: 
@@ -87,7 +87,7 @@ We can also output an interactive visualization of the text network, where the u
 VisTextNetD3(news_text_network, .30)
 ```
 
-### Clustering
+### 3.2.2 Clustering
 
 **Packages Required:**
 
@@ -103,7 +103,9 @@ for(p in packages){
 }
 ```
 
-From the above visualixation, the newsgroups have been divided into clusters based on strong relationship between its components. To classifying the newsgroups based on the clusters obtained, we use the TextCommunities function, which automatically uses the edge weights and determines the number of clusters within a given network. The function outputs a dataframe with the cluster or “modularity” class to which each document has been assigned.
+**Viewing Clusters:**
+
+From the previous visualization of text net, the newsgroups have been divided into clusters based on strong relationship between its components. To classifying the newsgroups based on the clusters obtained, we use the TextCommunities function, which automatically uses the edge weights and determines the number of clusters within a given network. The function outputs a dataframe with the cluster or “modularity” class to which each document has been assigned.
 
 ```{r}
 # get text communities and plot their constituting words
@@ -116,15 +118,17 @@ ggplot(text_communities %>% filter(modularity_class %in% c(1,2,3,4,5,6)),
   scale_size_area(max_size = 15) +
   theme_minimal() +  
   facet_wrap(~modularity_class)
+
 ```
-Lets store the cluster information in a 'cluster' column in cleaned_text. This will make it easier to refer to clusters for future visualizations.
+
+Lets store the cluster number information in a 'cluster' column in cleaned_text. This will make it easier to refer to clusters for future visualizations.
 
 ```{r}
 cleaned_text$cluster=text_communities$modularity_class[match(cleaned_text$newsgroup,text_communities$
 group)]
 ```
 
-### Text Plot
+### 3.2.3 Text Plot
 
 **Packages Required:**
 
@@ -144,10 +148,11 @@ for(p in packages){
 }
 ```
 
-**Text Plot for Cluster 1**
+**Text Plot for Cluster 1:**
 
 The word cooccurrence graph graph visualizes collections of word pair and how frequent these word pairs occur. We create a cooccurrence data frame where each row contains the word pair and how many they occur. That cooccurrence data frame will be used as the input for the textplot_cooccurrence function.
-After we get the correct input, now we can create the chart. We will take only the 15 most occur word pairs.
+
+After we get the correct input, now we can create the chart. We will take only the 15 most occur word pairs. Do note that we are only visualizing the content of cluster 1 articles. We can obtain other clusters by editing the filter criteria in the 'subset()' function.
 
 ```{r}
 usenet_words <- cleaned_text %>%
@@ -155,6 +160,7 @@ usenet_words <- cleaned_text %>%
   filter(str_detect(word, "[a-z']$"),
          !word %in% stop_words$word)
 
+##modify the cluster here
 x <- subset(usenet_words, cluster == 1)
 x <- cooccurrence(x, group = "id", term = "word")
 #x
@@ -162,7 +168,7 @@ textplot_cooccurrence(x, top_n = 15, subtitle = "showing Cluster 1")
 
 ```
 
-### Wordcloud Article Titles
+### 3.2.4 Comparison Cloud
 
 **Packages Required:**
 
@@ -182,10 +188,9 @@ for(p in packages){
 }
 ```
 
+**Preparing Data:**
 
-**Wordcloud for Titles in Cluster 5**
-
-To build a wordcloud, we first need to have the proper data. Therefore, we first extract the required data fom cleande_text and filter it based on the criteria "cluster =5". This values should be changes when we want to visualize other clusters. Afetr we extract the required data, we need to clean it by removing punctuation, digits and stopwords. All of these can be removed by using regular expression as stated in the code chunk below.
+To build a wordcloud, we first need to have the proper data. Therefore, we first extract the required data from cleaned_text and filter it based on the criteria "cluster =5". This values should be changes when we want to visualize other clusters. After we extract the required data, we need to clean it by removing punctuation, digits and stopwords. All of these can be removed by using regular expression as stated in the code chunk below.
 
 ```{r}
 title_data=cleaned_text %>%
@@ -216,6 +221,8 @@ tdm=TermDocumentMatrix(corpus3)
 tdm
 ```
 
+**Comaprison Cloud for Titles in Cluster 5:**
+
 We will now convert the term document matrix to matrix format and rename the document names to the respective newsgroup. As for the comparison.cloud function, there are multiple parameters that can be set as per requirements. For our purpose, we will set the higher frequency words to be in the center and for it we shall set random.order=FALSE. The maximum number of words that can be displayed is set to 300 and the size and color of the title is set to a suitable value as show below.
 
 ```{r}
@@ -227,7 +234,7 @@ comparison.cloud(m,max.words = 300,random.order=FALSE,colors=brewer.pal(max(3,nc
 	title.bg.colors="grey90")
 ```
 
-### Timeline of Articles
+### 3.2.5 Timeline
 
 Since the data we have cleaned for the articles also contains the published date, we can make use of the column to visualize how events have been unfolding across the years by means of a timeline.
 
@@ -247,15 +254,19 @@ for(p in packages){
   }
   library(p, character.only = T)
 }
+
 ```
 
-Plotting to understand how the frequency of headlines is:
+**Visualizing Frequency:**
+
+Plotting to understand how the frequency of articles published is.
 
 ```{r}
 news=cleaned_text
 news %>% group_by(Published) %>% count() %>% arrange(desc(n))
 news %>% group_by(Published) %>% count() %>% ggplot() + geom_line(aes(Published,n, group = 1))
 ```
+**Preparing Data:**
 
 Before we move on to perform text analysis let’s split year from Published date.
 
@@ -264,16 +275,19 @@ Before we move on to perform text analysis let’s split year from Published dat
 news$year <- format(news$Published, "%Y")
 years=sort(unique(news$year))
 years
+
 ```
 Udpipe Package provides pretrained language models for respective languages and we can download the required model using udpipe_load_model function. This will automatically convert the text into clean text.
 
 ```{r}
 model <- udpipe_download_model(language = "english")
 udmodel_english <- udpipe_load_model(model)
+
 ```
 
 Filtering data only for 2009. The udpipe_annotate() function takes the language model and annoates the given text data. This is a function that is within the 'udpipe' package. We then convert this object to a dataframe.
-TOP NOUN — VERB Pairs as Keyword pairs:
+
+**TOP NOUN — VERB Pairs as Keyword pairs:**
 In English (or probably in many languages), Simple a noun and a verb can form a phrase. Like, Dog barked — with the noun Dog and Barked, we can understand the context of the sentence. Reverse-engineering the same with this titles data, let us bring out top phrases - that are just keywords/topics
 
 
@@ -303,14 +317,22 @@ We can re run the above chuck of code by changing the filter criteria "year==" a
 When we run the barplot for all available years and store the 1st keyword, we should be getting the below values.
 
 ```{r}
-keywords=list("central role", "mediterranean sea","foreign investment","foreign investment","shores of kronos","grand opening","gas fields","elodis possible contamination","public health","minister of health","president kapelou","taxes on oil","public health","hank fluss","public health",NA,"near elodis","leader karel","anniversary of protests","public threat","presidential manor","ipo makes","scene blog")
+keywords=list("central role", "mediterranean sea","foreign investment","foreign investment",
+              "shores of kronos","grand opening","gas fields","elodis possible contamination",
+              "public health","minister of health","president kapelou","taxes on oil",
+              "public health","hank fluss","public health",NA,"near elodis","leader karel",
+              "anniversary of protests","public threat","presidential manor","ipo makes","scene blog")
 
 ```
 
 Next, we shall creat another list that consists of events that explain the keywords and then we will unlist bothe the keywords and event list and create a dataframe with years,keywords and event.
 
 ```{r}
-event=list("Before Opening","Before Opening","Before Opening","Before Opening","Before Opening","Contamination","Contamination","Contamination","Health  Impact","Health  Impact","Health  Impact","Health  Impact","Health  Impact","Health  Impact","Health  Impact","Health  Impact","Protests","Protests","Protests","Protests","Protests","Protests","Protests")
+event=list("Before Opening","Before Opening","Before Opening","Before Opening","Before Opening",
+           "Contamination","Contamination","Contamination","Health  Impact","Health  Impact",
+           "Health  Impact","Health  Impact","Health  Impact","Health  Impact","Health  Impact",
+           "Health  Impact","Protests","Protests","Protests","Protests",
+           "Protests","Protests","Protests")
 
 keywords=unlist(keywords, use.names=FALSE)
 event=unlist(event, use.names=FALSE)
@@ -355,6 +377,7 @@ kable(head(Merkel))
 ```
 
 **We are ready to plot our timeline now!**
+
 **Step 1:** We first start by creating a plan chart consisting of our x and y coordinates and the labels. Then we will set the background to be plain by using the classic theme.
 
 ```{r}
@@ -441,9 +464,9 @@ print(timeline_plot)
 ```
 The above timeline plot is extremely useful and easily understandable if we have data based on dates. This plot helps us understand how events have been unfolding through the years, months or dates.
 
-## 3) Visualizing Email Network
+## 3.3 Visualizing Network Data
 
-**Packages Required**
+**Packages Required:**
 
 The purpose for requiring the packages are:
 
@@ -463,45 +486,55 @@ for(p in packages){
 }
 ```
 
-For easier understanding, lets save our clean email data as "edges" and employee data as "nodes". For simplified analysis, we shall add another variable to "edges' and call it Weekday that will mention the day of the week the email was sent. For this, we make use of the 'wday' function that is part of the 'lubridate' package. Set 'label=true' to display as 'Monday, Tuesday, etc' instead of '1,2 3,etc' and setting 'abbr=false' will spell days in full form.
+**Preparing Data:**
+
+For easier understanding, lets save our clean email data as "edges" and employee data as "nodes". 
 
 ```{r}
 edges <- read.csv("data/cleanEmail.csv")
 nodes<- read.csv("data/cleanEmployee.csv")
-edges$Weekday= wday(edges$SentDate, label=TRUE,abbr=FALSE)
 ```
 
-Next, let's create an aggregated edges that consists of a new variable called "Weight" which holds the count on how many times source sends email to target. for the first aggregate, we shall group by sent date and for the second, we shall group by the Weekday variable that we created earlier.
+Next, let's create an aggregated edges that consists of a new variable called "Weight" which holds the count on how many times source sends email to target. for the first aggregate, we shall group by 'SentDate'. We shall create 3 categories of network graph. One represents all the emails across all employess and the other two will look into only those that are work and non-work related.
 
 ```{r}
-edges_aggregated1=edges %>% 
+#all emails
+edges_aggregated=edges %>% 
   group_by(Source,Target,SentDate) %>%
   summarise(Weight=n()) %>%
   filter(Weight >1) %>%
   ungroup()
 
-glimpse(edges_aggregated1)
-```
-
-```{r}
-edges_aggregated2=edges %>% 
-  group_by(Source,Target,Weekday) %>%
+#work related emails only
+edges_official=edges %>% 
+  filter(MainSubject == "Work related") %>%
+  group_by(Source,Target,SentDate) %>%
   summarise(Weight=n()) %>%
   filter(Weight >1) %>%
   ungroup()
 
-glimpse(edges_aggregated2)
+#non-work related emails only
+edges_unofficial=edges %>%
+  filter(MainSubject == "Non-work related") %>%
+  group_by(Source,Target,SentDate) %>%
+  summarise(Weight=n()) %>%
+  filter(Weight >1) %>%
+  ungroup()
 ```
 
 Now that we have the aggregated edges, we have to create a wrapper to build the graph model. This can be done using the 'tbl_graph' function present in the 'tidygraph' package.
 
 ```{r}
-network_graph1 = tbl_graph(nodes=nodes, edges=edges_aggregated1,
+network_graph = tbl_graph(nodes=nodes, edges=edges_aggregated,
                           directed=TRUE  )
-network_graph2 = tbl_graph(nodes=nodes, edges=edges_aggregated2,
+network_graphOfficial = tbl_graph(nodes=nodes, edges=edges_official,
                           directed=TRUE  )
+network_graphUnofficial = tbl_graph(nodes=nodes, edges=edges_unofficial,
+                          directed=TRUE  )
+
 ```
 
+**Overall Distribution of Emails:**
 
 The network graphs we created consists of 3 parts
 1) layout: the layout you want to use
@@ -509,35 +542,14 @@ The network graphs we created consists of 3 parts
 3) The aesthetics for nodes
 
 For all these, we make use of the 'ggraph' package. We use 'theme_graph' to modify the background color.
-The node and edge color can be changed by specifying the colour in the aes() method under the variable 'colour'.
-We can also add other parameters such as the layout type and also color the nodes based on the employment category so as to understand the connectivity between various employment categories.
+The node and edge color can be changed by specifying the color in the aes() method under the variable 'color'.
+We can also add other parameters such as the layout type and also color the nodes based on the employment category so as to understand the connectivity between various employment categories. The thickness of the edges will be mapped with the Weight variable by using the 'scale_edge_width' function'. So the thicker the edge, the more emails passed between the two nodes.
 
-
-```{r}
-g <- ggraph(network_graph1, 
-            layout = "nicely") + 
-  geom_edge_link(aes()) +
-  geom_node_point(aes(colour = CurrentEmploymentType, 
-                      size = 3))
-g + theme_graph()
-```
-In the code chunk below, the thickness of the edges will be mapped with the Weight variable. So the thicker the edge, the more emails passed between the two nodes.
+Distribution of all email across all employees for the duration of 2 weeks before the incident.
 
 ```{r}
-g <- ggraph(network_graph1, 
-            layout = "nicely") +
-  geom_edge_link(aes(width=Weight), 
-                 alpha=0.2) +
-  scale_edge_width(range = c(0.1, 5)) +
-  geom_node_point(aes(colour = CurrentEmploymentType), 
-                  size = 3)
-g + theme_graph()
-```
-Using facet edge to separate the network based on the the send date.
-
-```{r}
-
-g <- ggraph(network_graph1, 
+set.seed(123)
+g <- ggraph(network_graph, 
             layout = "nicely") + 
   geom_edge_link(aes(width=Weight), 
                  alpha=0.2) +
@@ -547,10 +559,147 @@ g <- ggraph(network_graph1,
 g + facet_edges(~SentDate)
 ```
 
-using facet nodes
+**Official and Unofficial Relationships:**
+
+Work Related Emails:
 
 ```{r}
-g <- ggraph(network_graph2, 
+set.seed(123)
+g <- ggraph(network_graphOfficial, 
+            layout = "nicely") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+    scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = CurrentEmploymentType, 
+                      size = 3))
+g + theme_graph()
+```
+
+Non-Work Related Emails:
+
+```{r}
+set.seed(123)
+g <- ggraph(network_graphUnofficial, 
+            layout = "nicely") +
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+  scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = CurrentEmploymentType), 
+                  size = 3)
+g + theme_graph()
+```
+
+**Unofficial Relationships related to 'Politics', 'Kronos'and 'Media':**
+
+Identifying the employees who had discussion about any of the the key terms such as 'politics', 'Kronos'and 'media' under the non-wok related emails. We create another dataframe called 'unofficial_discussions' which is the output of filtering the original 'edges' dataframe based on the content in the 'Subject' column consists of any of the mentioned key terms. The output datatable consists of all such informal emails that could provides some insight.
+
+```{r}
+keyterms=c('politics','kronos','media')
+unofficial_discussions=edges
+
+for (i in (1:nrow(unofficial_discussions))){
+unofficial_discussions$filter.condition[i] <-ifelse(ifelse(any(str_detect(unofficial_discussions$Subject[i],keyterms))==TRUE,TRUE,FALSE),TRUE,FALSE)
+}
+
+unofficial_discussions=unofficial_discussions %>% 
+  filter(filter.condition == TRUE)
+
+DT::datatable(unofficial_discussions)
+```
+
+Next, let's create an aggregated edges called unofficial that consists of a new variable called "Weight" which holds the count on how many times source sends email to target just like how we did for the above graphs.
+
+```{r}
+unofficial=unofficial_discussions %>% 
+  group_by(Source,Target,SentDate) %>%
+  summarise(Weight=n()) %>%
+  filter(Weight >1) %>%
+  ungroup()
+```
+
+ Some additional steps that we need to perform are that if we want to only display the nodes that have edges in the graph, then we need to filter the nodes dataframe to contain only the 'ids' that are present in the 'unofficial' edge object. Therefore, we obtain the unique ids that are present in the 'unofficial' edge object and creat a new 'sub_node' consisting of only those ids.
+
+An important point to node is that the id values on the node must be continuous. Therfore, we need to relabel the id column by creating a new column called 'new_id' and then re edit the source and target in the unofficial dataframe.
+
+```{r}
+ids=unofficial$Source
+ids=append(ids,unofficial$Target)
+ids=unique(ids)
+
+#Create sub node consisting of ids present in unofficial
+sub_nodes=nodes %>% filter(id %in% ids)
+
+#create new column called new_id
+sub_nodes$new_id=1:nrow(sub_nodes)
+
+#re edit the Source and Target ids
+unofficial$Source=sub_nodes$new_id[match(unofficial$Source,sub_nodes$id)]
+unofficial$Target=sub_nodes$new_id[match(unofficial$Target,sub_nodes$id)]
+
+#remove the old id column and rename the new_id column
+sub_nodes=sub_nodes[,!(names(sub_nodes) %in% c("id"))]
+names(sub_nodes)[names(sub_nodes) == 'new_id'] <- 'id'
+
+```
+
+Now that we have the everything ready, we have to create a wrapper to build the graph model.
+
+```{r}
+graphUnofficial = tbl_graph(nodes=sub_nodes, edges=unofficial)
+```
+
+Now, we can build multiple graphs with various coloring criteria to identify who has been discussing about such sensitive information. 
+
+1)    First, we will identify the **employee names** who were discussing such informal topics.
+
+```{r}
+set.seed(123)
+g <- ggraph(graphUnofficial, 
+            layout = "nicely") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+    scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = FullName, 
+                      size = 2))
+
+g + theme_graph()
+```
+
+2)    Next, we will identify the **employment type** of the above mentioned people.
+
+```{r}
+set.seed(123)
+g <- ggraph(graphUnofficial, 
+            layout = "nicely") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+    scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = CurrentEmploymentType, 
+                      size = 2))
+
+g + theme_graph()
+```
+3)    Lastly, we can identify the **citizenship** of those employees.
+
+```{r}
+set.seed(123)
+g <- ggraph(graphUnofficial, 
+            layout = "nicely") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+    scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = CitizenshipCountry, 
+                      size = 2))
+
+g + theme_graph()
+```
+**Role of Citizenship in Employment Type:**
+
+Using facet nodes to separate the network based on the the citizenship of the employees.
+
+```{r}
+set.seed(123)
+g <- ggraph(network_graph, 
             layout = "nicely") + 
   geom_edge_link(aes(width=Weight), 
                  alpha=0.2) +
@@ -562,10 +711,14 @@ g + facet_nodes(~CitizenshipCountry)+
                 border = TRUE) +
   theme(legend.position = 'bottom')
 ```
-centrality is used to find the relative role played by different nodes. betweenness provides information on how important the node is. The bigger the node soze, higher th ebetweenness centrality.
+
+**Most Important Employees:**
+
+Centrality is used to find the relative role played by different nodes. betweenness provides information on how important the node is. The bigger the node size, higher the betweenness centrality.
 
 ```{r}
-g <- network_graph2 %>%
+set.seed(123)
+g <- network_graph %>%
   ggraph(layout = "fr") + 
   geom_edge_link(aes(width=Weight), 
                  alpha=0.2) +
