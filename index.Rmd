@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-Welcome to the home page of **VAST Challenge MC1**. This challenge is attempted as a part of the coursework of Visual Analytics and Applications, taught by Professor [Dr. Kam Tin Seong](https://www.smu.edu.sg/faculty/profile/9618/KAM-Tin-Seong) at Singapore Management University.
+Welcome to the home page of my website on **VAST Challenge Mini Challenge 1**. This challenge is attempted as a part of the coursework of Visual Analytics and Applications, taught by Professor [Dr. Kam Tin Seong](https://www.smu.edu.sg/faculty/profile/9618/KAM-Tin-Seong) at Singapore Management University.
 
 
 **AUTHOR:** [Nikitha Banda](https://www.linkedin.com/in/banda-nikitha)  

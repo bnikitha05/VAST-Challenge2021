@@ -2082,6 +2082,37 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#prototype">Prototype</a><ul>
+<li><a href="#timeline">Timeline</a></li>
+<li><a href="#network-graph">Network Graph</a></li>
+<li><a href="#text-analysis">Text Analysis</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<p><strong>Why RShiny when we already have the visualizations?</strong></p>
+<p>In our attempt to investigate, if we wanted to examine cluster 2 instead of cluster 1, we had to change the code by editing the filter criteria. This is not user friendly and to overcome this, we make use of a interactive user interface where the user can select any criteria he wants without having to edit the code. This UI is called RShiny.</p>
+<h2 id="prototype">Prototype</h2>
+<p>There will be three tabs in the Shiny app on Kidnapping Investigations: Timeline, Network Graph and Text Analysis. Do note that the visualization ideas are not limited to the screen shots below and they are only for visualization purpose.</p>
+<h3 id="timeline">Timeline</h3>
+<p>To enhance user experience, users would be given the feasibility to select the range of years or the dates of the year specific to 2014 to drill down on the sequence of events that took place in 2014. After user has selected the variables, the timeline will show the important events that unfolded in the selected years and also a bar plot the frequent of keywords will be displayed.</p>
+<center>
+<img src="img/shiny1.JPG" style="width:90.0%" />
+</center>
+<h3 id="network-graph">Network Graph</h3>
+<p>For the network visualization, users can specify if they want to look into work related or non work related by selecting the appropriate check box. Apart from this, they can also narrow down on the number of nodes by selecting the nodes the user wants to see.</p>
+<center>
+<img src="img/shiny2.JPG" style="width:90.0%" />
+</center>
+<h3 id="text-analysis">Text Analysis</h3>
+<p>Since a major component of this investigation is textual, there will be a collective of visualizations shown to the user to compare the text. The user can select one or more clusters from the drop down and also specific newsgroups he wants to compare.</p>
+<center>
+<img src="img/shiny3.JPG" style="width:90.0%" />
+</center>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
