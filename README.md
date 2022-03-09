@@ -1,0 +1,1 @@
+This visual investigation is based on VAST Challenge 2021 - The Kronos Incident Mini Challenge 1. This challenge is attempted as a part of the coursework of Visual Analytics and Applications, at Singapore Management University.
